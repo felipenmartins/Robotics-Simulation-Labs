@@ -42,7 +42,6 @@ The tasks are listed below:
 
 * How accurate is the odometry-based localization?
 * In what conditions is odometry-based localication useful? And when is it problematic?
-* What can you do to increase the accuracy of the pose estimation in your code?
 
 ### Some information for implementing the code
 The definition of the variables used in the functions is given below.
@@ -98,4 +97,11 @@ The encoder values are incremented when the corresponding wheel moves forwards a
 ## Conclusion
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
+## Challenge
+Add a [compass sensor](https://cyberbotics.com/doc/reference/compass?tab-language=python) to your robot and use its value to calculate the robot orientation (instead of odometry). Is there an improvement in pose accuracy? 
 
+## Super challenge
+You can also combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation using Kalman Fiter.
+
+## Solution
+Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab3/line_following_with_localization.py).
