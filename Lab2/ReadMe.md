@@ -43,3 +43,8 @@ After following this lab you should know more about the e-puck robot model, how 
 ## Challenge
 Add obstacles to the world and try to change the state-machine to make e-puck avoid obstacles placed on its way.
 
+## Solution
+Try to implement the state-machine code yourself before checking the solution! After a successfull implementation, or if you need inspiration, an example code is available [here](/Lab2/line_following_behavior.py).
+
+A video of this code in action can be seen [here](https://youtu.be/nW06dLEe-AU).
+
