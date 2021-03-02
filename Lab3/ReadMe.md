@@ -10,6 +10,13 @@ To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-p
 
 Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
+## Webots Reference Frame
+In Webots, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in most cases (on the left) and in Webots (on the right). 
+
+![Webots Reference Frame](/Lab3/Reference_frame_convention.png) 
+
+Figure 2. Orientation of the reference frames used to develop our controller equations (left) and adopted by Webots (right).
+
 ## Taks
 Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. In the main loop of your program, those functions should be called in a sequence:
 ```
@@ -24,14 +31,20 @@ Your main task is to write code to implement the functions below to add localiza
 ```
 I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](/Lab3/lab3_template.py). 
 
-## Webots Reference Frame
-In Webots, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in most cases (on the left) and in Webots (on the right). 
+The tasks are listed below:
 
-![Webots Reference Frame](/Lab3/Reference_frame_convention.png) 
+1. Write the function `get_wheels_speed(encoderValues, oldEncoderValues, delta_t)` to calculate the speed of the robot wheels based on encoder readings. Test your code before moving to the next step.
+2. Write the function `get_robot_speeds(wl, wr, r, d)` to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
+3. Write the function `get_robot_pose(u, w, z, x, phi, delta_t)` to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
+4. Compare the pose calculated by your functions with the pose calculated by Webots in different moments of the simulation. 
 
-Figure 2. Orientation of the reference frames used to develop our controller equations (left) and adopted by Webots (right).
+### Think about the following questions
 
-## Some extra information for implementing the code
+* How accurate is the odometry-based localization?
+* In what conditions is odometry-based localication useful? And when is it problematic?
+* What can you do to increase the accuracy of the pose estimation in your code?
+
+### Some information for implementing the code
 The definition of the variables used in the functions is given below.
 
 ```
