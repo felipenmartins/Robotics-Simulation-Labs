@@ -48,13 +48,8 @@ Figure 2. Webots screenshot showing robot pose calculated by the simulator (left
 
 ### Think about the following questions
 
-* How accurate is the odometry-based localization?
-* In what conditions is odometry-based localication useful? And when is it problematic?
-
-### Some information for implementing the code
-The definition of the variables used in the functions is given below.
-
-
+* Considering that you are using odometry-based localization, how does it affect the performance of the trajectory-tacking controller?
+* What would you change in the code for the controller to work as a pose controller (final position + orientation)?
 
 ## Conclusion
 After following this lab you should know how to implement moving controllers for mobile robots, especially to go to position and follow a trajectory.
