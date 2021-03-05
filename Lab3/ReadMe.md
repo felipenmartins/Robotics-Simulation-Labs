@@ -98,7 +98,8 @@ The encoder values are incremented when the corresponding wheel moves forwards a
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
 ## Challenge
-Add a [compass sensor](https://cyberbotics.com/doc/reference/compass?tab-language=python) to your robot and use its value to calculate the robot orientation (instead of odometry). Is there an improvement in pose accuracy? 
+1. Replace the line-following state-machine by a "go-to-goal" controller using a PID. Test it by making the robot go to the 4 corners of the field, and then to the center.
+2. Add a [compass sensor](https://cyberbotics.com/doc/reference/compass?tab-language=python) to your robot and use its value to calculate the robot orientation (instead of odometry). Is there an improvement in pose accuracy? 
 
 ## Super challenge
 You can also combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation using Kalman Fiter.
