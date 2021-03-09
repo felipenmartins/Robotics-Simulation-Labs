@@ -102,7 +102,7 @@ After following this lab you should know more about the implementation and limit
 2. Add a [compass sensor](https://cyberbotics.com/doc/reference/compass?tab-language=python) to your robot and use its value to calculate the robot orientation (instead of odometry). Is there an improvement in pose accuracy? 
 
 ## Super challenge
-You can also combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation using Kalman Fiter.
+Implement a 1-D Kalman Filter to combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
 
 ## Solution
 Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab3/line_following_with_localization.py).
