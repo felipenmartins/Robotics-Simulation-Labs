@@ -39,6 +39,9 @@ After following the steps above, you should have Webots installed and configured
 
 In the following lab activities, we will control the virtual robot using Python.
 
+## Next Lab
+Go to [Lab 2](/Lab2) - Line-following behavior with State-Machine.
+
 # Known issues
 
 1. If you are using Windows 10, you might see the message below when you try to run the installation program for Webots. Don’t worry. Click on “More info” and then click the button “Run anyway” to proceed with the installation (see figure below).
