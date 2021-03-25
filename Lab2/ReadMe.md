@@ -11,7 +11,7 @@ To detect obstacles, e-puck contains 8 infra-red distance sensors around its bod
 ## Tasks
 You are going to load an example world that shows a line-follower behavior implemented with a state machine. First, you will be able to play with a simple graphical programming interface to understand and modify the state machine. Then, you will built a line-following behavior in Python.
 
-1. Click on “Open Sample Worlds” and go to robots `gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 1.
+1. Click on “Open Sample Worlds” and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 1.
 
 ![Webots screenshot with e-puck](/Lab2/Webots_screenshot_with_e-puck.png)
 Figure 1. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
