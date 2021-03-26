@@ -67,3 +67,5 @@ This is not a problem for our simulations. The demo simulations that come with W
 - Still in `WorldInfo`, click on `basicTimeStep` and increase it (for example, to 32).
 - Go to `Tools -> Preferences -> OpenGL` and try to reduce `Ambient Occusion` and `Texture Quality`.
 
+5. If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. (Thanks to Nick Buls for the tip).
+
