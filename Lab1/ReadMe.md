@@ -50,7 +50,11 @@ Go to [Lab 2](/Lab2) - Line-following behavior with State-Machine.
 
 2. Make sure you have the 64-bit version of Python 3.7 (or higher) so that Webots work properly. Wrong versions of Python are known to cause issues.
 
-3. If you already installed Python but cannot load it from the command prompt, or if Webots cannot find Python, you need to make sure Python is added to Windows PATH. To add Python to PATH, follow the instructions available [here](https://datatofish.com/add-python-to-windows-path/). After you add Python to PATH you must reboot your system for the changes to take effect.
+3. If you already installed Python but cannot load it from the command prompt, or if Webots cannot find Python, you need to make sure Python is added to Windows PATH system variable. To add Python to PATH, follow the instructions available [here](https://datatofish.com/add-python-to-windows-path/). Note that you have to add only the path for the location where the executable is, without including "python.exe". A proper configuration is shown in the image below (the path in your computer might be different depending on your Python version and installation):
+
+![windows_path_variable_python.png](windows_path_variable_python.png)
+
+ **After you add Python to PATH you must reboot your system for the changes to take effect.**
 
 4. Depending on your hardware, when running Webots you might see the following message: 
 
