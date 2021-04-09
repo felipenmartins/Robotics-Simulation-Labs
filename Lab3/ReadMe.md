@@ -49,7 +49,7 @@ The definition of the variables used in the functions is given below.
 ```
 Robot pose and speed in (x,z) coordinates:
 x = position in x [m]
-z = position in y [m]
+z = position in z [m]
 phi = orientation [rad]
 dx = speed in x [m/s]
 dz = speed in z [m/s]
@@ -72,7 +72,6 @@ To calculate robot localization you will need to use some physical parameters of
 ```
 r = radius of the wheels [m]: 20.5mm 
 d = distance between the wheels [m]: 52mm 
-a = distance from the center of the wheels to the point of interest [m]: 50mm
 ```
 
 You can use the pieces of code below to initialize the encoder sensors and to read encoder values in the main loop of your program:
