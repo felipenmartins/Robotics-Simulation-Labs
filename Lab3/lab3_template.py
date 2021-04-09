@@ -12,7 +12,6 @@ import numpy as np
 #-------------------------------------------------------
 # Initialize variables
 
-TIME_STEP = 64
 MAX_SPEED = 6.28
 
 speed = 1 * MAX_SPEED
@@ -22,7 +21,7 @@ robot = Robot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())   # [ms]
-delta_t = timestep/1000.0    # [s]
+delta_t = robot.getBasicTimeStep()/1000.0    # [s]
 
 # states
 states = ['forward', 'turn_right', 'turn_left']
