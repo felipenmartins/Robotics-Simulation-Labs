@@ -84,4 +84,4 @@ The video below shows the solution code in action:
 [![Video screenshot](/Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
 
 ## Next Lab
-Go to [Lab 3](/Lab3) - Odometry-based Localization
+Go to [Lab 3](/Lab3/ReadMe.md) - Odometry-based Localization
