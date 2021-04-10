@@ -19,11 +19,11 @@ The simulation labs are presented as a series of tutorials, including references
 ## Content
 The content of each lab is listed below:
 
-- [Lab 1](/Lab1) - Installation and introduction to Webots Robot Simulator
-- [Lab 2](/Lab2) - Line-following behavior with State-Machine
-- [Lab 3](/Lab3) - Odometry-based Localization
-- [Lab 4](/Lab4) - Trajectory Tracking Controller
-- [Lab 5](/Lab5) - Robot Soccer Team
+- [Lab 1](/Lab1/ReadMe.md) - Installation and introduction to Webots Robot Simulator
+- [Lab 2](/Lab2/ReadMe.md) - Line-following behavior with State-Machine
+- [Lab 3](/Lab3/ReadMe.md) - Odometry-based Localization
+- [Lab 4](/Lab4/ReadMe.md) - Trajectory Tracking Controller
+- [Lab 5](/Lab5/ReadMe.md) - Robot Soccer Team
 
 ## License
 This project is licensed under the terms of the [MIT license](/LICENSE).
