@@ -107,4 +107,4 @@ Implement a 1-D Kalman Filter to combine the values given by the compass with th
 Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab3/line_following_with_localization.py).
 
 ## Next Lab
-Go to [Lab 4](/Lab4) - Trajectory Tracking Controller
+Go to [Lab 4](/Lab4/ReadMe.md) - Trajectory Tracking Controller
