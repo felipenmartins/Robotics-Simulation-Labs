@@ -40,7 +40,7 @@ After following the steps above, you should have Webots installed and configured
 In the following lab activities, we will control the virtual robot using Python.
 
 ## Next Lab
-Go to [Lab 2](/Lab2) - Line-following behavior with State-Machine.
+Go to [Lab 2](/Lab2/ReadMe.md) - Line-following behavior with State-Machine.
 
 # Known issues
 
