@@ -58,7 +58,7 @@ After following this lab you should know how to implement moving controllers for
 Create a function to generate a trajectory: a vector `(xd, zd, dxd, dzd)` with position and speed for all points in the path. Plot the instantaneous value of position error. Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
 
 ## Solution
-Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab4/trajecory_tracking_controller.py).
+Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab4/trajectory_tracking_controller.py).
 
 ## Next Lab (optional)
 Go to [Lab 5](/Lab5/ReadMe.md) - Robot Soccer Team
