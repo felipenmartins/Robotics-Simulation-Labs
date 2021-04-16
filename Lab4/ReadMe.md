@@ -23,7 +23,9 @@ Your main task is to write code to implement the functions below to add the cont
 [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, d, r)
 ```
 
-I recommend you try to modify your line following code from Lab 3 to implement the controller as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab4/lab4_template.py). 
+The variables above were defined in Lab 3. Explanation about the trajectory tracking controller can be bound in section 4 of [[1](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)] (see reference at the end). The controller equation to be implemented here is equation (20).
+
+I recommend you try to modify your code from Lab 3 to implement the controller as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab4/lab4_template.py). 
 
 The tasks are listed below:
 
@@ -66,3 +68,8 @@ Try to implement the localization code yourself before checking the solution! Af
 Go to [Lab 5](../Lab5/ReadMe.md) - Robot Soccer Team
 
 Back to [main page](../README.md).
+
+## Reference
+[[1] Martins, Felipe Nascimento, and Alexandre Santos Brandão. "Motion control and velocity-based dynamic compensation for mobile robots." Applications of mobile robots (2018).](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)
+
+
