@@ -15,13 +15,13 @@ You are going to load an example world that shows a line-follower behavior imple
 
 1. Click on “Open Sample Worlds” and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 1.
 
-![Webots screenshot with e-puck](/Lab2/Webots_screenshot_with_e-puck.png)
+![Webots screenshot with e-puck](../Lab2/Webots_screenshot_with_e-puck.png)
 ###### Figure 1. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
 
 
 2. Double-click on the e-puck robot: a new window shows the BotStudio, which is a graphical interface to build simple programs for the e-puck robot (see Figure 2). The BotStudio shows a line-follower behavior implemented in the form of a state-machine.
 
-![BotStudio screenshot](/Lab2/BotStudio.png)
+![BotStudio screenshot](../Lab2/BotStudio.png)
 ###### Figure 2. BotStudio screenshot with the line-follower state-machine (left) and values of e-puck sensors and motor speeds (right).
 
 3. Start the simulation on the Webots screen by clicking the “play” button in the top menu. The robot will not move. To start the robot controller, you must click on the black upward pointing arrow in the BotStudio screen (Figure 2). 
@@ -78,10 +78,12 @@ After following this lab you should know more about the e-puck robot model, how 
 Add obstacles to the world and try to change the state-machine to make e-puck avoid obstacles placed on its way.
 
 ## Solution
-Try to implement the state-machine code yourself before checking the solution! After a successfull implementation, or if you need inspiration, an example code is available [here](/Lab2/line_following_behavior.py).
+Try to implement the state-machine code yourself before checking the solution! After a successfull implementation, or if you need inspiration, an example code is available [here](../Lab2/line_following_behavior.py).
 
 The video below shows the solution code in action:
-[![Video screenshot](/Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
+[![Video screenshot](../Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
 
 ## Next Lab
-Go to [Lab 3](/Lab3/ReadMe.md) - Odometry-based Localization
+Go to [Lab 3](../Lab3/ReadMe.md) - Odometry-based Localization
+
+Back to [main page](../README.md).
