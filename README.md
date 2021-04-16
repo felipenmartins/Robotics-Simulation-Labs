@@ -1,6 +1,8 @@
 # Robotics Simulation Labs
 Here you will find a set of tutorials to practice robotics concepts with [Webots Open-Source Robot Simulator](https://cyberbotics.com/) and Python. 
 
+![screenshot_Webots](screenshot_Webots.png)
+
 ## Motivation and Objectives
 The simulation labs were created to replace the lab activities from my Robotics course due to the Corona-related restrictions of 2020/2021. This is an introductory level course on Robotics for engineering students, focusing on wheeled mobile robots. The main goal of the lab activities is to practice:
 
