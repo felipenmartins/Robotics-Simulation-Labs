@@ -3,10 +3,12 @@
 ## Objective
 The goal of this lab is to implement a controller that enables the robot to follow a trajectory. The same controller can be used as a "go-to-position" controller. 
 
+![screenshot_Webots](../screenshot_Webots.png)
+
 ## Webots Reference Frame
 As mentioned in Lab 3, remember that in Webots the robot moves in the XZ plane! Figure 1 shows the orientation of the reference frames adopted in most cases (on the left) and in Webots (on the right). 
 
-![Webots Reference Frame](/Lab3/Reference_frame_convention.png) 
+![Webots Reference Frame](../Lab3/Reference_frame_convention.png) 
 
 Figure 1. Orientation of the reference frames used to develop our controller equations (left) and adopted by Webots (right).
 
@@ -21,7 +23,7 @@ Your main task is to write code to implement the functions below to add the cont
 [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, d, r)
 ```
 
-I recommend you try to modify your line following code from Lab 3 to implement the controller as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](/Lab4/lab4_template.py). 
+I recommend you try to modify your line following code from Lab 3 to implement the controller as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab4/lab4_template.py). 
 
 The tasks are listed below:
 
@@ -41,7 +43,7 @@ dzd = 0.0	# desired speed in z [m/s]
 
 To facilitate the comparison with the speeds calculated by Webots, print the values calculated by your functions, as shown in Figure 2. Position (x=0, z=0) is in the center of the track.
 
-![Robot pose in Webots](/Lab4/Webots_screenshot_line_following_world.png)
+![Robot pose in Webots](../Lab4/Webots_screenshot_line_following_world.png)
 
 Figure 2. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
@@ -58,7 +60,9 @@ After following this lab you should know how to implement moving controllers for
 Create a function to generate a trajectory: a vector `(xd, zd, dxd, dzd)` with position and speed for all points in the path. Plot the instantaneous value of position error. Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
 
 ## Solution
-Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab4/trajectory_tracking_controller.py).
+Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab4/trajectory_tracking_controller.py).
 
 ## Next Lab (optional)
-Go to [Lab 5](/Lab5/ReadMe.md) - Robot Soccer Team
+Go to [Lab 5](../Lab5/ReadMe.md) - Robot Soccer Team
+
+Back to [main page](../README.md).
