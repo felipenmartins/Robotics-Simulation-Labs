@@ -7,7 +7,7 @@ The goal of this lab is to guide you to install, configure and familiarize yours
 ## Webots
 Webots is an open-source robotics simulator that can simulate several types of robots and sensors. It provides a complete development environment to model, program and simulate robots and the world they are in, including physics simulation. It is widely used in industry, education and research. Figure 1 shows a screenshot of Webots.
 
-![Webots screenshot](/Lab1/Webots_screenshot.png)
+![Webots screenshot](../Lab1/Webots_screenshot.png)
 Figure 1. Webots screenshot.
 
 ## Tasks
@@ -39,14 +39,11 @@ After following the steps above, you should have Webots installed and configured
 
 In the following lab activities, we will control the virtual robot using Python.
 
-## Next Lab
-Go to [Lab 2](/Lab2/ReadMe.md) - Line-following behavior with State-Machine.
-
-# Known issues
+## Known issues
 
 1. If you are using Windows 10, you might see the message below when you try to run the installation program for Webots. Don’t worry. Click on “More info” and then click the button “Run anyway” to proceed with the installation (see figure below).
 
-![Windows message](/Lab1/windows_message.png)
+![Windows message](../Lab1/windows_message.png)
 
 2. Make sure you have the 64-bit version of Python 3.7 (or higher) so that Webots work properly. Wrong versions of Python are known to cause issues.
 
@@ -73,3 +70,7 @@ This is not a problem for our simulations. The demo simulations that come with W
 
 5. If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. Another possibility is to install the APT version of Webots. Instructions on how to install the APT version can be found on [this link](https://www.cyberbotics.com/doc/guide/installation-procedure) (Thanks to Nick Buls for the tip).
 
+## Next Lab
+Go to [Lab 2](../Lab2/ReadMe.md) - Line-following behavior with State-Machine.
+
+Back to [main page](../README.md).
