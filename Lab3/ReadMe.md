@@ -6,14 +6,14 @@ The goal of this lab is to implement a simple algorithm for odometry-based robot
 ## Robot Pose
 To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “Position”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
 
-![Robot pose in Webots](/Lab3/Webots_robot_pose.png)
+![Robot pose in Webots](../Lab3/Webots_robot_pose.png)
 
 Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
 ## Webots Reference Frame
 In Webots, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in most cases (on the left) and in Webots (on the right). 
 
-![Webots Reference Frame](/Lab3/Reference_frame_convention.png) 
+![Webots Reference Frame](../Lab3/Reference_frame_convention.png) 
 
 Figure 2. Orientation of the reference frames used to develop our controller equations (left) and adopted by Webots (right).
 
@@ -29,7 +29,7 @@ Your main task is to write code to implement the functions below to add localiza
     # Compute new robot pose
     [z, x, phi] = get_robot_pose(u, w, z, x, phi, delta_t)
 ```
-I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](/Lab3/lab3_template.py). 
+I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 
 
 The tasks are listed below:
 
@@ -104,7 +104,9 @@ After following this lab you should know more about the implementation and limit
 Implement a 1-D Kalman Filter to combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
 
 ## Solution
-Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](/Lab3/line_following_with_localization.py).
+Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab3/line_following_with_localization.py).
 
 ## Next Lab
-Go to [Lab 4](/Lab4/ReadMe.md) - Trajectory Tracking Controller
+Go to [Lab 4](../Lab4/ReadMe.md) - Trajectory Tracking Controller
+
+Back to [main page](../README.md).
