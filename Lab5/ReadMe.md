@@ -4,16 +4,16 @@
 The goal of this lab is to combine different behaviors to make your robot execute a complex task. You will also investigate and learn about another mobile robot widely used in research: Adept's Pioneer 3-DX.
 
 ## Before you start
-Download the file [wall_following_with_obstacles.zip](wall_following_with_obstacles.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\wall_following_with_obstacles\worlds\wall_following_with_obstacles.wbt`. You should see a Pioneer robot at the start position, as shown in Figure 1.
+Download the file [wall_following_with_obstacles.zip](../Lab5/wall_following_with_obstacles.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\wall_following_with_obstacles\worlds\wall_following_with_obstacles.wbt`. You should see a Pioneer robot at the start position, as shown in Figure 1.
 
-![screenshot_starting_position.png](screenshot_starting_position.png)
+![screenshot_starting_position.png](../Lab5/screenshot_starting_position.png)
 Figure 1. Screenshot showing the Pioneer 3-DX robot at the starting position of the world.
 
 One important thing to note is that the configuration of the central wall changes every time you load or reset the world.
 
 The provided world is based on a sample world from Webots, called wall_following. The main difference is that the provided world was populated with obstacles, as shown in Figure 2. The original sample world is available at `robotbenchmark -> wall_following -> wall_following.wbt`.
 
-![screenshot_pioneer.png](screenshot_pioneer.png)
+![screenshot_pioneer.png](../Lab5/screenshot_pioneer.png)
 Figure 2. Some obstacles included in the provided world.
 
 ## Tasks
