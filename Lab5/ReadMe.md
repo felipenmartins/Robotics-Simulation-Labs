@@ -1,32 +1,41 @@
-# Lab 5 - Bonus Lab – Robot Soccer Team
+# Lab 5 - Combine Behaviors to Execute a Task
 
 ## Objectives
-The goal of this lab is to apply everything that we learned in the course to implement a robot soccer team! If we have more than 2 groups interested, we can have a small competition. The winning team will get **10 psychological points!!!**
-
-## RCJ Soccer Simulator
-For this lab, we are going to use the RoboCup Junior Soccer Simulator (Figure 1). It is based on Webots and programmed in Python. 
-
-![Soccer Sim screenshot](../Lab5/Soccer_Sim.jpg)
- 
-Figure 1. Webots running the RCJ Soccer Simulator with three robots on each team.
+The goal of this lab is to combine different behaviors to make your robot execute a complex task. You will also investigate and learn about another mobile robot widely used in research: the Pionneer 3 DX.
 
 ## Tasks
+Your group must make use of the robotics simulator Webots to implement the Robotics Task. The software is freely available at: https://cyberbotics.com/#cyberbotics
 
-Clone the [RCJ Soccer Sim](https://github.com/RoboCupJuniorTC/rcj-soccer-sim) repository to get all the files necessary. 
+You must use the sample world called “wall_following”. To open this world in Webots, click on File -> Open Sample World -> samples -> robotbenchmark -> wall_following -> wall_following.wbt
+The world and the corresponding robot are loaded. They are illustrated in Figure 1. 
 
-Each team is composed by 3 differential-drive robots. Each robot has its own Python code to control the speed of its own wheels. The code has access to the position of the robot and the ball in the field, with some noise added by the simulator. 
+ 
+Figure 1. Environment and robot to be used in the project.
 
-There is an automatic referee that takes care of the implementation of all rules, such as counting time, verifying goals, positioning the robots and ball at the beginning of the match, etc. You should not change the referee code!
+Two important things to note are: 
+-	the configuration of the central wall changes every time you load or reset the world;
+-	the orientation of the XYZ robot reference frame is different from what we are used to. 
 
-Instructions on how to install and run the Soccer Simulator are avaliable [here](https://robocupjuniortc.github.io/rcj-soccer-sim/). The same page also has detailed explanation on how to code your robots, including examples.
+What does your group have to do?
 
-To play a match, just program your robots, hit "play", and have fun watching the game! :-)
+- Investigate the characteristics of the robot: its type, available sensors, actuators, maximum speed, etc. Investigate the functions used in Python to control the robot and how the robot XYZ reference frame is oriented with respect to the world.
+- Implement 3 behaviors (task controllers) in Python: wall-following, trajectory tracking and obstacle avoidance. 
+- Implement a finite state machine (also in Python) to control the execution of the mission described below.
 
-The complete set of rules for the official RoboCup Junior Soccer Simulation competition is available [here](https://github.com/RoboCupJuniorTC/soccer-rules-simulation/raw/master/rules.pdf).
+Description on the behaviors: 
+1.	Wall-following: adjust the example program so that the robot successfully follows the wall, while keeping it on its right side. In other words, the robot should follow the central wall in the opposite direction from the example program. You might need to adjust the PID gains.
+2.	Trajectory tracking: implement the trajectory tracking controller as described in the robotics lessons. The controller must include the saturation terms to avoid the generation of very high reference speeds when the error is too big. The maximum reference speeds must be equal or lower than the maximum speeds achieved by the robot.
+3.	Obstacle avoidance: develop and implement an obstacle avoidance behavior so that the robot avoids obstacles without touching them. 
 
-**_Important_: in the RCJ Soccer Sim the reference frame is changed by the referee so that the position of the robots is actually in the XY plane (not XZ, as convention in Webots). Check the rules for details.**
+Description of the mission:
+a)	The initial position of the robot is (0, 0) m. 
+b)	The robot must move straight towards the central wall until its distance to it is 0.5m.
+c)	Then, the robot must follow the wall while keeping it on its right side until it gets to position (??, 20.0) m. Figure 2 illustrates the desired position of the robot at this point.
+d)	After getting to the above position, the robot must make a full turn around its own center (360 degrees).
+e)	Then, it should execute trajectory tracking + obstacle avoidance behaviors to go back to its original position. 
 
-Have fun!!
+ 
+Figure 2. Desired position of the robot after following the wall.
 
 ## Main Page
 Back to [main page](../README.md).
