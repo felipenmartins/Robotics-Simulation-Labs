@@ -1,32 +1,48 @@
-# Lab 5 - Bonus Lab – Robot Soccer Team
+# Lab 5 - Combine Behaviors to Execute a Task
 
 ## Objectives
-The goal of this lab is to apply everything that we learned in the course to implement a robot soccer team! If we have more than 2 groups interested, we can have a small competition. The winning team will get **10 psychological points!!!**
+The goal of this lab is to combine different behaviors to make your robot execute a complex task. You will also investigate and learn about another mobile robot widely used in research: Adept's Pioneer 3-DX.
 
-## RCJ Soccer Simulator
-For this lab, we are going to use the RoboCup Junior Soccer Simulator (Figure 1). It is based on Webots and programmed in Python. 
+## Before you start
+Download the file [wall_following_with_obstacles.zip](../Lab5/wall_following_with_obstacles.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\wall_following_with_obstacles\worlds\wall_following_with_obstacles.wbt`. You should see a Pioneer robot at the start position, as shown in Figure 1.
 
-![Soccer Sim screenshot](../Lab5/Soccer_Sim.jpg)
- 
-Figure 1. Webots running the RCJ Soccer Simulator with three robots on each team.
+![screenshot_starting_position.png](../Lab5/screenshot_starting_position.png)
+Figure 1. Screenshot showing the Pioneer 3-DX robot at the starting position of the world.
+
+One important thing to note is that the configuration of the central wall changes every time you load or reset the world.
+
+The provided world is based on a sample world from Webots, called wall_following. The main difference is that the provided world was populated with obstacles, as shown in Figure 2. The original sample world is available at `robotbenchmark -> wall_following -> wall_following.wbt`.
+
+![screenshot_pioneer.png](../Lab5/screenshot_pioneer.png)
+Figure 2. Some obstacles included in the provided world.
 
 ## Tasks
+Follow the steps below to successfuly complete this lab.
 
-Clone the [RCJ Soccer Sim](https://github.com/RoboCupJuniorTC/rcj-soccer-sim) repository to get all the files necessary. 
+1. Learn about the Pioneer 3-DX robot. Investigate the characteristics of the robot: its type, available sensors, actuators, maximum speed, etc. Investigate the functions used in Python to control the robot and how the robot XYZ reference frame is oriented with respect to the world. In [this link](https://cyberbotics.com/doc/guide/pioneer-3dx) you find a lot of information about it, including how its model is simultated on Webots.
 
-Each team is composed by 3 differential-drive robots. Each robot has its own Python code to control the speed of its own wheels. The code has access to the position of the robot and the ball in the field, with some noise added by the simulator. 
+2. Implement 3 behaviors (task controllers) in Python: wall-following, trajectory tracking and obstacle avoidance. 
 
-There is an automatic referee that takes care of the implementation of all rules, such as counting time, verifying goals, positioning the robots and ball at the beginning of the match, etc. You should not change the referee code!
+3. Implement a finite state machine (also in Python) to control the execution of the mission described below.
 
-Instructions on how to install and run the Soccer Simulator are avaliable [here](https://robocupjuniortc.github.io/rcj-soccer-sim/). The same page also has detailed explanation on how to code your robots, including examples.
+### Description on the behaviors
+1.	**Wall-following**: adjust the example program so that the robot successfully follows the central wall while keeping it on its right side. In other words, the robot should follow the central wall in the opposite direction from the example program. You might need to adjust the PID gains.  The example program with a wall-following behavior can be found in the folder `...\wall_following_with_obstacles\controllers`.
+2.	**Trajectory tracking**: implement the trajectory tracking controller as described in Lab 4. The controller must include the saturation terms to avoid the generation of very high reference speeds when the error is too big. The maximum reference speeds must be equal or lower than the maximum speeds achieved by the robot.
+3.	**Obstacle avoidance**: develop and implement an obstacle avoidance behavior so that the robot avoids obstacles without touching them. 
 
-To play a match, just program your robots, hit "play", and have fun watching the game! :-)
+### Description of the mission
+- The initial position of the robot is (0, 0) m. 
+- The robot must move straight towards the central wall until its distance to it is 0.5m.
+- Then, the robot must follow the wall while keeping it on its right side until it gets to position (??, 20.0) m. 
+- After getting to the above position, the robot must make a full turn around its own center (360 degrees).
+- Then, it should execute trajectory tracking + obstacle avoidance behaviors to go back to its original position. 
 
-The complete set of rules for the official RoboCup Junior Soccer Simulation competition is available [here](https://github.com/RoboCupJuniorTC/soccer-rules-simulation/raw/master/rules.pdf).
+## Conclusion
+After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. Keep in mind that this is a challenging exercise! Don't be disappointed if you don't complete this lab in full.
 
-**_Important_: in the RCJ Soccer Sim the reference frame is changed by the referee so that the position of the robots is actually in the XY plane (not XZ, as convention in Webots). Check the rules for details.**
+A solution is not provided for this lab. If you want to contribute with your solution, feel free to create a pull request! :-)
 
-Have fun!!
+## Next Lab (bonus)
+Go to [Lab 6](../Lab6/ReadMe.md) - Robot Soccer Team
 
-## Main Page
 Back to [main page](../README.md).

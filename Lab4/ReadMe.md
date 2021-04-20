@@ -67,8 +67,8 @@ Create a function to generate a trajectory: a vector `(xd, zd, dxd, dzd)` with p
 ## Solution
 Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab4/trajectory_tracking_controller.py).
 
-## Next Lab (optional)
-Go to [Lab 5](../Lab5/ReadMe.md) - Robot Soccer Team
+## Next Lab
+Go to [Lab 5](../Lab5/ReadMe.md) - Combine Behaviors to Execute a Complex Task
 
 Back to [main page](../README.md).
 
