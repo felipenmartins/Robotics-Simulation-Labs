@@ -12,6 +12,7 @@
 
 # Author: Felipe N. Martins
 # Date: 14th of April, 2020
+# Last update: 22-04-2021 - include controller equations in non-matrix format.
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
@@ -144,10 +145,6 @@ def traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, a):
     kx = 2
     ky = 2
 
-    # Controller matrix:
-    C = np.matrix([[np.cos(phi), np.sin(phi)],
-                   [-1/a*np.sin(phi), 1/a*np.cos(phi)]])
-
     # Position error:
     x_err = xd - x
     y_err = yd - y
@@ -157,8 +154,14 @@ def traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, a):
         x_err = 0
         y_err = 0
         
-    # Controller equation:
-    [u_ref, w_ref] = C * np.matrix([[dxd + kx*x_err],[dyd + ky*y_err]])
+    # Controller equation - matrix format:
+    #C = np.matrix([[np.cos(phi), np.sin(phi)],
+    #               [-1/a*np.sin(phi), 1/a*np.cos(phi)]])
+    #[u_ref, w_ref] = C * np.matrix([[dxd + kx*x_err],[dyd + ky*y_err]])
+
+    # Controller equations:
+    u_ref = np.cos(phi)*(dxd + kx*x_err) + np.sin(phi)*(dyd + ky*y_err)
+    w_ref = -(1/a)*np.sin(phi)*(dxd + kx*x_err) + (1/a)*np.cos(phi)*(dyd + ky*y_err)
     
     return u_ref, w_ref
     
@@ -210,8 +213,10 @@ while robot.step(timestep) != -1:
     # Robot Controller
     # Desired trajectory:
     xd = 0.0
+    #zd = 0.0
     zd = 0.0 + 0.3*np.sin(0.005*counter)
-    dxd = 0
+    dxd = 0.0
+    #dzd = 0.0 
     dzd = 0.3*0.005*np.cos(0.005*counter)
     
     # Trajectory tracking controller
