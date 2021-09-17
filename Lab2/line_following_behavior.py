@@ -7,6 +7,7 @@
 
 # Author: Felipe N. Martins
 # Date: 7th of April, 2020
+# Update: 17 September 2021 - add comments and adjust variable names
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
@@ -16,8 +17,6 @@ import numpy as np
 
 TIME_STEP = 64
 MAX_SPEED = 6.28
-
-speed = 1 * MAX_SPEED
 
 # create the Robot instance.
 robot = Robot()
@@ -31,7 +30,7 @@ current_state = states[0]
 
 # counter: used to maintain an active state for a number of cycles
 counter = 0
-counter_max = 5
+COUNTER_MAX = 5
 
 #-------------------------------------------------------
 # Initialize devices
@@ -79,10 +78,11 @@ while robot.step(timestep) != -1:
 
     # Implement the line-following state machine
     if current_state == 'forward':
-        # Action for the current state
-        leftSpeed = speed
-        rightSpeed = speed
-        # update current state if necessary
+        # Action for the current state: update speed variables
+        leftSpeed = MAX_SPEED
+        rightSpeed = MAX_SPEED
+
+        # check if it is necessary to update current_state
         if line_right and not line_left:
             current_state = 'turn_right'
             counter = 0
@@ -91,19 +91,21 @@ while robot.step(timestep) != -1:
             counter = 0
             
     if current_state == 'turn_right':
-        # Action for the current state
-        leftSpeed = 0.8 * speed
-        rightSpeed = 0.4 * speed
-        # update current state if necessary
-        if counter == counter_max:
+        # Action for the current state: update speed variables
+        leftSpeed = 0.8 * MAX_SPEED
+        rightSpeed = 0.4 * MAX_SPEED
+
+        # check if it is necessary to update current_state
+        if counter == COUNTER_MAX:
             current_state = 'forward'
 
     if current_state == 'turn_left':
-        # Action for the current state
-        leftSpeed = 0.4 * speed
-        rightSpeed = 0.8 * speed
-        # update current state if necessary
-        if counter == counter_max:
+        # Action for the current state: update speed variables
+        leftSpeed = 0.4 * MAX_SPEED
+        rightSpeed = 0.8 * MAX_SPEED
+
+        # check if it is necessary to update current_state
+        if counter == COUNTER_MAX:
             current_state = 'forward'        
 
     # increment counter
@@ -112,7 +114,8 @@ while robot.step(timestep) != -1:
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
     print('Counter: '+ str(counter) + '. Current state: ' + current_state)
 
-    # Update reference velocities for the motors
+    # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
 
+    # Repeat all steps while the simulation is running.
