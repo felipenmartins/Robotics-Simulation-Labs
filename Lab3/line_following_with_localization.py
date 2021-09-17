@@ -21,8 +21,6 @@ import numpy as np
 
 MAX_SPEED = 6.28
 
-speed = 1 * MAX_SPEED
-
 # create the Robot instance.
 robot = Robot()
 
@@ -36,7 +34,7 @@ current_state = states[0]
 
 # counter: used to maintain an active state for a number of cycles
 counter = 0
-counter_max = 3
+COUNTER_MAX = 3
 
 # Robot pose
 # Adjust the initial values to match the initial robot pose in your simulation
@@ -58,10 +56,10 @@ wr = 0.0    # angular speed of the right wheel [rad/s]
 u = 0.0    # linear speed [m/s]
 w = 0.0    # angular speed [rad/s]
 
-# e-puck Physical parameters for the kinematics model
-r = 0.0205    # radius of the wheels: 20.5mm [m]
-d = 0.0565    # distance between the wheels: 52mm [m]
-a = 0.05    # distance from the center of the wheels to the point of interest [m]
+# e-puck Physical parameters for the kinematics model (constants)
+R = 0.0205    # radius of the wheels: 20.5mm [m]
+D = 0.0565    # distance between the wheels: 52mm [m]
+A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
 # Encoder values in the previous cycle
 oldEncoderValues = [0.0, 0.0]
@@ -101,23 +99,26 @@ rightMotor.setVelocity(0.0)
 #######################################################################
 # Robot Localization functions - option 1
 #  
-# Compute speed of the wheels based on encoder readings
-# Encoder values indicate the angular position of the wheel in radians
+
 def get_wheels_speed(encoderValues, oldEncoderValues, delta_t):
+    """Computes speed of the wheels based on encoder readings"""
+    #Encoder values indicate the angular position of the wheel in radians
     wl = (encoderValues[0] - oldEncoderValues[0])/delta_t
     wr = (encoderValues[1] - oldEncoderValues[1])/delta_t
 
     return wl, wr
 
-# Compute robot linear and angular speeds
+
 def get_robot_speeds(wl, wr, r, d):
+    """Computes robot linear and angular speeds"""
     u = r/2.0 * (wr + wl)
     w = r/d * (wr - wl)
 
     return u, w
 
-# Compute robot pose
+
 def get_robot_pose(u, w, z_old, x_old, phi_old, delta_t):
+    """Updates robot pose based on heading and linear and angular speeds"""
     delta_phi = -w * delta_t
     phi = phi_old + delta_phi
     phi_avg = (phi_old + phi)/2   
@@ -137,19 +138,19 @@ def get_robot_pose(u, w, z_old, x_old, phi_old, delta_t):
 #######################################################################
 # Robot Localization functions - option 2
 #  
-# Compute linear and angular displacement of the robot 
 def get_robot_displacement(encoderValues, oldEncoderValues, r):
+    """Computes linear and angular displacement of the robot"""
     dl = (encoderValues[0] - oldEncoderValues[0])*r
     dr = (encoderValues[1] - oldEncoderValues[1])*r
     
     lin_disp = (dr + dl)/2.0    # Linear displacement of the robot
-    ang_disp = -(dr - dl)/d      # Angular displacement of the robot
+    ang_disp = -(dr - dl)/D      # Angular displacement of the robot
 
     return lin_disp, ang_disp
 
 
-# Compute robot pose
 def get_robot_pose2(lin_disp, ang_disp, z_old, x_old, phi_old):
+    """Updates robot pose based on heading and displacement"""
     phi = phi_old + ang_disp
     phi_avg = (phi_old + phi)/2.0   
     if phi >= np.pi:
@@ -188,10 +189,11 @@ while robot.step(timestep) != -1:
 
     # Implement the line-following state machine
     if current_state == 'forward':
-        # Action for the current state
-        leftSpeed = speed
-        rightSpeed = speed
-        # update current state if necessary
+        # Action for the current state: update speed variables
+        leftSpeed = MAX_SPEED
+        rightSpeed = MAX_SPEED
+
+        # check if it is necessary to update current_state
         if line_right and not line_left:
             current_state = 'turn_right'
             counter = 0
@@ -200,20 +202,25 @@ while robot.step(timestep) != -1:
             counter = 0
             
     if current_state == 'turn_right':
-        # Action for the current state
-        leftSpeed = 0.8 * speed
-        rightSpeed = 0.4 * speed
-        # update current state if necessary
-        if counter == counter_max:
+        # Action for the current state: update speed variables
+        leftSpeed = 0.8 * MAX_SPEED
+        rightSpeed = 0.4 * MAX_SPEED
+
+        # check if it is necessary to update current_state
+        if counter == COUNTER_MAX:
             current_state = 'forward'
 
     if current_state == 'turn_left':
-        # Action for the current state
-        leftSpeed = 0.4 * speed
-        rightSpeed = 0.8 * speed
-        # update current state if necessary
-        if counter == counter_max:
-            current_state = 'forward'         
+        # Action for the current state: update speed variables
+        leftSpeed = 0.4 * MAX_SPEED
+        rightSpeed = 0.8 * MAX_SPEED
+
+        # check if it is necessary to update current_state
+        if counter == COUNTER_MAX:
+            current_state = 'forward'        
+
+    # increment counter
+    counter += 1
 
     #######################################################################
     # Robot Localization - option 1
@@ -223,7 +230,7 @@ while robot.step(timestep) != -1:
     [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
     
     # Compute robot linear and angular speeds
-    [u, w] = get_robot_speeds(wl, wr, r, d)
+    [u, w] = get_robot_speeds(wl, wr, R, D)
     
     # Compute new robot pose
     [z, x, phi] = get_robot_pose(u, w, z, x, phi, delta_t)
@@ -243,19 +250,17 @@ while robot.step(timestep) != -1:
     
     # update old encoder values for the next cycle
     oldEncoderValues = encoderValues
-
-    # increment counter
-    counter += 1
     
+
+    # To help on debugging:        
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
-    #print('Sim time: %6.3f ' % robot.getTime(), "State:", current_state, counter,
-    # " Pose: x=%6.2f m, z=%6.2f m, phi=%6.2f rad. Speed = %6.2f mm/s, %6.2f rad/s. "
-    #  % (x, z, phi, u*1000, w))    
+    #print('Counter: '+ str(counter) + '. Current state: ' + current_state)
+    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, z={z:.2f} m, phi={phi:.4f} rad.')    
 
-    print('Sim time: %6.3f ' % robot.getTime(), 
-    " Pose: x=%6.2f m, z=%6.2f m, phi=%6.2f rad." % (x, z, phi))    
 
-    # Update reference velocities for the motors
+    # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
+
+    # Repeat all steps while the simulation is running.
 
