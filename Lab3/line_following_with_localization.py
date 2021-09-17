@@ -12,6 +12,7 @@
 
 # Author: Felipe N. Martins
 # Date: 13th of April, 2020
+# Update: 17 September 2021 - add comments and adjust variable names
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
