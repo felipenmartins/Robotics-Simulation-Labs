@@ -13,6 +13,7 @@
 # Author: Felipe N. Martins
 # Date: 13th of April, 2020
 # Update: 17 September 2021 - add comments and adjust variable names
+# Update: 03 March 2022 - change the coordinate system to ENU to match the default of Webots R2022a
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
@@ -39,15 +40,15 @@ COUNTER_MAX = 3
 
 # Robot pose
 # Adjust the initial values to match the initial robot pose in your simulation
-x = -0.44    # position in x [m]
-z = 0.0    # position in y [m]
-phi = 0.0  # orientation [rad]
+x = -0.06    # position in x [m]
+y = 0.436    # position in y [m]
+phi = 0.0531  # orientation [rad]
 
 # Robot velocity and acceleration
 dx = 0.0   # speed in x [m/s]
-dz = 0.0   # speed in z [m/s]
+dy = 0.0   # speed in y [m/s]
 ddx = 0.0  # acceleration in x [m/s^2]
-ddz = 0.0  # acceleration in z [m/s^2]
+ddy = 0.0  # acceleration in y [m/s^2]
 
 # Robot wheel speeds
 wl = 0.0    # angular speed of the left wheel [rad/s]
@@ -62,9 +63,6 @@ R = 0.0205    # radius of the wheels: 20.5mm [m]
 D = 0.0565    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
-# Encoder values in the previous cycle
-oldEncoderValues = [0.0, 0.0]
-
 #-------------------------------------------------------
 # Initialize devices
 
@@ -72,26 +70,28 @@ oldEncoderValues = [0.0, 0.0]
 ps = []
 psNames = ['ps0', 'ps1', 'ps2', 'ps3', 'ps4', 'ps5', 'ps6', 'ps7']
 for i in range(8):
-    ps.append(robot.getDistanceSensor(psNames[i]))
+    ps.append(robot.getDevice(psNames[i]))
     ps[i].enable(timestep)
 
 # ground sensors
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
-    gs.append(robot.getDistanceSensor(gsNames[i]))
+    gs.append(robot.getDevice(gsNames[i]))
     gs[i].enable(timestep)
 
 # encoders
 encoder = []
 encoderNames = ['left wheel sensor', 'right wheel sensor']
 for i in range(2):
-    encoder.append(robot.getPositionSensor(encoderNames[i]))
+    encoder.append(robot.getDevice(encoderNames[i]))
     encoder[i].enable(timestep)
- 
+
+oldEncoderValues = []
+
 # motors    
-leftMotor = robot.getMotor('left wheel motor')
-rightMotor = robot.getMotor('right wheel motor')
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
 leftMotor.setVelocity(0.0)
@@ -115,7 +115,7 @@ def get_robot_speeds(wl, wr, r, d):
   # ********************************************************
 
 
-def get_robot_pose(u, w, z_old, x_old, phi_old, delta_t):
+def get_robot_pose(u, w, x_old, y_old, phi_old, delta_t):
     """Updates robot pose based on heading and linear and angular speeds"""
   # ********************************************************
   # *************** WRITE YOUR CODE HERE *******************
@@ -125,14 +125,14 @@ def get_robot_pose(u, w, z_old, x_old, phi_old, delta_t):
 #######################################################################
 # Robot Localization functions - option 2
 #  
-def get_robot_displacement(encoderValues, oldEncoderValues, r):
+def get_robot_displacement(encoderValues, oldEncoderValues, r, d):
     """Computes linear and angular displacement of the robot"""
   # ********************************************************
   # *************** WRITE YOUR CODE HERE *******************
   # ********************************************************
 
 
-def get_robot_pose2(lin_disp, ang_disp, z_old, x_old, phi_old):
+def get_robot_pose2(lin_disp, ang_disp, x_old, y_old, phi_old):
     """Updates robot pose based on heading and displacement"""
   # ********************************************************
   # *************** WRITE YOUR CODE HERE *******************
@@ -155,7 +155,12 @@ while robot.step(timestep) != -1:
     encoderValues = []
     for i in range(2):
         encoderValues.append(encoder[i].getValue())    # [rad]
-
+    
+    # Update old encoder values if not done before
+    if len(oldEncoderValues) < 2:
+        for i in range(2):
+            oldEncoderValues.append(encoder[i].getValue())   
+    
     # Process sensor data
     line_right = gsValues[0] > 600
     line_left = gsValues[2] > 600
@@ -206,7 +211,7 @@ while robot.step(timestep) != -1:
     [u, w] = get_robot_speeds(wl, wr, R, D)
     
     # Compute new robot pose
-    [z, x, phi] = get_robot_pose(u, w, z, x, phi, delta_t)
+    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
 
     #######################################################################
     # Robot Localization - option 2
@@ -214,10 +219,10 @@ while robot.step(timestep) != -1:
     # To use, uncomment the lines below and comment the previous ones.
 
     # Compute linear and angular displacement of the robot 
-    #[lin_disp, ang_disp] = get_robot_displacement(encoderValues, oldEncoderValues, r)
+    #[lin_disp, ang_disp] = get_robot_displacement(encoderValues, oldEncoderValues, R, D)
 
     # Compute robot new position
-    #[z, x, phi] = get_robot_pose2(lin_disp, ang_disp, z, x, phi)
+    #[x, y, phi] = get_robot_pose2(lin_disp, ang_disp, x, y, phi)
 
     #######################################################################
     
@@ -228,7 +233,7 @@ while robot.step(timestep) != -1:
     # To help on debugging:        
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
     #print('Counter: '+ str(counter) + '. Current state: ' + current_state)
-    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, z={z:.2f} m, phi={phi:.4f} rad.')    
+    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')    
 
 
     # Set motor speeds with the values defined by the state-machine
