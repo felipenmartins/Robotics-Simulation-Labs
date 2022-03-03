@@ -1,5 +1,9 @@
 # Lab 4 – Trajectory Tracking Controller
 
+## Update note
+**If you are using Webots R2022a or newer, please note that Webots changed its global coordinate system! It now uses ENU by default. [see detailed information here.](https://cyberbotics.com/doc/blog/Webots-2022-a-release)
+The description of this lab was written based on older Webots versions. It will be updated shortly.**
+
 ## Objective
 The goal of this lab is to implement a controller that enables the robot to follow a trajectory. The same controller can be used as a "go-to-position" controller. 
 
