@@ -1,5 +1,9 @@
 # Lab 5 - Combine Behaviors to Execute a Task
 
+## Update note
+**If you are using Webots R2022a or newer, please note that Webots changed its global coordinate system! It now uses ENU by default. [see detailed information here.](https://cyberbotics.com/doc/blog/Webots-2022-a-release)
+The description of this lab was written based on older Webots versions. It will be updated shortly.**
+
 ## Objectives
 The main goal of this lab is to combine different behaviors to make your robot execute a complex task. You will also investigate and choose a robot to perform the task, based on its features.
 
