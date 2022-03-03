@@ -24,8 +24,6 @@ To play a match, just program your robots, hit "play", and have fun watching the
 
 The complete set of rules for the official RoboCup Junior Soccer Simulation competition is available [here](https://github.com/RoboCupJuniorTC/soccer-rules-simulation/raw/master/rules.pdf).
 
-**_Important_: in the RCJ Soccer Sim the reference frame is changed by the referee so that the position of the robots is actually in the XY plane (not XZ, as convention in Webots). Check the rules for details.**
-
 Have fun!!
 
 ## Main Page
