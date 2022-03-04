@@ -1,5 +1,8 @@
 # Lab 3 – Odometry-based Localization
 
+### Update note
+_The description of this lab, the template and solution code were updated on 03-03-2022 to make them compatible with the new global coordinate system adopted as default by Webots R2022a (or newer). If you are using an older version of Webots, please make sure your code is adapted accordingly [(see more details at the end of this page).](#a-note-on-webots-reference-frame)_
+
 ## Objective
 The goal of this lab is to implement a simple algorithm for odometry-based robot localization and evaluate its accuracy.
 
@@ -99,12 +102,12 @@ Implement a 1-D Kalman Filter to combine the values given by the compass with th
 ## Solution
 Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab3/line_following_with_localization.py).
 
-# A note on Webots Reference Frame (old versions)
-In Webots R2021b and older, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in older versions of Webots (left) and the orientation of the reference used in the newer versions (right). If you are using a version of Webots older than R2022a, you need to adapt your code accordingly.
+### A note on Webots Reference Frame
+In Webots R2021b and older, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in older versions of Webots (left) and the orientation of the reference used in the newer versions (right). If you are using a version of Webots older than R2022a, you need to adapt your code accordingly. Please, see the [Webots R2022a release notes](https://cyberbotics.com/doc/blog/Webots-2022-a-release) for more details.
 
 ![Webots Reference Frame](https://raw.githubusercontent.com/cyberbotics/webots/released/docs/blog/images/flu-enu.png) 
 
-Figure 2. Orientation of the reference frames used in old (left) and new (right) Webots versions. (Source: https://cyberbotics.com/doc/blog/Webots-2022-a-release)
+Figure 2. Orientation of the reference frames used in old (left) and new (right) Webots versions [(source)](https://cyberbotics.com/doc/blog/Webots-2022-a-release).
 
 ## Next Lab
 Go to [Lab 4](../Lab4/ReadMe.md) - Trajectory Tracking Controller
