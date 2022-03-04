@@ -20,7 +20,7 @@ Your main task is to write code to implement the functions below to add localiza
     [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
     
     # Compute robot linear and angular speeds
-    [u, w] = get_robot_speeds(wl, wr, r, d)
+    [u, w] = get_robot_speeds(wl, wr, R, D)
     
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
@@ -30,7 +30,7 @@ I recommend you try to modify your line following code from Lab 2 to implement t
 The tasks are listed below:
 
 1. Write the function `get_wheels_speed(encoderValues, oldEncoderValues, delta_t)` to calculate the speed of the robot wheels based on encoder readings. Test your code before moving to the next step.
-2. Write the function `get_robot_speeds(wl, wr, r, d)` to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
+2. Write the function `get_robot_speeds(wl, wr, R, D)` to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
 3. Write the function `get_robot_pose(u, w, x, y, phi, delta_t)` to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
 4. Compare the pose calculated by your functions with the pose calculated by Webots in different moments of the simulation. 
 
@@ -66,8 +66,8 @@ delta_t = time step [s]
 To calculate robot localization you will need to use some physical parameters of the robot:
 
 ```
-r = radius of the wheels [m]: 20.5mm 
-d = distance between the wheels [m]: 52mm 
+R = radius of the wheels [m]: 20.5mm 
+D = distance between the wheels [m]: 52mm 
 ```
 
 You can use the pieces of code below to initialize the encoder sensors and to read encoder values in the main loop of your program:

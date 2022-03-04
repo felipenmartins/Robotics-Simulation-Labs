@@ -63,9 +63,6 @@ R = 0.0205    # radius of the wheels: 20.5mm [m]
 D = 0.0565    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
-# Encoder values in the previous cycle
-#oldEncoderValues = [0.0, 0.0]
-
 #-------------------------------------------------------
 # Initialize devices
 
@@ -264,7 +261,7 @@ while robot.step(timestep) != -1:
     # To help on debugging:        
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
     #print('Counter: '+ str(counter) + '. Current state: ' + current_state)
-    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')    
+    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')
 
 
     # Set motor speeds with the values defined by the state-machine

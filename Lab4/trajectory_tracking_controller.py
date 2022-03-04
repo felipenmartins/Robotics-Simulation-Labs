@@ -3,9 +3,6 @@
 # This program implements a trajectpry tracking controller
 # for the e-puck robot. 
 
-# This code was tested on Webots R2020a, revision 1, on Windows 10 running
-# Python 3.7.7 64-bit
-
 # The encoder values are incremented when the corresponding wheel moves 
 # forwards, and decremented when it moves backwards.
 # Encoder give values in radians.
@@ -14,6 +11,7 @@
 # Date: 14th of April, 2020
 # Update: 22-04-2021 - include controller equations in non-matrix format.
 # Update: 17 September 2021 - add comments and adjust variable names
+# Update: 04 March 2022 - change the coordinate system to ENU to match the default of Webots R2022a
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
@@ -31,14 +29,19 @@ robot = Robot()
 timestep = int(robot.getBasicTimeStep())   # [ms]
 delta_t = timestep/1000.0    # [s]
 
-# Robot initial pose, velocity and acceleration in (x,z) coordinates
-x = -0.44    # position in x [m]
-z = 0.0    # position in y [m]
-phi = 0.0  # orientation [rad]
+# Robot pose
+# ********************** ADJUST VALUES OF ROBOT POSE *************************
+# Adjust the initial values to match the initial robot pose in your simulation
+x = -0.06    # position in x [m]
+y = 0.436    # position in y [m]
+phi = 0.0531  # orientation [rad]
+# ****************************************************************************
+
+# Robot initial velocity and acceleration in (x,z) coordinates
 dx = 0.0   # speed in x [m/s]
-dz = 0.0   # speed in z [m/s]
+dy = 0.0   # speed in y [m/s]
 ddx = 0.0  # acceleration in x [m/s^2]
-ddz = 0.0  # acceleration in z [m/s^2]
+ddy = 0.0  # acceleration in y [m/s^2]
 
 # Robot wheel speeds
 wl = 0.0    # angular speed of the left wheel [rad/s]
@@ -53,10 +56,6 @@ R = 0.0205    # radius of the wheels: 20.5mm [m]
 D = 0.0565    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
-# Encoder values in the previous cycle
-oldEncoderValues = [0.0, 0.0]
-counter = 0
-
 #-------------------------------------------------------
 # Initialize devices
 
@@ -64,26 +63,28 @@ counter = 0
 ps = []
 psNames = ['ps0', 'ps1', 'ps2', 'ps3', 'ps4', 'ps5', 'ps6', 'ps7']
 for i in range(8):
-    ps.append(robot.getDistanceSensor(psNames[i]))
+    ps.append(robot.getDevice(psNames[i]))
     ps[i].enable(timestep)
 
 # ground sensors
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
-    gs.append(robot.getDistanceSensor(gsNames[i]))
+    gs.append(robot.getDevice(gsNames[i]))
     gs[i].enable(timestep)
 
 # encoders
 encoder = []
 encoderNames = ['left wheel sensor', 'right wheel sensor']
 for i in range(2):
-    encoder.append(robot.getPositionSensor(encoderNames[i]))
+    encoder.append(robot.getDevice(encoderNames[i]))
     encoder[i].enable(timestep)
- 
+
+oldEncoderValues = []
+
 # motors    
-leftMotor = robot.getMotor('left wheel motor')
-rightMotor = robot.getMotor('right wheel motor')
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
 leftMotor.setVelocity(0.0)
@@ -111,14 +112,14 @@ def get_robot_speeds(wl, wr, r, d):
 
 def get_cartesian_speeds(u, w, phi, a):
     """Computes cartesian speeds of the robot"""
-    dz = -u * np.cos(phi) + a * w * np.sin(phi)
-    dx = u * np.sin(phi) - a * w * np.cos(phi)
-    dphi = -w
+    dx = u * np.cos(phi) + a * w * np.sin(phi)
+    dy = u * np.sin(phi) - a * w * np.cos(phi)
+    dphi = w
 
-    return dz, dx, dphi
+    return dx, dy, dphi
 
 
-def get_robot_pose(z_old, x_old, phi_old, dz, dx, dphi, delta_t):
+def get_robot_pose(x_old, y_old, phi_old, dx, dy, dphi, delta_t):
     """Updates robot pose"""
     phi = phi_old + dphi * delta_t
     if phi >= np.pi:
@@ -126,23 +127,14 @@ def get_robot_pose(z_old, x_old, phi_old, dz, dx, dphi, delta_t):
     elif phi < -np.pi:
         phi = phi + 2*np.pi
     
-    z = z_old + dz * delta_t
     x = x_old + dx * delta_t
+    y = y_old + dy * delta_t
 
-    return z, x, phi
+    return x, y, phi
 
 
-def traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, a):
+def traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a):
     """Updates references speeds for the robot to follow a trajectory"""
-    # Changing variables to use regular controller equation
-    y = -x
-    x = -z
-    yd = -xd
-    xd = -zd
-    phi = -phi
-    dyd = -dxd
-    dxd = -dzd
-    
     # Controller gains:
     KX = 2
     KY = 2
@@ -151,7 +143,7 @@ def traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, a):
     x_err = xd - x
     y_err = yd - y
     
-    # If error is smaller than 2 cm, make it null:
+    # If error is smaller than some value, make it null:
     if (abs(x_err) < 0.01) and (abs(y_err) < 0.01):
         x_err = 0
         y_err = 0
@@ -161,7 +153,7 @@ def traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, a):
     #               [-1/a*np.sin(phi), 1/a*np.cos(phi)]])
     #[u_ref, w_ref] = C * np.matrix([[dxd + kx*x_err],[dyd + ky*y_err]])
 
-    # Controller equations:
+    # Controller equations - non-matrix format:
     u_ref = np.cos(phi)*(dxd + KX*x_err) + np.sin(phi)*(dyd + KY*y_err)
     w_ref = -(1/a)*np.sin(phi)*(dxd + KX*x_err) + (1/a)*np.cos(phi)*(dyd + KY*y_err)
     
@@ -173,6 +165,7 @@ def wheel_speed_commands(u_ref, w_ref, d, r):
     leftSpeed = float((2 * u_ref - d * w_ref) / (2 * r))
     rightSpeed = float((2 * u_ref + d * w_ref) / (2 * r))
     
+    # Limits the maximum speed of the wheels
     leftSpeed = np.sign(leftSpeed) * min(np.abs(leftSpeed), MAX_SPEED)
     rightSpeed = np.sign(rightSpeed) * min(np.abs(rightSpeed), MAX_SPEED)
     
@@ -196,11 +189,15 @@ while robot.step(timestep) != -1:
     for i in range(2):
         encoderValues.append(encoder[i].getValue())    # [rad]
 
+    # Update old encoder values if not done before
+    if len(oldEncoderValues) < 2:
+        for i in range(2):
+            oldEncoderValues.append(encoder[i].getValue())   
 
     #######################################################################
     # Robot Localization 
-    z_old = z
     x_old = x
+    y_old = y
     phi_old = phi
     
     # Compute speed of the wheels
@@ -208,20 +205,20 @@ while robot.step(timestep) != -1:
     # Compute robot linear and angular speeds
     [u, w] = get_robot_speeds(wl, wr, R, D)
     # Compute cartesian speeds of the robot
-    [dz, dx, dphi] = get_cartesian_speeds(u, w, phi, A)    
+    [dx, dy, dphi] = get_cartesian_speeds(u, w, phi, A)    
     # Compute new robot pose
-    [z, x, phi] = get_robot_pose(z_old, x_old, phi_old, dz, dx, dphi, delta_t)
+    [x, y, phi] = get_robot_pose(x_old, y_old, phi_old, dx, dy, dphi, delta_t)
 
     #######################################################################
     # Robot Controller
     # Desired trajectory (you can use equations to define the trajectory):
     xd = 0.0
-    zd = 0.0 + 0.3*np.sin(0.005*counter)
+    yd = 0.0 + 0.3*np.sin(0.005*counter)
     dxd = 0.0
-    dzd = 0.3*0.005*np.cos(0.005*counter)
+    dyd = 0.3*0.005*np.cos(0.005*counter)
     
     # Trajectory tracking controller
-    [u_ref, w_ref] = traj_tracking_controller(dzd, dxd, zd, xd, z, x, phi, A)
+    [u_ref, w_ref] = traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, A)
     # Convert reference speeds to wheel speed commands
     [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, D, R)
 
@@ -232,8 +229,7 @@ while robot.step(timestep) != -1:
     counter += 1
 
     # To help on debugging:
-    print('Sim time: %6.3f ' % robot.getTime(), 
-    " Pose: x=%6.2f m, z=%6.2f m, phi=%6.2f rad. u_ref=%6.2f m/s, w_ref=%6.2f rad/s." % (x, z, phi, u_ref, w_ref))    
+    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad. u_ref={u_ref:.3f} m/s, w_ref={w_ref:.3f} rad/s.')    
 
     # Update reference velocities for the motors
     leftMotor.setVelocity(leftSpeed)

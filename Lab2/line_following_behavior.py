@@ -2,9 +2,6 @@
 # This program implements a state-machine based line-following behavior
 # for the e-puck robot. 
 
-# This code was tested on Webots R2020a, revision 1, on Windows 10 running
-# Python 3.7.7 64-bit
-
 # Author: Felipe N. Martins
 # Date: 7th of April, 2020
 # Update: 17 September 2021 - add comments and adjust variable names
@@ -39,20 +36,20 @@ COUNTER_MAX = 5
 ps = []
 psNames = ['ps0', 'ps1', 'ps2', 'ps3', 'ps4', 'ps5', 'ps6', 'ps7']
 for i in range(8):
-    ps.append(robot.getDistanceSensor(psNames[i]))
+    ps.append(robot.getDevice(psNames[i]))
     ps[i].enable(timestep)
 
 # ground sensors
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
-    gs.append(robot.getDistanceSensor(gsNames[i]))
+    gs.append(robot.getDevice(gsNames[i]))
     gs[i].enable(timestep)
 
 
 # motors    
-leftMotor = robot.getMotor('left wheel motor')
-rightMotor = robot.getMotor('right wheel motor')
+leftMotor = robot.getDevice('left wheel motor')
+rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
 leftMotor.setVelocity(0.0)

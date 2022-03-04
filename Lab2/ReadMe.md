@@ -49,7 +49,7 @@ In Tutorial 4 you have an example code using the distance sensors around the rob
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
-    gs.append(robot.getDistanceSensor(gsNames[i]))
+    gs.append(robot.getDevice(gsNames[i]))
     gs[i].enable(timestep)
 
 
