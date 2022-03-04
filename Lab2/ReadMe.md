@@ -74,14 +74,19 @@ A detailed explanation of the e-puck robot and how to use in Webots is available
 ## Conclusion
 After following this lab you should know more about the e-puck robot model, how to program a controller for it in Python, and how to program a robot behavior based on state-machine. 
 
-## Challenge
-Add obstacles to the world and try to change the state-machine to make e-puck avoid obstacles placed on its way.
-
 ## Solution
 Try to implement the state-machine code yourself before checking the solution! After a successfull implementation, or if you need inspiration, an example code is available [here](../Lab2/line_following_behavior.py).
 
 The video below shows the solution code in action:
 [![Video screenshot](../Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
+
+## Challenge
+Change the state-machine **in Python** to make e-puck avoid obstacles placed on its way. You can choose the type of obstacle to add: different formats might require different strategies of obstacle avoidance. Obstacles with round or rectangular shape usually are the less demanding, while obstacles with U-shape require more complex strategies.
+
+An illustration of obstacle avoidance with state-machine is given in Figure 3.
+
+![Obstacle avoidance gif](../Lab2/obstacle_avoidance.gif)
+###### Figure 3. Illustration of obstacle avoidance strategy added to the existing state-machine.
 
 ## Next Lab
 Go to [Lab 3](../Lab3/ReadMe.md) - Odometry-based Localization
