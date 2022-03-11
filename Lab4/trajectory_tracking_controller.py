@@ -215,7 +215,7 @@ while robot.step(timestep) != -1:
     xd = 0.0
     yd = 0.0 + 0.3*np.sin(0.005*counter)
     dxd = 0.0
-    dyd = 0.3*0.005*np.cos(0.005*counter)
+    dyd = 0.3*0.005*np.cos(0.005*counter) # This is the time derivative of yd
     
     # Trajectory tracking controller
     [u_ref, w_ref] = traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, A)
