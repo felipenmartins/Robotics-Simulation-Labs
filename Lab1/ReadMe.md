@@ -14,11 +14,11 @@ Figure 1. Webots screenshot.
 To complete this lab you have to follow the steps described below. 
 
 1. From [https://cyberbotics.com/](https://cyberbotics.com/), download and install **Webots R2022a (or newer)** on your computer. There are versions available for Windows, macOS and Linux. 
-#### _Note:_ Version R2022a or newer is higly recommended because of the global coordinate system adopted as default by Webots - in older versions the robot moves in the XZ plane, instead of the current standard XY plane. Webots is more than 1 GB - take into account the time to download and install it.
+#### _Note:_ Version R2022a or newer is highly recommended because of the global coordinate system adopted as default by Webots - in older versions the robot moves in the XZ plane, instead of the current standard XY plane. Webots is more than 1 GB - take into account the time to download and install it.
 
 2. Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots) until and including **Hands-on #7**.
 
-3. You need the 64-bit version of **Python 3.7, 3.8 or 3.9** to complete the robotics labs with Webots (currently, Webots R2022a does _**not**_ work with Python 3.10). You can [download Python from here.](https://www.python.org/downloads/) When you install Python, it is easier to **select the option “Add to PATH” during the installation** to include it on Windows PATH. After that, you must **reboot your system** before continuing with this tutorial.  
+3. You need the **64-bit** version of **Python 3.7, 3.8 or 3.9** to complete the robotics labs with Webots (currently, Webots R2022a does _**not**_ work with Python 3.10). You can [download Python from here.](https://www.python.org/downloads/) When you install Python, it is easier to **select the option “Add to PATH” during the installation** to include it on Windows PATH. After that, you must **reboot your system** before continuing with this tutorial.  
 
 4. Depending on your system, the reference to Python 3 can be via the command `python` or `python3`. To test your Python installation (and to make sure that it is added to Windows PATH, in case of Windows), open the Command Prompt (cmd), PowerShell or Terminal and try both commands (`python` and `python3`). If Python is correctly installed (and included on Windows PATH), you should see something similar to:
 ```
