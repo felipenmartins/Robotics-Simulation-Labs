@@ -18,7 +18,7 @@ To complete this lab you have to follow the steps described below.
 
 2. Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots) until and including Hands-on #7.
 
-3. You need the 64-bit version of Python 3.7 (or higher) to complete the robotics labs with Webots. You can [download Python from here.](https://www.python.org/downloads/) When you install Python, **make sure to select the option “Add to PATH” during the installation** to include it on Windows PATH. After that, you must **reboot your system** before continuing with this tutorial.  
+3. You need the 64-bit version of **Python 3.7, 3.8 or 3.9** to complete the robotics labs with Webots (currently, Webots R2022a does _**not**_ work with Python 3.10). You can [download Python from here.](https://www.python.org/downloads/) When you install Python, **make sure to select the option “Add to PATH” during the installation** to include it on Windows PATH. After that, you must **reboot your system** before continuing with this tutorial.  
 
 4. Depending on your system, the reference to Python 3 can be via the command `python` or `python3`. To make sure, and to test if Python is added to Windows PATH, open the Command Prompt (cmd) or PowerShell and try both commands. If Python is correctly installed and included on Windows PATH, you should see something similar to:
 ```
