@@ -71,6 +71,8 @@ for i in range(3):
 ```
 A detailed explanation of the e-puck robot and how to use in Webots is available [here](https://cyberbotics.com/doc/guide/epuck).
 
+If you need inspiration, check the [template code available here!](../Lab2/line_following_template.py)
+
 ## Conclusion
 After following this lab you should know more about the e-puck robot model, how to program a controller for it in Python, and how to program a robot behavior based on state-machine. 
 
