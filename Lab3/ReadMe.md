@@ -13,8 +13,8 @@ To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-p
 
 Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
-## Taks
-Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. In the main loop of your program, those functions should be called in a sequence:
+## Tasks
+Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. The functions below should be called in sequence in the main loop of your program:
 ```
     # Compute speed of the wheels
     [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
@@ -25,7 +25,6 @@ Your main task is to write code to implement the functions below to add localiza
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
 ```
-I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 
 
 The tasks are listed below:
 
@@ -89,12 +88,13 @@ To read the encoders in the main loop:
 ```
 The encoder values are incremented when the corresponding wheel moves forwards and decremented when it moves backwards.
 
+I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 
+
 ## Conclusion
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
 ## Challenge
-1. Replace the line-following state-machine by a "go-to-goal" controller using a PID. Test it by making the robot go to the 4 corners of the field, and then to the center.
-2. Add a [compass sensor](https://cyberbotics.com/doc/reference/compass?tab-language=python) to your robot and use its value to calculate the robot orientation (instead of odometry). Is there an improvement in pose accuracy? 
+Replace the line-following state-machine by a "go-to-goal" controller using a PID. Test it by making the robot go to the 4 corners of the field, and then to the center.
 
 ## Super challenge
 Implement a 1-D Kalman Filter to combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 

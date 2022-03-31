@@ -3,8 +3,8 @@
 # This program implements a state-machine based line-following behavior
 # with odometry-based localization for the e-puck robot. 
 
-# This code was tested on Webots R2020a, revision 1, on Windows 10 running
-# Python 3.7.7 64-bit
+# This code was tested on Webots R2022a, on Windows 10 running
+# Python 3.9.7 64-bit
 
 # The encoder values are incremented when the corresponding wheel moves 
 # forwards, and decremented when it moves backwards.
