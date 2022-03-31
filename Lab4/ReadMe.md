@@ -25,8 +25,6 @@ The variable _a_ contains the distance [m] between the point whose position is b
 
 Explanation about the trajectory tracking controller can be found in section 4 of [[1](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)]. The controller equation to be implemented here is equation (20). This controller was first presented in [[2]](https://www.sciencedirect.com/science/article/abs/pii/S0967066108000373?via%3Dihub), where more details about its stability are given. See references at the bottom of this page. 
 
-I recommend you try to modify your code from Lab 3 to implement the trajectory-tracking controller. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab4/lab4_template.py). 
-
 The tasks are listed below:
 
 1. Write the function `traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a)` to calculate reference values of linear and angular velocities. Those values should later be used to calculate the reference speeds of each wheel. Test your code before moving to the next step.
@@ -40,6 +38,7 @@ dyd = 0.0	# desired speed in y [m/s]
 ```
 4. Test different values of desired positions xd, yd and check if the robot behaves as expected. If you keep the desired speeds as zero, changing the values of xd and yd should make the controller behave as a `go-to-position` controller. 
 
+I recommend you try to modify your code from Lab 3 to implement the trajectory-tracking controller. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab4/lab4_template.py). 
 
 ### Other details
 
