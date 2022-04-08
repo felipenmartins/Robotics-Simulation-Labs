@@ -13,7 +13,7 @@ Figure 1. Webots screenshot showing robot pose calculated by the simulator (left
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution for [Lab 2](../Lab1/ReadMe.md). If not, please use the provided solution. 
+* You should have a working solution of [Lab 2](../Lab2/ReadMe.md). If not, please use the provided solution. 
 
 ### Update note
 _The description of this lab, the template and solution code were updated on 03-03-2022 to make them compatible with the new global coordinate system adopted as default by Webots R2022a (or newer). If you are using an older version of Webots, please make sure your code is adapted accordingly [(see more details at the end of this page).](#a-note-on-webots-reference-frame)_
