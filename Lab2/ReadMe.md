@@ -3,6 +3,9 @@
 ## Objectives
 The goal of this lab is to learn more about controllers in Webots, and to implement a line-following behavior in Python, based on a state-machine. 
 
+![BotStudio screenshot](../Lab2/BotStudio.png)
+###### Figure 1. BotStudio screenshot with the line-follower state-machine (left) and values of e-puck sensors and motor speeds (right).
+
 ## The e-puck robot
 Webots contains a realistic model of e-puck, a small differential drive mobile robot. The movement of this type of robot is controlled by adjusting the speed of each wheel. The robot also has several sensors. 
 
@@ -16,18 +19,15 @@ You must have Webots R2022a (or newer) properly configured to work with Python. 
 ## Tasks
 You are going to load an example world that shows a line-follower behavior implemented with a state machine. First, you will be able to play with a simple graphical programming interface to understand and modify the state machine. Then, you will built a line-following behavior in Python.
 
-1. Click on “Open Sample Worlds” and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 1.
+1. Click on “Open Sample Worlds” and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 2.
 
 ![Webots screenshot with e-puck](../Lab2/Webots_screenshot_with_e-puck.png)
-###### Figure 1. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
+###### Figure 2. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
 
 
-2. Double-click on the e-puck robot: a new window shows the BotStudio, which is a graphical interface to build simple programs for the e-puck robot (see Figure 2). The BotStudio shows a line-follower behavior implemented in the form of a state-machine.
+2. Double-click on the e-puck robot: a new window shows the BotStudio, which is a graphical interface to build simple programs for the e-puck robot (see Figure 1). The BotStudio shows a line-follower behavior implemented in the form of a state-machine.
 
-![BotStudio screenshot](../Lab2/BotStudio.png)
-###### Figure 2. BotStudio screenshot with the line-follower state-machine (left) and values of e-puck sensors and motor speeds (right).
-
-3. Start the simulation on the Webots screen by clicking the “play” button in the top menu. The robot will not move. To start the robot controller, you must click on the black upward pointing arrow in the BotStudio screen (Figure 2). 
+3. Start the simulation on the Webots screen by clicking the “play” button in the top menu. The robot will not move. To start the robot controller, you must click on the black upward pointing arrow in the BotStudio screen (Figure 1). 
 
 4. Observe the behavior of the robot in the simulation. At the same time, observe the BotStudio window. Note the transitions between states and the measurements indicated by the sensors on the e-puck viewer (on the right side of the BotStudio window). The e-puck viewer shows the values returned by each of the robot sensors while the simulation is running. 
 
@@ -72,7 +72,6 @@ for i in range(3):
     line_left = gsValues[2]
 
 ```
-A detailed explanation of the e-puck robot and how to use in Webots is available [here](https://cyberbotics.com/doc/guide/epuck).
 
 If you need inspiration, check the [template code available here!](../Lab2/line_following_template.py)
 
@@ -85,7 +84,7 @@ Try to implement the state-machine code yourself before checking the solution! A
 The video below shows the solution code in action:
 [![Video screenshot](../Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
 
-## Challenge
+## Challenge: Obstacle Avoidance
 Change the state-machine **in Python** to make e-puck avoid obstacles placed on its way. You can choose the type of obstacle to add: different formats might require different strategies of obstacle avoidance. Obstacles with round or rectangular shape usually are the less demanding, while obstacles with U-shape require more complex strategies.
 
 An illustration of obstacle avoidance with state-machine is given in Figure 3.
