@@ -20,7 +20,7 @@ To complete this lab you have to follow the steps described below.
 
 3. You need the **64-bit** version of **Python 3.7, 3.8 or 3.9** to complete the robotics labs with Webots (currently, Webots R2022a does _**not**_ work with Python 3.10). You can [download Python from here.](https://www.python.org/downloads/) When you install Python, it is easier to **select the option “Add to PATH” during the installation** to include it on Windows PATH. After that, you must **reboot your system** before continuing with this tutorial.  
 
-4. Depending on your system, the reference to Python 3 can be via the command `python` or `python3`. To test your Python installation (and to make sure that it is added to Windows PATH, in case of Windows), open the Command Prompt (cmd), PowerShell or Terminal and try both commands (`python` and `python3`). If Python is correctly installed (and included on Windows PATH), you should see something similar to:
+4. Depending on your system, the reference to Python 3 can be via the command `python`, `python3`, `python3.8`, or something similar. To test your Python installation (and to make sure that it is added to Windows PATH, in case of Windows), open the Command Prompt (cmd), PowerShell or Terminal and try both commands (`python` and `python3.x`, according to the version that you installed). If Python is correctly installed (and included on Windows PATH), you should see something similar to:
 ```
 Python 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 22:22:05) [MSC v.1916 64 bit (AMD64)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
@@ -28,9 +28,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
   Type `exit()` to go back to the terminal/command prompt.
 
-5. Configure Webots to work with Python: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in the step above) to point Webots to your Python installation. If you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer.
+5. Configure Webots to work with Python: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in the step above) to point Webots to your Python installation. If you are on MacOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
 
-6. Install the libraries NumPy and OpenCV. Follow the instructions [from here.](https://cyberbotics.com/doc/guide/using-python#libraries)
+6. Install the Python libraries NumPy (and OpenCV, optionally. OpenCV is not required for our simulation labs). Follow the instructions [from here.](https://cyberbotics.com/doc/guide/using-python#libraries)
 
 7. Go back to Webots Tutorial 1 and continue with the session ["Create New Controller".](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots?tab-language=python#create-a-new-controller) When you get to **Hands-on #8**, make sure that `Python` is selected as programming language.
 
@@ -52,7 +52,7 @@ Back to [main page](../README.md).
 
   ![Windows message](../Lab1/windows_message.png)
 
-2. Make sure you have the 64-bit version of Python (or higher) so that Webots work properly. Wrong versions of Python are known to cause issues.
+2. Make sure you have the **64-bit** version of Python so that Webots work properly. 32-bit or wrong versions of Python do not work properly with Webots.
 
 3. If you already installed Python but cannot load it from the terminal/command prompt, or if Webots cannot find Python, you can add Python to Windows PATH system variable. To add Python to PATH, follow the instructions available [here](https://datatofish.com/add-python-to-windows-path/). **After you add Python to PATH you must reboot your system for the changes to take effect.** Note that you have to add only the path for the location where the executable is, without including "python.exe". A proper configuration is shown in the image below (the path in your computer might be different depending on your Python version and installation):
 
@@ -74,4 +74,6 @@ This is not a problem for the simulations in the labs described here. The demo s
 - Go to `Tools -> Preferences -> OpenGL` and try to reduce `Ambient Occusion` and `Texture Quality`.
 
 5. If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. Another possibility is to install the APT version of Webots. Instructions on how to install the APT version can be found on [this link](https://www.cyberbotics.com/doc/guide/installation-procedure) (Thanks to Nick Buls for the tip).
+
+6. If you are using MacOS, you might need to use the full Python path in Webots. [See details here](https://cyberbotics.com/doc/guide/using-python#macos-installation).
 
