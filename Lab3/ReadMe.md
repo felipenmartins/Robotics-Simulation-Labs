@@ -98,10 +98,10 @@ I recommend you try to modify your line following code from Lab 2 to implement t
 ## Conclusion
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
-## Challenge
-Replace the line-following state-machine by a "go-to-goal" controller using a PID. Test it by making the robot go to the 4 corners of the field, and then to the center.
+## Challenge: Go-to-goal behavior with PID
+Replace the line-following state-machine by a "go-to-goal" behavior using a PID controller. Test it by making the robot go to the 4 corners of the field, and then to the center.
 
-## Super challenge
+## Super challenge: 1-D Kalman Filter
 Implement a 1-D Kalman Filter to combine the values given by the compass with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
 
 ## Solution
