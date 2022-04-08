@@ -14,7 +14,10 @@ To detect obstacles, e-puck contains 8 infra-red distance sensors around its bod
 A detailed explanation of the e-puck robot and how to use in Webots is available [here](https://cyberbotics.com/doc/guide/epuck).
 
 ## Pre-requisites
-You must have Webots R2022a (or newer) properly configured to work with Python. You must know how to create a robot controller in Python and how to run a simulation. If you are still missing any of those, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
+* You must have Webots R2022a (or newer) properly configured to work with Python. 
+* You must know how to create a robot controller in Python and how to run a simulation. 
+
+If you are still missing any of those, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
 
 ## Tasks
 You are going to load an example world that shows a line-follower behavior implemented with a state machine. First, you will be able to play with a simple graphical programming interface to understand and modify the state machine. Then, you will built a line-following behavior in Python.
