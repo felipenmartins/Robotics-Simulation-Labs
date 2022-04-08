@@ -59,8 +59,8 @@ Figure 3. Webots screenshot showing robot pose calculated by the simulator (left
 * Considering that you are using odometry-based localization, how does it affect the performance of the trajectory-tacking controller?
 * What would you change in the code for the controller to work as a pose controller (final position + orientation)?
 
-## Challenge
-Create a function to generate a trajectory of your choice inside the field: a vector `(xd, yd, dxd, dyd)` with position and speed for all points in the path. You are free to choose the path of the generated trajectory (it does not have to be the path of the line). Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
+## Challenge: Generate a Trajectory
+Create the functions to generate a trajectory of your choice inside the field: a vector `(xd, yd, dxd, dyd)` with position and speed for all points in the path. You are free to choose the path of the generated trajectory (it does not have to be the path of the line). Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
 
 ## Solution
 Try to implement the code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab4/trajectory_tracking_controller.py).
