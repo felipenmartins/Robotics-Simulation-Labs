@@ -60,7 +60,13 @@ Figure 3. Webots screenshot showing robot pose calculated by the simulator (left
 * What would you change in the code for the controller to work as a pose controller (final position + orientation)?
 
 ## Challenge: Generate a Trajectory
-Create the functions to generate a trajectory of your choice inside the field: a vector `(xd, yd, dxd, dyd)` with position and speed for all points in the path. You are free to choose the path of the generated trajectory (it does not have to be the path of the line). Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
+Create the functions to generate a trajectory of your choice inside the field. The functions must be properly defined to generate desired positions `(xd, yd)` and speeds with their corresponding time derivates `(dxd, dyd)`. 
+
+You are free to choose the generated trajectory, as long as:
+* it moves the robot along both x and y axes; and
+* it is possible for the robot to follow it (positions and speed).
+
+In your demonstration, show that the robot can follow the trajectory using the trajectory-tracking controller implemented in Lab 4. Change the parameters of your equations to change the trajectory, and show that your robot can follow it without the need of modifying its controller. Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
 
 ## Solution
 Try to implement the code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab4/trajectory_tracking_controller.py).
