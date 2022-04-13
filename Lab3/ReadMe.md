@@ -99,9 +99,9 @@ I recommend you try to modify your line following code from Lab 2 to implement t
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
 ## Challenge: Go-to-goal behavior with PID
-Modify the line-following state-machine to create a new state that implements a "go-to-goal" behavior using a PID controller. This state should be activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in this lab. When it gets half-way through the path, the "go-to-goal" state is activated. A list of goal positions is given before the program starts. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot should stop.
+Modify the line-following state-machine to create a new state that implements a "go-to-goal" behavior using a PID controller. This state should be activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in this lab. When it gets half-way through the path, the "go-to-goal" state is activated. A list of goal positions is given in the program. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot must stop.
 
-Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. 
+Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. When the robot stops, it should print its own position and error in x and y.
 
 Demonstrate your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field. For this challenge, there is no need to have obstacle avoidance working.
 
