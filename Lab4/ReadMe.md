@@ -66,7 +66,12 @@ You are free to choose the generated trajectory, as long as:
 * it moves the robot along both x and y axes; and
 * it is possible for the robot to follow it (positions and speed).
 
-In your demonstration, show that the robot can follow the trajectory using the trajectory-tracking controller implemented in Lab 4. Change the parameters of your equations to change the trajectory, and show that your robot can follow it without the need of modifying its controller. Adjust the controller gains to make your robot follow this trajectory with as little error as possible. 
+Adjust the controller gains to make your robot follow the trajectory with as little error as possible. 
+
+In your demonstration, you have to show:
+* the value of distance error (euclidean distance between the actual robot position and desired position) at every cycle;
+* that the robot can follow the trajectory using the trajectory-tracking controller implemented in Lab 4;
+* that your robot can follow different trajectories (by changing the parameters of your equations `(xd, yd, dxd, dyd)`) without modifying its controller. 
 
 ## Solution
 Try to implement the code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab4/trajectory_tracking_controller.py).
