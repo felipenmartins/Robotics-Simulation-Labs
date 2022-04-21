@@ -103,7 +103,11 @@ Modify the line-following state-machine to create a new state that implements a 
 
 Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. Everytime the robot stops at a goal, it has to print its own position and distance error to the goal.
 
-Demonstrate your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field. For this challenge, there is no need to have obstacle avoidance working.
+Demonstrate your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field. Figure 2 illustrates the go-to-goal implementation for the 2 last goals. For this challenge, there is no need to have obstacle avoidance working.
+
+![Go to goal illustration](../Lab3/go_to_goal.gif)
+
+Figure 2. Illustration of the Go-to-Goal controller reaching two goals. After reaching the final goal, the robot stops.
 
 ## Super challenge: 1-D Kalman Filter
 Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
