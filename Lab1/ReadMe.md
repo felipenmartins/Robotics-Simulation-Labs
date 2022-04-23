@@ -28,7 +28,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
   Type `exit()` to go back to the terminal/command prompt.
 
-5. Configure Webots to work with Python: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in the step above) to point Webots to your Python installation. If you are on MacOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
+5. Configure Webots to work with Python: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in the step above) to point Webots to your Python installation. If you are on MacOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. Refer to [this page](https://datatofish.com/locate-python-windows/) for instructions on how to find where Python is installed on Windows. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
 
 6. Install the Python libraries NumPy (and OpenCV, optionally. OpenCV is not required for our simulation labs). Follow the instructions [from here.](https://cyberbotics.com/doc/guide/using-python#libraries)
 
