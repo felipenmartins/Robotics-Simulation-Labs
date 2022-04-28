@@ -21,6 +21,7 @@ import numpy as np
 
 TIME_STEP = 64
 MAX_SPEED = 6.28
+counter = 0
 
 # create the Robot instance.
 robot = Robot()
@@ -136,15 +137,15 @@ def get_robot_pose(x_old, y_old, phi_old, dx, dy, dphi, delta_t):
 def traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a):
     """Updates references speeds for the robot to follow a trajectory"""
     # Controller gains:
-    KX = 2
-    KY = 2
+    KX = 1
+    KY = 1
 
     # Position error:
     x_err = xd - x
     y_err = yd - y
     
     # If error is smaller than some value, make it null:
-    if (abs(x_err) < 0.01) and (abs(y_err) < 0.01):
+    if (abs(x_err) < 0.001) and (abs(y_err) < 0.001):
         x_err = 0
         y_err = 0
         
@@ -212,10 +213,10 @@ while robot.step(timestep) != -1:
     #######################################################################
     # Robot Controller
     # Desired trajectory (you can use equations to define the trajectory):
-    xd = 0.0
-    yd = 0.0 + 0.3*np.sin(0.005*counter)
-    dxd = 0.0
-    dyd = 0.3*0.005*np.cos(0.005*counter) # This is the time derivative of yd
+    xd = 0.0 + 0.3*np.sin(0.005*counter)
+    yd = 0.436
+    dxd = 0.3*0.005*np.cos(0.005*counter) # This is the time derivative of yd
+    dyd = 0.0
     
     # Trajectory tracking controller
     [u_ref, w_ref] = traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, A)

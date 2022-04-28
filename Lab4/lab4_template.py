@@ -17,6 +17,7 @@ import numpy as np
 
 TIME_STEP = 64
 MAX_SPEED = 6.28
+counter = 0
 
 # create the Robot instance.
 robot = Robot()
@@ -187,9 +188,9 @@ while robot.step(timestep) != -1:
     #######################################################################
     # Robot Controller
     # Desired trajectory (you can use equations to define the trajectory):
-    xd = 0.0
-    yd = 0.0
-    dxd = 0.0
+    xd = 0.0 + 0.3*np.sin(0.005*counter)
+    yd = 0.436
+    dxd = 0.3*0.005*np.cos(0.005*counter) # This is the time derivative of yd
     dyd = 0.0
     
     # Trajectory tracking controller
