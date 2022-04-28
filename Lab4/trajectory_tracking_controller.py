@@ -47,6 +47,7 @@ ddy = 0.0  # acceleration in y [m/s^2]
 # Robot wheel speeds
 wl = 0.0    # angular speed of the left wheel [rad/s]
 wr = 0.0    # angular speed of the right wheel [rad/s]
+is_saturated = False    # Indicates saturation of wheel speeds
 
 # Robot linear and angular speeds
 u = 0.0    # linear speed [m/s]
@@ -163,12 +164,26 @@ def traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a):
 
 def wheel_speed_commands(u_ref, w_ref, d, r):
     """Converts reference speeds to wheel speed commands"""
+    global is_saturated
     leftSpeed = float((2 * u_ref - d * w_ref) / (2 * r))
     rightSpeed = float((2 * u_ref + d * w_ref) / (2 * r))
     
-    # Limits the maximum speed of the wheels
-    leftSpeed = np.sign(leftSpeed) * min(np.abs(leftSpeed), MAX_SPEED)
-    rightSpeed = np.sign(rightSpeed) * min(np.abs(rightSpeed), MAX_SPEED)
+    # Limits the maximum speed of one wheel to MAX_SPEED, if necessary.
+    # Keeps the proportion between left and right wheel speeds
+    if np.abs(leftSpeed) > MAX_SPEED or np.abs(rightSpeed) > MAX_SPEED:
+        speed_ratio = np.abs(rightSpeed)/np.abs(leftSpeed)
+        is_saturated = True
+        if speed_ratio > 1:
+            rightSpeed = np.sign(rightSpeed)*MAX_SPEED
+            leftSpeed = np.sign(leftSpeed)/speed_ratio
+        else:
+            leftSpeed = np.sign(leftSpeed)*MAX_SPEED
+            rightSpeed = np.sign(rightSpeed)*speed_ratio
+    else:
+        is_saturated = False
+
+    #leftSpeed = np.sign(leftSpeed) * min(np.abs(leftSpeed), MAX_SPEED)
+    #rightSpeed = np.sign(rightSpeed) * min(np.abs(rightSpeed), MAX_SPEED)
     
     return leftSpeed, rightSpeed
 
@@ -230,7 +245,7 @@ while robot.step(timestep) != -1:
     counter += 1
 
     # To help on debugging:
-    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad. u_ref={u_ref:.3f} m/s, w_ref={w_ref:.3f} rad/s.')    
+    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad. u_ref={u_ref:.3f} m/s, w_ref={w_ref:.3f} rad/s, Saturation = {is_saturated}.')    
 
     # Update reference velocities for the motors
     leftMotor.setVelocity(leftSpeed)

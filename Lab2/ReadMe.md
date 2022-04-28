@@ -42,9 +42,12 @@ You are going to load an example world that shows a line-follower behavior imple
 
 8. Modify the values of motor speed and sensors to make the robot follow the line as fast as possible, without missing it. 
 
-9. Follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python) to better understand the e-puck model and how to control it.
+9. To better understand the e-puck model and learn how to control it in Python, follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python) .
 
-10. Finally, implement the line-follower behavior in Python using what you learned from Tutorial 4. Create a new controller in Python and write a program that implements the same state-machine shown in the BotStudio example. You can use the parameters that you think are best. 
+10. Finally, implement the line-follower behavior in Python using what you learned from Tutorial 4. For that, follow the steps:
+ - Open again the sample world we started with (“Open Sample Worlds”, `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`). 
+ - You will need to make changes on this file, so save the sample world with a different name on a folder of your choice. 
+ - Finally, create a new controller in Python and write a program that implements the same state-machine shown in the BotStudio example. You can use the parameters that you think are best. 
 
 ## Ground sensors
 In Tutorial 4 you have an example code using the distance sensors around the robot. To detect the line on the floor you have to use the ground sensors, instead. The simulator also treats those as distance sensors because they are of the same type (infrared sensors). In Python you will access the ground sensors as follows:
