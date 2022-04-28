@@ -47,7 +47,7 @@ ddy = 0.0  # acceleration in y [m/s^2]
 # Robot wheel speeds
 wl = 0.0    # angular speed of the left wheel [rad/s]
 wr = 0.0    # angular speed of the right wheel [rad/s]
-is_saturated = False    # Indicates saturation of wheel speeds
+is_saturated = False    # Indicates when any of the wheels is saturated (max speed)
 
 # Robot linear and angular speeds
 u = 0.0    # linear speed [m/s]
