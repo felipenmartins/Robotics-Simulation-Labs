@@ -21,9 +21,10 @@ Your main task is to write code to implement the PID controller to control the r
 The tasks are detailed below:
 
 1. **Create a function to calculate position and orientation errors** based on the estimated and desired positions of the robot. An example is shown below:
+
 ```
 import numpy as np
-# ...
+
 # Position error:
 x_err = xd - x
 y_err = yd – y
