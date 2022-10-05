@@ -10,7 +10,7 @@ The simulation labs were created to replace the lab activities from my Robotics 
 
  - Webots Robot Simulator and Python
  - Features of commercial mobile robots
- - State-machines
+ - State machines
  - Obstacle avoidance
  - Kinematics of differential-drive robots
  - Odometry-based robot localization
@@ -28,9 +28,10 @@ The content of each lab is listed below:
 - [Lab 1](/Lab1/ReadMe.md) - Installation and configuration of Webots and Python
 - [Lab 2](/Lab2/ReadMe.md) - Line-following behavior with State-Machine
 - [Lab 3](/Lab3/ReadMe.md) - Odometry-based Localization
-- [Lab 4](/Lab4/ReadMe.md) - Trajectory Tracking Controller
-- [Lab 5](/Lab5/ReadMe.md) - Combine Behaviors to Execute a Complex Task
-- [Lab 6](/Lab6/ReadMe.md) - Robot Soccer Team
+- [Lab 4](/Lab4/ReadMe.md) - Go-to-goal behavior with PID
+- [Lab 5](/Lab5/ReadMe.md) - Trajectory Tracking Controller
+- [Lab 6](/Lab6/ReadMe.md) - Combine Behaviors to Execute a Complex Mission
+- [Lab 7](/Lab7/README.md) - Robot Soccer Challenge
 
 ## License
 This project is licensed under the terms of the [MIT license](/LICENSE).
