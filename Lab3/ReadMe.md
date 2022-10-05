@@ -33,10 +33,10 @@ Your main task is to write code to implement the functions below to add localiza
 
 The tasks are listed below:
 
-1. Write the function `get_wheels_speed(encoderValues, oldEncoderValues, delta_t)` to calculate the speed of the robot wheels based on encoder readings. Test your code before moving to the next step.
-2. Write the function `get_robot_speeds(wl, wr, R, D)` to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
-3. Write the function `get_robot_pose(u, w, x, y, phi, delta_t)` to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
-4. Compare the pose calculated by your functions with the pose calculated by Webots in different moments of the simulation. 
+1. **Write the function `get_wheels_speed(encoderValues, oldEncoderValues, delta_t)`** to calculate the speed of the robot wheels based on encoder readings. Test your code before moving to the next step.
+2. **Write the function `get_robot_speeds(wl, wr, R, D)`** to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
+3. **Write the function `get_robot_pose(u, w, x, y, phi, delta_t)`** to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
+4. **Compare the pose calculated by your functions with the pose calculated by Webots** in different moments of the simulation. 
 
 ### Think about the following questions
 
@@ -95,25 +95,16 @@ The encoder values are incremented when the corresponding wheel moves forwards a
 
 I recommend you try to modify your line following code from Lab 2 to implement the localization as described above. Try doing it yourself, first. If your code is not working, or you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 
 
-## Conclusion
-After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
-
-## Challenge: Go-to-goal behavior with PID
-Modify the line-following state-machine to create a new state that implements a "go-to-goal" behavior using a PID controller. This state should be activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in this lab. When it gets half-way through the path, the "go-to-goal" state is activated. A list of goal positions is given in the program. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot must stop.
-
-Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. Everytime the robot stops at a goal, it has to print its own position and distance error to the goal.
-
-Demonstrate your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field. Figure 2 illustrates the go-to-goal implementation for the 2 last goals. For this challenge, there is no need to have obstacle avoidance working.
-
-![Go to goal illustration](../Lab3/go_to_goal.gif)
-
-Figure 2. Illustration of the Go-to-Goal controller reaching two goals. After reaching the final goal, the robot stops.
-
-## Super challenge: 1-D Kalman Filter
-Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
-
 ## Solution
 Try to implement the localization code yourself before checking the solution! After a successfull implementation, or if you need more inspiration than the template, an example code is available [here](../Lab3/line_following_with_localization.py).
+
+## Challenge: 1-D Kalman Filter
+Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
+
+No solution is provided for the challenge.
+
+## Conclusion
+After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
 ### A note on Webots Reference Frame
 In Webots R2021b and older, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in older versions of Webots (left) and the orientation of the reference used in the newer versions (right). If you are using a version of Webots older than R2022a, you need to adapt your code accordingly. Please, see the [Webots R2022a release notes](https://cyberbotics.com/doc/blog/Webots-2022-a-release) for more details.
@@ -123,6 +114,6 @@ In Webots R2021b and older, the robot moves in the XZ plane! Figure 2 shows the 
 Figure 2. Orientation of the reference frames used in old (left) and new (right) Webots versions [(source)](https://cyberbotics.com/doc/blog/Webots-2022-a-release).
 
 ## Next Lab
-Go to [Lab 4](../Lab4/ReadMe.md) - Trajectory Tracking Controller
+Go to [Lab 4](../Lab4/ReadMe.md) - Go-to-goal behavior with PID
 
 Back to [main page](../README.md).
