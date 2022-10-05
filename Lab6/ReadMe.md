@@ -1,30 +1,59 @@
-# Lab 6 - Bonus Lab – Robot Soccer Team
+# Lab 6 - Combine Behaviors to Execute a Mission
+
+## Update note
+**The description of this lab was written based on older Webots versions (prior to R2022a). If you are using Webots R2022a or newer, please note that Webots changed its global coordinate system! It now uses ENU by default - [see detailed information here](https://cyberbotics.com/doc/blog/Webots-2022-a-release). Because of that, the world available on the ZIP file will not load propely. I intend to update this file in the future.**
 
 ## Objectives
-The goal of this lab is to apply everything that we learned in the course to implement a robot soccer team! If we have more than 2 groups interested, we can have a small competition. The winning team will get **10 psychological points!!!**
+The main goal of this lab is to combine different behaviors to make your robot execute a complex mission. You will also investigate and choose a robot to perform the mission, based on its features.
 
-## RCJ Soccer Simulator
-For this lab, we are going to use the RoboCup Junior Soccer Simulator (Figure 1). It is based on Webots and programmed in Python. 
+## Before you start
+Download the file [wall_following_with_obstacles.zip](../Lab5/wall_following_with_obstacles.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\wall_following_with_obstacles\worlds\wall_following_with_obstacles.wbt`. You should see a Pioneer 3-DX robot at the start position, as shown in Figure 1.
 
-![Soccer Sim screenshot](../Lab6/Soccer_Sim.jpg)
- 
-Figure 1. Webots running the RCJ Soccer Simulator with three robots on each team.
+![screenshot_starting_position.png](../Lab5/screenshot_starting_position.png)
+Figure 1. Screenshot showing the Pioneer 3-DX robot at the starting position of the world.
+
+_Note: the configuration of the central wall changes every time you load or reset the world._
+
+The provided world is based on a sample world from Webots, called wall_following. The main difference is that the provided world is populated with obstacles, as shown in Figure 2. The original sample world is available at `robotbenchmark -> wall_following -> wall_following.wbt`.
+
+![screenshot_pioneer.png](../Lab5/screenshot_pioneer.png)
+Figure 2. Some obstacles included in the provided world.
 
 ## Tasks
+Follow the steps below to successfuly complete this lab.
 
-Clone the [RCJ Soccer Sim](https://github.com/RoboCupJuniorTC/rcj-soccer-sim) repository to get all the files necessary. 
+1. **Read the description of the behaviors and the mission**. 
 
-Each team is composed by 3 differential-drive robots. Each robot has its own Python code to control the speed of its own wheels. The code has access to the position of the robot and the ball in the field, with some noise added by the simulator. 
+2. **Familiarize yourself with the provided environment**.
 
-There is an automatic referee that takes care of the implementation of all rules, such as counting time, verifying goals, positioning the robots and ball at the beginning of the match, etc. You should not change the referee code!
+3. **Choose a wheeled mobile robot** to use in this lab from  [this list](https://cyberbotics.com/doc/guide/robots). Think about the requirements of the mission and the features of the robot! Investigate the characteristics of the robot: its type, available sensors, actuators, maximum speed, etc. You are free to add extra sensors to the robot of your choice.
 
-Instructions on how to install and run the Soccer Simulator are avaliable [here](https://robocupjuniortc.github.io/rcj-soccer-sim/). The same page also has detailed explanation on how to code your robots, including examples.
+4. **Investigate the functions used in Python to control the robot and how the robot XYZ reference frame is oriented with respect to the world**. In the [robot list](https://cyberbotics.com/doc/guide/robots) you can click on each robot to find specific information about it.
 
-To play a match, just program your robots, hit "play", and have fun watching the game! :-)
+5. **Implement the behaviors in Python**: task controllers wall-following, trajectory tracking and obstacle avoidance, according to the description below. 
 
-The complete set of rules for the official RoboCup Junior Soccer Simulation competition is available [here](https://github.com/RoboCupJuniorTC/soccer-rules-simulation/raw/master/rules.pdf).
+6. **Implement a finite-state machine to implement the mission** described below (also in Python).
 
-Have fun!!
+### Description on the behaviors
+1.	**Wall-following**: build a program so that the robot successfully follows the central wall while keeping it on its right side. In other words, the robot should follow the central wall in the opposite direction from the example program provided in the world. You can use the provided example as a base for your program, but you might need to adapt it to your robot and adjust the PID gains. The example program with a wall-following behavior can be found in the folder `...\wall_following_with_obstacles\controllers`.
 
-## Main Page
+2.	**Trajectory tracking**: implement the trajectory tracking controller as described in Lab 4. The controller must include the saturation terms to avoid the generation of very high reference speeds when the error is too big. The maximum reference speeds must be equal to or lower than the maximum speeds achieved by the robot.
+
+3.	**Obstacle avoidance**: develop and implement an obstacle avoidance behavior so that the robot avoids obstacles. Your robot must avoid obstacles without touching them. 
+
+### Description of the mission
+- The initial position of the robot is (0, 0) m. 
+- The robot must move straight towards the central wall until its distance to it is 0.5m.
+- Then, the robot must follow the wall while keeping it on its right side until it gets to position (??, 20.0) m. 
+- After getting to the above position, the robot must make a full turn around its own center (360 degrees).
+- Then, it should execute trajectory tracking + obstacle avoidance behaviors to go back to its original position. 
+
+## Conclusion
+After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. Keep in mind that this is a challenging exercise! 
+
+A solution is not provided for this lab.
+
+## Next Lab (bonus)
+Go to [Lab 7](../Lab7/README.md) - Robot Soccer Team
+
 Back to [main page](../README.md).
