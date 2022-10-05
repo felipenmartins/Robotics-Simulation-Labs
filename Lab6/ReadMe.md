@@ -54,6 +54,6 @@ After completing this lab you are able to combine many behaviors for a mobile ro
 A solution is not provided for this lab.
 
 ## Next Lab (bonus)
-Go to [Lab 7](../Lab7/README.md) - Robot Soccer Team
+Go to [Lab 7](../Lab7/README.md) - Robot Soccer Challenge
 
 Back to [main page](../README.md).
