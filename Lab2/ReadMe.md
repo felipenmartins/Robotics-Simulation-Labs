@@ -1,17 +1,17 @@
-# Lab 2 – Line-following State-Machine
+# Lab 2 – Line-follower with State Machine
 
 ## Objectives
-The goal of this lab is to learn more about controllers in Webots, and to implement a line-following behavior in Python, based on a state-machine. 
+The goals of this lab are to learn more about controllers in Webots and to implement a line-following behavior in Python, based on a finite-state machine. 
 
 ![BotStudio screenshot](../Lab2/BotStudio.png)
 ###### Figure 1. BotStudio screenshot with the line-follower state-machine (left) and values of e-puck sensors and motor speeds (right).
 
 ## The e-puck robot
-Webots contains a realistic model of e-puck, a small differential drive mobile robot. The movement of this type of robot is controlled by adjusting the speed of each wheel. The robot also has several sensors. 
+Webots contains a realistic model of e-puck, a small differential-drive mobile robot. The movement of this type of robot is controlled by independently adjusting the speeds of the left and right wheels. 
 
-To detect obstacles, e-puck contains 8 infra-red distance sensors around its body. Other 3 infra-red sensors are mounted under its base, pointing to the floor, which enables the implementation of a line-following behavior. 
+The e-puck robot has multiple sensors. To detect obstacles, the e-puck contains 8 infrared distance sensors around its body. Other 3 infrared sensors are mounted under its base, pointing to the floor, allowing the implementation of a line-following behavior. 
 
-A detailed explanation of the e-puck robot and how to use in Webots is available [here](https://cyberbotics.com/doc/guide/epuck).
+A detailed explanation of the e-puck robot and how to use it in Webots is available [in this link](https://cyberbotics.com/doc/guide/epuck).
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
@@ -20,63 +20,55 @@ A detailed explanation of the e-puck robot and how to use in Webots is available
 If you are still missing any of those, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
 
 ## Tasks
-You are going to load an example world that shows a line-follower behavior implemented with a state machine. First, you will be able to play with a simple graphical programming interface to understand and modify the state machine. Then, you will built a line-following behavior in Python.
+You are going to load an example world that shows a line-follower behavior implemented with a state machine. First, you will be able to play with a simple graphical programming interface to understand and modify the state machine. Then, you will implement a line-following state machine in Python to control the e-puck robot.
 
-1. Click on “Open Sample Worlds” and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 2.
+1. **Open the line-following sample world**: Click on `File > Open Sample Worlds` and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world as shown in Figure 2 (you need to use the e-puck robot that is loaded with this sample world because it has the floor sensors). 
 
 ![Webots screenshot with e-puck](../Lab2/Webots_screenshot_with_e-puck.png)
 ###### Figure 2. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
 
 
-2. Double-click on the e-puck robot: a new window shows the BotStudio, which is a graphical interface to build simple programs for the e-puck robot (see Figure 1). The BotStudio shows a line-follower behavior implemented in the form of a state-machine.
+2. **Open BotStudio**: Double-click the e-puck robot to open BotStudio, which is a graphical interface to build simple programs for the e-puck robot (see Figure 1). In the left half of its window, BotStudio shows a state machine that implements a line-following behavior.
 
-3. Start the simulation on the Webots screen by clicking the “play” button in the top menu. The robot will not move. To start the robot controller, you must click on the black upward pointing arrow in the BotStudio screen (Figure 1). 
+3. **Start the simulation** on the Webots screen by clicking the “play” button in the top menu. The robot will not move because you also need to start the robot controller. For that, click on the black upward pointing arrow in the BotStudio screen (Figure 1). 
 
-4. Observe the behavior of the robot in the simulation. At the same time, observe the BotStudio window. Note the transitions between states and the measurements indicated by the sensors on the e-puck viewer (on the right side of the BotStudio window). The e-puck viewer shows the values returned by each of the robot sensors while the simulation is running. 
+4. **Observe the robot behavior and BotStudio window** during the simulation. Note the transitions between states and the measurements indicated by the sensors on the e-puck viewer (on the right side of the BotStudio window). The e-puck viewer shows the values returned by each of the robot sensors while the simulation is running. 
 
-5. Now, click again on the upward pointing arrow in the BotStudio screen to stop the robot.
+5. **Stop the robot** by clicking again on the upward pointing arrow in the BotStudio screen. Click on the states “forward”, “turn left” and “turn right” and observe the e-puck viewer. Do the same for the conditions for transition between states. 
 
-6. In the BotStudio window, click on the states “forward”, “turn left” and “turn right” and observe the e-puck viewer. Do the same for the conditions for transition between states. 
+6. **Modify the values** of motor speed and sensors to make the robot follow the line as fast as possible, without missing it. Play a bit with the values of motor speeds and sensors to understand their effect in the behavior of the robot.
 
-7. Play a bit with the values of motor speeds and sensors to understand their effect in the behavior of the robot. 
+7. **Follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python)** to better understand the e-puck model and learn how to control it in Python.
 
-8. Modify the values of motor speed and sensors to make the robot follow the line as fast as possible, without missing it. 
-
-9. To better understand the e-puck model and learn how to control it in Python, follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python) .
-
-10. Finally, implement the line-follower behavior in Python using what you learned from Tutorial 4. For that, follow the steps:
- - Open again the sample world we started with (“Open Sample Worlds”, `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`). 
- - You will need to make changes on this file, so save the sample world with a different name on a folder of your choice. 
- - Finally, create a new controller in Python and write a program that implements the same state-machine shown in the BotStudio example. You can use the parameters that you think are best. 
+8. Finally, **implement the line-following behavior in Python** using what you learned from Tutorial 4. For that, follow the steps:
+ - **Open again the sample world** we started with (`File > Open Sample Worlds` and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`). 
+ - Now you will need to make changes on the file. For that, **save the sample world with a different name** on a folder of your choice. 
+ - Finally, **create a new controller in Python and write a program that implements the same state machine shown in the BotStudio example**. You can use the parameters that you think are best. 
 
 ## Ground sensors
-In Tutorial 4 you have an example code using the distance sensors around the robot. To detect the line on the floor you have to use the ground sensors, instead. The simulator also treats those as distance sensors because they are of the same type (infrared sensors). In Python you will access the ground sensors as follows:
+In Tutorial 4 you have an example code using the distance sensors around the robot. To detect the line on the floor you have to use the ground sensors, instead. The simulator also treats those as distance sensors because they are of the same type (infrared sensors). In Python you will access the ground sensors as shown below.
 
+To initialize the ground sensors:
 ```
-# To initialize the ground sensors:
-
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
     gs.append(robot.getDevice(gsNames[i]))
     gs[i].enable(timestep)
+```
 
+To read the ground sensors inside the main loop:
+```
+gsValues = []
+for i in range(3):
+    gsValues.append(gs[i].getValue())
+``` 
 
-# ...
-# To read the ground sensors inside the main loop:
-
-    gsValues = []
-    for i in range(3):
-        gsValues.append(gs[i].getValue())
-    
-    
-# ...
-# To read sensor values inside the main loop:
-
-    line_right = gsValues[0]
-    line_center = gsValues[1]
-    line_left = gsValues[2]
-
+To read sensor values inside the main loop:
+```
+line_right = gsValues[0]
+line_center = gsValues[1]
+line_left = gsValues[2]
 ```
 
 If you need inspiration, check the [template code available here!](../Lab2/line_following_template.py)
@@ -88,6 +80,7 @@ After following this lab you should know more about the e-puck robot model, how 
 Try to implement the state-machine code yourself before checking the solution! After a successfull implementation, or if you need inspiration, an example code is available [here](../Lab2/line_following_behavior.py).
 
 The video below shows the solution code in action:
+
 [![Video screenshot](../Lab2/line-follower_video_screenshot.png)](https://youtu.be/nW06dLEe-AU).
 
 ## Challenge: Obstacle Avoidance
