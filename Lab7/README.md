@@ -6,7 +6,7 @@ The goal of this lab is to apply everything that we learned in the course to imp
 ## RCJ Soccer Simulator
 For this lab, we are going to use the RoboCupJunior Soccer Simulator - SoccerSim (Figure 1). It is based on Webots and programmed in Python. 
 
-![Soccer Sim screenshot](../Lab6/Soccer_Sim.jpg)
+![Soccer Sim screenshot](../Lab7/Soccer_Sim.jpg)
  
 Figure 1. Webots running the RCJ SoccerSim with three robots on each team.
 
