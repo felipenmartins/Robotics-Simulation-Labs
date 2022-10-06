@@ -3,20 +3,17 @@
 ## Objective
 The goal of this lab is to implement a simple algorithm for odometry-based robot localization and evaluate its accuracy.
 
-## Robot Pose
-To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “translation”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
-
-![Robot pose in Webots](../Lab3/Webots_robot_pose.png)
-
-Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
-
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
 * You should have a working solution of [Lab 2](../Lab2/ReadMe.md). If not, please use the provided solution. 
 
-### Update note
-_The description of this lab, the template and solution code were updated on 03-03-2022 to make them compatible with the new global coordinate system adopted as default by Webots R2022a (or newer). If you are using an older version of Webots, please make sure your code is adapted accordingly [(see more details at the end of this page).](#a-note-on-webots-reference-frame)_
+## Robot Pose
+To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “translation”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
+
+![Robot pose in Webots](../Lab3/Webots_robot_pose.png)
+
+###### Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
 ## Tasks
 Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. The functions below should be called in sequence in the main loop of your program:
@@ -105,13 +102,6 @@ No solution is provided for the challenge.
 
 ## Conclusion
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
-
-### A note on Webots Reference Frame
-In Webots R2021b and older, the robot moves in the XZ plane! Figure 2 shows the orientation of the reference frames adopted in older versions of Webots (left) and the orientation of the reference used in the newer versions (right). If you are using a version of Webots older than R2022a, you need to adapt your code accordingly. Please, see the [Webots R2022a release notes](https://cyberbotics.com/doc/blog/Webots-2022-a-release) for more details.
-
-![Webots Reference Frame](https://raw.githubusercontent.com/cyberbotics/webots/released/docs/blog/images/flu-enu.png) 
-
-Figure 2. Orientation of the reference frames used in old (left) and new (right) Webots versions [(source)](https://cyberbotics.com/doc/blog/Webots-2022-a-release).
 
 ## Next Lab
 Go to [Lab 4](../Lab4/ReadMe.md) - Go-to-goal behavior with PID
