@@ -70,7 +70,7 @@ Adjust the controller gains to make your robot follow the trajectory with as lit
 
 In your demonstration, you have to show:
 * the value of distance error (euclidean distance between the actual robot position and desired position) at every cycle;
-* that the robot can follow the trajectory using the trajectory-tracking controller implemented in Lab 4;
+* that the robot can follow the trajectory using the trajectory-tracking controller;
 * that your robot can follow different trajectories (by changing the parameters of your equations `(xd, yd, dxd, dyd)`) without modifying its controller. 
 
 ## Conclusion
