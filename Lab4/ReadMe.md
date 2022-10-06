@@ -1,13 +1,11 @@
 # Lab 4 – Go-to-goal behavior with PID
 
 ## Objective
-The goal of this lab is to implement a go-to-goal behavior based on a PID controller.
-
-Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence. 
+The goal of this lab is to implement a go-to-goal behavior based on a PID controller. Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence. 
 
 ![Go to goal illustration](../Lab3/go_to_goal.gif)
 
-Figure 1. Illustration of the Go-to-Goal controller reaching two goals in sequence. After reaching the final goal, the robot stops.
+###### Figure 1. Illustration of the Go-to-Goal controller reaching two goals in sequence. After reaching the final goal, the robot stops.
 
 
 ## Pre-requisites
@@ -20,7 +18,7 @@ Your main task is to write code to implement the PID controller to control the r
 
 The tasks are detailed below:
 
-1. **Create a function to calculate position and orientation errors** based on the estimated and desired positions of the robot. An example is shown below:
+1- **Create a function to calculate position and orientation errors** based on the estimated and desired positions of the robot. An example is shown below:
 
 ```
 import numpy as np
@@ -38,7 +36,7 @@ phi_err = phi_d – phi
 phi_err_correct = np.arctan2(np.sin(phi_err),np.cos(phi_err))
 ```
 
-2. **Create a new function that implements a "go-to-goal" behavior using a PID controller**. Your PID controller must control the robot orientation by adjusting its angular speed. A simple implementation of a PID controller is illustrated below:
+2- **Create a new function that implements a "go-to-goal" behavior using a PID controller**. Your PID controller must control the robot orientation by adjusting its angular speed. A simple implementation of a PID controller is illustrated below:
 
 ```
 # PID algortithm: must be executed every delta_t seconds
@@ -55,18 +53,20 @@ e_prev = e     # error value in the previous interation (to calculate the deriva
 e_acc = I      # accumulated error value (to calculate the integral term)
 ```
 
-3. **Using the code from Lab 3, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
+3- **Using the code from Lab 3, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
 
 A list of goal positions is given in the program. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot must stop.
 
 Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. Everytime the robot stops at a goal, it has to print its own position and distance error to the goal.
 
-4. **Test your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field**. 
+4- **Test your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field**. 
 
-## Saturation of the motors
-The controller willl generate the desired values for linear and/or angular speeds. Then, those values need to be transformed into desired speeds for the left and right wheels. If the desired speed for one of the wheels is higher than the maximum achievable speed, the actuator (motor) will saturate. Then, the difference between the speeds of the left and right wheels will be smaller than expected by the controller, which will cause the robot to turn at a different angular speed than calculated by the PID controller. As a result, the robot will not go to in the direction of the goal! And if both motors are saturated, the robot will not even turn!
+## Actuator Saturation
+The desired speeds for the left and right wheels will be calculated from the desired values of linear and/or angular speeds. If the desired speed for one of the wheels is higher than the maximum speed that its motor can achieve, the wheel will not be able to follow the speed desired by the controller. We say that there is **actuator saturation**. In this case, the difference between the speeds of the left and right wheels will be smaller than expected, which will cause the robot to turn at a different angular speed than desired by the PID controller. As a result, the robot will not turn to the direction of the goal. And if both motors are saturated, the robot will not turn at all!
 
-To avoid this problem, the code below calculates a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
+Actuator saturation is a potential problem in all control systems, so we need to keep it in mind. In the case of the "go-to-goal" controller for the differential-drive robot, it is very important that the robot drives towards the correct direction, and no so important that it moves with the desired linear speed. Therefore, we can avoid the saturation problem by reducing the overall robot speed while maintaining its angular speed.
+
+The code below implements the solution discussed above by calculating a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
 
 ```
 def wheel_speed_commands(u_d, w_d, d, r):
@@ -89,16 +89,16 @@ def wheel_speed_commands(u_d, w_d, d, r):
  
 Compare the controller performance with and without the saturation correction. 
 
-### Think about the following question
+## Think about the following question
 * What do you need to change in your code to control the orientation of the robot at the goal?
 
 Try to modify your line following code with localization from Lab 3 to implement the go-to-goal behavior as described above. 
 
-## Conclusion
-After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
-
 ## Solution
 No solution is provided for this lab.
+
+## Conclusion
+After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
 
 ## Next Lab
 Go to [Lab 5](../Lab5/ReadMe.md) - Trajectory Tracking Controller
