@@ -6,3 +6,6 @@ In Webots R2021b and older, the robot moves in the XZ plane! Figure 1 shows the 
 ![Webots Reference Frame](https://raw.githubusercontent.com/cyberbotics/webots/released/docs/blog/images/flu-enu.png) 
 
 Figure 1. Orientation of the reference frames used in old (left) and new (right) Webots versions [(source)](https://cyberbotics.com/doc/blog/Webots-2022-a-release).
+
+## Main Page
+Back to [main page](../README.md).
