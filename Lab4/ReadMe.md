@@ -39,19 +39,20 @@ phi_err_correct = np.arctan2(np.sin(phi_err),np.cos(phi_err))
 ```
 
 2. **Create a new function that implements a "go-to-goal" behavior using a PID controller**. Your PID controller must control the robot orientation by adjusting its angular speed. A simple implementation of a PID controller is illustrated below:
+
 ```
-# PID loop – general implementation executed every delta_t seconds
-# e = error
+# PID algortithm: must be executed every delta_t seconds
+# The error is calculated as: e = desired_value - actual_value
 
-P = kp * e
-I = e_acc + ki * e * delta_t
-D = kd * (e - e_prev)/delta_t
+P = kp * e                      # Proportional term; kp is the proportional gain
+I = e_acc + ki * e * delta_t    # Intergral term; ki is the integral gain
+D = kd * (e - e_prev)/delta_t   # Derivative term; kd is the derivative gain
 
-output = P + I + D
+output = P + I + D              # controller output
 
 # store values for the next iteration
-e_prev = e
-e_acc = I
+e_prev = e     # error value in the previous interation (to calculate the derivative term)
+e_acc = I      # accumulated error value (to calculate the integral term)
 ```
 
 3. **Using the code from Lab 3, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
@@ -66,6 +67,7 @@ Implement your code so that the robot goes from its current position to the next
 The controller willl generate the desired values for linear and/or angular speeds. Then, those values need to be transformed into desired speeds for the left and right wheels. If the desired speed for one of the wheels is higher than the maximum achievable speed, the actuator (motor) will saturate. Then, the difference between the speeds of the left and right wheels will be smaller than expected by the controller, which will cause the robot to turn at a different angular speed than calculated by the PID controller. As a result, the robot will not go to in the direction of the goal! And if both motors are saturated, the robot will not even turn!
 
 To avoid this problem, the code below calculates a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
+
 ```
 def wheel_speed_commands(u_d, w_d, d, r):
     """Converts desired speeds to wheel speed commands"""
