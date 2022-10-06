@@ -39,23 +39,23 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 This section contains some extra information that can help you solve issues you might encounter during Webots installation or usage.
 
-1. If you are getting error messages when trying to run Python code in Webots, make sure you have the **64-bit** version of Python, and one of the Python versions listed above. 32-bit or wrong versions of Python do not work properly with Webots.
+1- If you are getting error messages when trying to run Python code in Webots, make sure you have the **64-bit** version of Python, and one of the Python versions listed above. 32-bit or wrong versions of Python do not work properly with Webots.
 
-2. If you are using macOS, you might need to use the full Python path in Webots. [See details here](https://cyberbotics.com/doc/guide/using-python#macos-installation).
+2- If you are using macOS, you might need to use the full Python path in Webots. [See details here](https://cyberbotics.com/doc/guide/using-python#macos-installation).
 
-3. If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. Another possibility is to install the APT version of Webots. Instructions on how to install the APT version can be found on [this link](https://www.cyberbotics.com/doc/guide/installation-procedure) (Thanks to Nick Buls for the tip).
+3- If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. Another possibility is to install the APT version of Webots. Instructions on how to install the APT version can be found on [this link](https://www.cyberbotics.com/doc/guide/installation-procedure) (Thanks to Nick Buls for the tip).
 
-4. If you are using Windows, you might see a message similar to the one below when you try to run Webots installation program. If this happens, just click on “More info” and then click the button “Run anyway” to proceed with the installation (see figure below).
+4- If you are using Windows, you might see a message similar to the one below when you try to run Webots installation program. If this happens, just click on “More info” and then click the button “Run anyway” to proceed with the installation (see figure below).
 
   ![Windows message](../Lab1/windows_message.png)
 
 
-5. If you **already installed Python** but cannot load it from the terminal/command prompt or if Webots cannot find it, you can add Python to Windows PATH system variable. To add Python to PATH, follow the instructions available [in this link](https://datatofish.com/add-python-to-windows-path/). **After you add Python to PATH you must reboot your system for the changes to take effect.** Note that you have to add only the path for the location where the executable is, without including "python.exe". A proper configuration is shown in the image below (the path in your computer might be different depending on your Python version and installation):
+5- If you **already installed Python** but cannot load it from the terminal/command prompt or if Webots cannot find it, you can add Python to Windows PATH system variable. To add Python to PATH, follow the instructions available [in this link](https://datatofish.com/add-python-to-windows-path/). **After you add Python to PATH you must reboot your system for the changes to take effect.** Note that you have to add only the path for the location where the executable is, without including "python.exe". A proper configuration is shown in the image below (the path in your computer might be different depending on your Python version and installation):
 
 ![windows_path_variable_python.png](windows_path_variable_python.png)
 
 
-6. Depending on your hardware, when running Webots you might see a warning message like: 
+6- Depending on your hardware, when running Webots you might see a warning message like: 
 
 ```
 WARNING: System below the minimal requirements.
