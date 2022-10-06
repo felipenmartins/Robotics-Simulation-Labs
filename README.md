@@ -22,6 +22,8 @@ Templates and solutions are presented in Python 3.
 ## How to use
 The simulation labs are presented as a series of tutorials, including references to the official Webots tutorials. The Labs are intended to be followed in sequence, starting from the first one.
 
+Lab descriptions, templates and solutions were updated to make them compatible with the new global coordinate system adopted as default by Webots R2022a (or newer). If you intend to use an older version of Webots, please [see this note](/coordinate_system/ReadMe.md). 
+
 ## Content
 The content of each lab is listed below:
 
@@ -32,6 +34,8 @@ The content of each lab is listed below:
 - [Lab 5](/Lab5/ReadMe.md) - Trajectory Tracking Controller
 - [Lab 6](/Lab6/ReadMe.md) - Combine Behaviors to Execute a Complex Mission
 - [Lab 7](/Lab7/README.md) - Robot Soccer Challenge
+
+
 
 ## License
 This project is licensed under the terms of the [MIT license](/LICENSE).
