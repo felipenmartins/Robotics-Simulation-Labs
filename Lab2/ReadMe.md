@@ -80,6 +80,10 @@ An illustration of obstacle avoidance with state machine is given in Figure 3. N
 ![Obstacle avoidance gif](../Lab2/obstacle_avoidance.gif)
 ###### Figure 3. Illustration of obstacle avoidance strategy added to the existing line-follower state machine.
 
+Student Wilfred van Reenen made the video below to illustrate the excellent performance of his obstacle avoidance state machine. If you want to go above and beyond, try to get your robot to avoid all those obstacles!
+
+[![Video 2 screenshot](../Lab2/Line_follower_robot_with_obstacles.png)](https://youtu.be/eELnG58BYzg).
+
 ## Conclusion
 After following this lab you should know more about the e-puck robot model, how to program a controller for it in Python, and how to program a robot behavior based on state machine. 
 
