@@ -24,6 +24,12 @@ The simulation labs are presented as a series of tutorials, including references
 
 Lab descriptions, templates and solutions were updated to make them compatible with the new global coordinate system adopted as default by Webots R2022a (or newer). If you intend to use an older version of Webots, please [see this note](/coordinate_system/ReadMe.md). 
 
+## Jupyter Notebooks
+Extra explanation on how to implement Python code for some of the labs is available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). You can run the notebooks without the need of installing Webots. The notebooks can be useful to understand the fundamentals of the corresponding topic, especially because they allow the step-by-step execution and experimentation of the implemented functions. For now, the notebooks available are:
+- [Odometry-based Localization](https://github.com/felipenmartins/jupyter-notebooks/blob/main/odometry-based_localization.ipynb) for the differential-drive robot
+- [Implementation of simple robot behaviors](https://github.com/felipenmartins/jupyter-notebooks/blob/main/robot_behaviors.ipynb) for mobile robot control
+- [Mobile Robot Control with PID](https://github.com/felipenmartins/jupyter-notebooks/blob/main/robot_control_with_PID.ipynb) to implement position control
+
 ## Content
 The content of each lab is listed below:
 
