@@ -38,7 +38,7 @@ The content of each lab is listed below:
 - [Lab 3](/Lab3/ReadMe.md) - Odometry-based Localization
 - [Lab 4](/Lab4/ReadMe.md) - Go-to-goal behavior with PID
 - [Lab 5](/Lab5/ReadMe.md) - Trajectory Tracking Controller
-- [Lab 6](/Lab6/ReadMe.md) - Combine Behaviors to Execute a Complex Mission
+- [Lab 6](/Lab6/ReadMe.md) - Combine Behaviors to Complete a Complex Mission
 - [Lab 7](/Lab7/README.md) - Robot Soccer Challenge
 
 
