@@ -13,7 +13,7 @@ The main goal of this lab is to combine different behaviors to make your robot e
 
 ![screenshot_starting_position.png](../Lab6/screenshot_starting_position.png)
 ###### Figure 1. Screenshot showing the Pioneer 3-DX robot at the starting position of the world.
-
+.
 _Note: the configuration of the central wall changes every time you load or reset the world._
 
 The provided world is based on a sample world from Webots, called _wall_following_. The main difference is that the provided world is populated with obstacles, as shown in Figure 2. The original sample world is available at `robotbenchmark -> wall_following -> wall_following.wbt`.
