@@ -1,7 +1,7 @@
 # Lab 2 – Line-follower with State Machine
 
 ## Objectives
-The goal of this lab is to learn more about controllers in Webots via the implementation of a line-following behavior in Python based on a finite-state machine. 
+The goal of this lab is to learn more about controllers in Webots via the implementation of state machine to make the robot follow a line. 
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
@@ -31,10 +31,12 @@ A detailed explanation of the e-puck robot and how to use it in Webots is availa
 
 5- **Test the motor speeds** to determine how fast the robot should run and turn in order to follow the line.
 
-6- Finally, **create a new controller in Python and implement a line-following behavior** using what you learned from the steps above. You can use the state machine shown in Figure 2 as reference. 
+6- **Create a new controller in Python and implement a line-following behavior** using what you learned from the steps above. You can use the state machine shown in Figure 2 as reference. 
  
 ![Line-follower state machine](../Lab2/line-following_state_machine.png)
 ###### Figure 2. A state machine diagram that implements a line-follower behavior.
+
+7- Finally, **add one extra state to stop the robot when no line is detected**.
 
 
 ## Ground sensors
@@ -66,7 +68,7 @@ line_left = gsValues[2]
 If you need inspiration, check the [template code available here!](../Lab2/line_following_template.py)
 
 ## Solution
-Try to implement the state machine yourself before checking the solution! A possible solution is available [here](../Lab2/line_following_behavior.py).
+Try to implement the state machine yourself before checking the solution! A possible solution (without the stop state) is available [here](../Lab2/line_following_behavior.py).
 
 The video below shows the solution code in action:
 
