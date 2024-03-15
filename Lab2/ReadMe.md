@@ -32,11 +32,11 @@ A detailed explanation of the e-puck robot and how to use it in Webots is availa
 5- **Test the motor speeds** to determine how fast the robot should run and turn in order to follow the line.
 
 6- **Create a new controller in Python and implement a line-following behavior** using what you learned from the steps above. You can use the state machine shown in Figure 2 as reference. 
+
+7- Finally, **add one extra state to stop the robot when no line is detected**.
  
 ![Line-follower state machine](../Lab2/line-following_state_machine.png)
 ###### Figure 2. A state machine diagram that implements a line-follower behavior.
-
-7- Finally, **add one extra state to stop the robot when no line is detected**.
 
 
 ## Ground sensors
