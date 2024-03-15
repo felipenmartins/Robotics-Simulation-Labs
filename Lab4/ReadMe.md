@@ -95,7 +95,7 @@ Compare the controller performance with and without the saturation correction.
 Try to modify your line following code with localization from Lab 3 to implement the go-to-goal behavior as described above. 
 
 ## Solution
-No solution is provided for this lab.
+No solution is provided for this lab. If you need extra explanation, check the Jupyter Notebook for [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb).
 
 ## Conclusion
 After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.

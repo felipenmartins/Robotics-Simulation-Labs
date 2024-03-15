@@ -34,7 +34,7 @@ Figure 2 illustrates the e-puck robot navigating through the maze by switching b
 
 
 ## Solution
-No solution is provided for this lab.
+No solution is provided for this lab. Explanation on how to implement simple behaviors (like wall-following) is provided in the Jupyter Notebook about [Behaviors for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb).
 
 ## Conclusion
 After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. 
