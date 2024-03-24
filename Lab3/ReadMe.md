@@ -6,7 +6,7 @@ The goal of this lab is to implement a simple algorithm for odometry-based robot
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 2](../Lab2/ReadMe.md). If not, please use the provided solution. 
+* You should have a working solution of [Lab 2](../Lab2/ReadMe.md).  
 
 ## Robot Pose
 To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “translation”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
@@ -34,11 +34,6 @@ The tasks are listed below:
 2. **Write the function `get_robot_speeds(wl, wr, R, D)`** to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
 3. **Write the function `get_robot_pose(u, w, x, y, phi, delta_t)`** to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
 4. **Compare the pose calculated by your functions with the pose calculated by Webots** in different moments of the simulation. 
-
-### Think about the following questions
-
-* How accurate is the odometry-based localization?
-* In what conditions is odometry-based localication useful? And when is it problematic?
 
 ### Some information for implementing the code
 The definition of the variables used in the functions is given below.
@@ -89,6 +84,11 @@ To read the encoders in the main loop:
         encoderValues.append(encoder[i].getValue())    # [rad]
 ```
 The encoder values are incremented when the corresponding wheel moves forwards and decremented when it moves backwards.
+
+### Think about the following questions
+
+* How accurate is the odometry-based localization?
+* In what conditions is odometry-based localication useful? And when is it problematic?
 
 ## Solution
 A partial solution is provided for this lab. I recommend you first try to modify your line following code from Lab 2 to implement the localization as described above. If you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 

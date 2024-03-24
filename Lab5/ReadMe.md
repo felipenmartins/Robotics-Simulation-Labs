@@ -10,7 +10,7 @@ The goal of this lab is to implement a controller that enables the robot to foll
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 3](../Lab3/ReadMe.md). If not, please use the provided solution. 
+* You should have a working solution of [Lab 3](../Lab3/ReadMe.md). 
 
 ## Tasks
 Your main task is to write code to implement the functions below to add the controller to your line-following behavior from Lab 3. In the main loop of your program, those functions should be called in a sequence:

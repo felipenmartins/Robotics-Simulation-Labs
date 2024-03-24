@@ -12,9 +12,9 @@ If you are still missing any of those, please go back to [Lab 1](../Lab1/ReadMe.
 ## The e-puck robot
 Webots contains a realistic model of e-puck, a small differential-drive mobile robot. The movement of this type of robot is controlled by independently adjusting the speeds of the left and right wheels. 
 
-The e-puck robot has multiple sensors. To detect obstacles, the e-puck contains 8 infrared distance sensors around its body. Other 3 infrared sensors are mounted under its base, pointing to the floor, allowing the implementation of a line-following behavior. 
+The e-puck robot has multiple sensors. To detect obstacles, the e-puck contains 8 infrared distance sensors around its body. Optionally, 3 infrared sensors can be mounted under its base, pointing to the floor, allowing the implementation of a line-following behavior. 
 
-A detailed explanation of the e-puck robot and how to use it in Webots is available [in this link](https://cyberbotics.com/doc/guide/epuck).
+An explanation about the e-puck robot and how to use it in Webots is available in Webots Tutorial 4.
 
 ## Tasks
 
