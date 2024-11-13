@@ -39,7 +39,7 @@ No solution is provided for this lab. Explanation on how to implement simple beh
 ## Conclusion
 After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. 
 
-## Next Lab (bonus)
+## Next Lab
 Go to [Lab 6](../Lab6/README.md) - Trajectory Tracking Controller
 
 Back to [main page](../README.md).
