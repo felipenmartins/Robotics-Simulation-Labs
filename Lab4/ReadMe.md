@@ -101,6 +101,6 @@ No solution is provided for this lab. If you need extra explanation, check the J
 After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
 
 ## Next Lab
-Go to [Lab 5](../Lab5/ReadMe.md) - Trajectory Tracking Controller
+Go to [Lab 5](../Lab5/ReadMe.md) - Combine Behaviors to Complete a Mission
 
 Back to [main page](../README.md).
