@@ -1,14 +1,14 @@
 """line_following_with_localizationpy controller."""
 
 # This program implements a state-machine based line-following behavior
-# with a template for odometry-based localization for the e-puck robot. 
+# with a template for odometry-based localization for the e-puck robot.
 
 # This code was tested on Webots R2022a, on Windows 10 running
 # Python 3.9.7 64-bit
 
-# The encoder values are incremented when the corresponding wheel moves 
+# The encoder values are incremented when the corresponding wheel moves
 # forwards, and decremented when it moves backwards.
-# Encoder is simulated by reading angular position of the wheels, in radians 
+# Encoder is simulated by reading angular position of the wheels, in radians
 
 # Author: Felipe N. Martins
 # Date: 13th of April, 2020
@@ -18,7 +18,7 @@
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
 
-#-------------------------------------------------------
+# -------------------------------------------------------
 # Initialize variables
 
 MAX_SPEED = 6.28
@@ -61,9 +61,10 @@ w = 0.0    # angular speed [rad/s]
 # e-puck Physical parameters for the kinematics model (constants)
 R = 0.0205    # radius of the wheels: 20.5mm [m]
 D = 0.0565    # distance between the wheels: 52mm [m]
-A = 0.05    # distance from the center of the wheels to the point of interest [m]
+# distance from the center of the wheels to the point of interest [m]
+A = 0.05
 
-#-------------------------------------------------------
+# -------------------------------------------------------
 # Initialize devices
 
 # distance sensors
@@ -89,7 +90,7 @@ for i in range(2):
 
 oldEncoderValues = []
 
-# motors    
+# motors
 leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
@@ -99,7 +100,8 @@ rightMotor.setVelocity(0.0)
 
 #######################################################################
 # Robot Localization functions - option 1
-#  
+#
+
 
 def get_wheels_speed(encoderValues, oldEncoderValues, delta_t):
     """Computes speed of the wheels based on encoder readings"""
@@ -124,7 +126,7 @@ def get_robot_pose(u, w, x_old, y_old, phi_old, delta_t):
 
 #######################################################################
 # Robot Localization functions - option 2
-#  
+#
 def get_robot_displacement(encoderValues, oldEncoderValues, r, d):
     """Computes linear and angular displacement of the robot"""
   # ********************************************************
@@ -139,7 +141,7 @@ def get_robot_pose2(lin_disp, ang_disp, x_old, y_old, phi_old):
   # ********************************************************
 
 
-#-------------------------------------------------------
+# -------------------------------------------------------
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
@@ -155,12 +157,12 @@ while robot.step(timestep) != -1:
     encoderValues = []
     for i in range(2):
         encoderValues.append(encoder[i].getValue())    # [rad]
-    
+
     # Update old encoder values if not done before
     if len(oldEncoderValues) < 2:
         for i in range(2):
-            oldEncoderValues.append(encoder[i].getValue())   
-    
+            oldEncoderValues.append(encoder[i].getValue())
+
     # Process sensor data
     line_right = gsValues[0] > 600
     line_left = gsValues[2] > 600
@@ -178,7 +180,7 @@ while robot.step(timestep) != -1:
         elif line_left and not line_right:
             current_state = 'turn_left'
             counter = 0
-            
+
     if current_state == 'turn_right':
         # Action for the current state: update speed variables
         leftSpeed = 0.8 * MAX_SPEED
@@ -195,7 +197,7 @@ while robot.step(timestep) != -1:
 
         # check if it is necessary to update current_state
         if counter == COUNTER_MAX:
-            current_state = 'forward'        
+            current_state = 'forward'
 
     # increment counter
     counter += 1
@@ -203,42 +205,40 @@ while robot.step(timestep) != -1:
     #######################################################################
     # Robot Localization - option 1
     # Using the equations for the robot kinematics based on speed
-    
+
     # Compute speed of the wheels
     [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
-    
+
     # Compute robot linear and angular speeds
     [u, w] = get_robot_speeds(wl, wr, R, D)
-    
+
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
 
     #######################################################################
     # Robot Localization - option 2
-    # Calculate robot displacement, intead of speed. 
+    # Calculate robot displacement, intead of speed.
     # To use, uncomment the lines below and comment the previous ones.
 
-    # Compute linear and angular displacement of the robot 
-    #[lin_disp, ang_disp] = get_robot_displacement(encoderValues, oldEncoderValues, R, D)
+    # Compute linear and angular displacement of the robot
+    # [lin_disp, ang_disp] = get_robot_displacement(encoderValues, oldEncoderValues, R, D)
 
     # Compute robot new position
-    #[x, y, phi] = get_robot_pose2(lin_disp, ang_disp, x, y, phi)
+    # [x, y, phi] = get_robot_pose2(lin_disp, ang_disp, x, y, phi)
 
     #######################################################################
-    
+
     # update old encoder values for the next cycle
     oldEncoderValues = encoderValues
-    
 
-    # To help on debugging:        
-    #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
-    #print('Counter: '+ str(counter) + '. Current state: ' + current_state)
-    print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')    
-
+    # To help on debugging:
+    # print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
+    # print('Counter: '+ str(counter) + '. Current state: ' + current_state)
+    print(
+        f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')
 
     # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
 
     # Repeat all steps while the simulation is running.
-
