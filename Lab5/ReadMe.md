@@ -6,7 +6,7 @@ The main goal of this lab is to combine different behaviors to make your robot p
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab3/ReadMe.md) and a controller for robot navigation (either [PID](../Lab4/ReadMe.md) or [trajectory tracking](../Lab5/ReadMe.md)). 
+* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab3/ReadMe.md) and a controller for robot navigation (either [PID](../Lab4/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
 * Download the file [webots-maze.zip](../Lab5/webots-maze.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\webots-maze\worlds\e-puck_maze.wbt`. You should see an environment similar to the one shown in Figure 1.
 
 ![webots_maze.png](../Lab5/webots_maze.png)
@@ -40,6 +40,6 @@ No solution is provided for this lab. Explanation on how to implement simple beh
 After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. 
 
 ## Next Lab
-Go to [Lab 6](../Lab6/README.md) - Trajectory Tracking Controller
+Go to [Lab 6](../Lab6/ReadMe.md) - Trajectory Tracking Controller
 
 Back to [main page](../README.md).
