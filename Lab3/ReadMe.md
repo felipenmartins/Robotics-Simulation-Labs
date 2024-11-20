@@ -98,7 +98,7 @@ If you need extra explanation, check the Jupyter Notebook for [Odometry-based Lo
 ## Challenge: 1-D Kalman Filter
 Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. 
 
-No solution is provided for the challenge. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the Kalman Filter and how to implement it in Python. 
+No solution is provided for the challenge. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the 1-D Kalman Filter and how to implement it in Python. 
 
 ## Conclusion
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.

@@ -70,11 +70,11 @@ The code below implements the solution discussed above by calculating a `speed_r
 
 ```
 def wheel_speed_commands(u_d, w_d, d, r):
-    """Converts desired speeds to wheel speed commands"""
+    """Convert desired robot speeds to desired wheel speeds"""
     wr_d = float((2 * u_d + d * w_d) / (2 * r))
     wl_d = float((2 * u_d - d * w_d) / (2 * r))
     
-    # If saturated, correct speeds to keep the original ratio
+    # If saturated, correct speeds to keep the original turning ratio
     if np.abs(wl_d) > MAX_SPEED or np.abs(wr_d) > MAX_SPEED:
         speed_ratio = np.abs(wr_d)/np.abs(wl_d)
         if speed_ratio > 1:
