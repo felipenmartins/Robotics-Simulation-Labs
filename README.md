@@ -46,7 +46,7 @@ The content of each lab is listed below:
 - [Lab 4](/Lab4/ReadMe.md) - Go-to-goal behavior with PID
 - [Lab 5](/Lab5/ReadMe.md) - Combine Behaviors to Complete a Mission
 - [Lab 6](/Lab6/ReadMe.md) - Trajectory Tracking Controller
-- [Lab 7](/Lab7/ReadMe.md) - Hardware-in-the-Loop Simulation
+- [Lab 7](/Lab7/README.md) - Hardware-in-the-Loop Simulation
 - [BONUS](/SoccerSim/ReadMe.md) - Robot Soccer Challenge
 
 ## License

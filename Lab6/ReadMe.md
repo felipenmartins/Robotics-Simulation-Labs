@@ -83,6 +83,6 @@ After following this lab you should know how to implement moving controllers for
 
 
 ## Next Lab
-Go to [Lab 7](../Lab7/ReadMe.md) - Hardware-in-the-Loop Simulation
+Go to [Lab 7](../Lab7/README.md) - Hardware-in-the-Loop Simulation
 
 Back to [main page](../README.md).
