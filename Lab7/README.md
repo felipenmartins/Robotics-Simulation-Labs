@@ -25,9 +25,7 @@ A popular IDE to program your microcontroller in MicroPython is Thonny. The site
 
 ## HIL Example
 
-We provide two ZIP files with simple example code for you to run a HIL simulation: one file contains the simulation world shown in Figure 1, and a simple robot controller capable of communicating via serial port. The other file contains MicroPython code to interface with the simulator and control the robot.
-
-Follow the steps below to run the example:
+We provide a ZIP file with the Webots world shown in Figure 1, and example code for both Webots and the ESP32 to implement a simple HIL simulation communicating via serial port. Follow the steps below to run the example:
 
 1. Download the file [Webots_RaFLite_HiL.zip](../Lab7/Webots_RaFLite_HiL.zip) and unzip to a folder of your preference.
 
