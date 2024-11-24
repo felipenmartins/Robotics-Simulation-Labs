@@ -27,21 +27,23 @@ A popular IDE to program your microcontroller in MicroPython is Thonny. The site
 
 We provide a ZIP file with the Webots world shown in Figure 1, and example code for both Webots and the ESP32 to implement a simple HIL simulation communicating via serial port. Follow the steps below to run the example:
 
-1. Download the file [Webots_RaFLite_HiL.zip](../Lab7/Webots_RaFLite_HiL.zip) and unzip to a folder of your preference.
+1. **Download** the file [Webots_RaFLite_HiL.zip](../Lab7/Webots_RaFLite_HiL.zip) and unzip it to a folder of your preference.
 
-2. Copy the folder `Worlds` to your Webots folder. 
+2. **Copy the folder `Worlds`** to your Webots folder. 
 
-3. Open Webots and **stop the running simulation**.
+3. Open Webots, **load the world `RaFLite.wbt`**, and **stop the running simulation**.
 
-4. In Webots, create a new controller for the robot, and copy the code from [`line_following_with_HIL.py`](../Lab7/line_following_with_HIL.py) to it. Save the controller file.
+4. In Webots, **create a new Python controller** for the robot, and **copy the code** from [`line_following_with_HIL.py`](../Lab7/line_following_with_HIL.py) to it. **Save the controller** file (use the save button on top of the code).
 
-5. Open Thonny (or the IDE you are using to program the ESP32 in MicroPython), and connect it to your ESP32.
+5. **Open your MicroPython IDE** (for example, Thonny), and connect it to your ESP32.
 
-6. Create a new file and copy the code from [`control_webots.py`](../Lab7/control_webots.py) to it. 
+6. Create a new file and **copy the code** from [`control_webots.py`](../Lab7/control_webots.py) to it. 
 
-7. Run the code on the ESP32, then **close Thonny** (or the IDE you are using), otherwise Webots will not be able to open the serial port. Keep the ESP32 connected to your computer.
+7. **Run the code on the ESP32**.
 
-8. With the MicroPython IDE closed and the ESP32 running, run the Webots simulation. 
+8. **Close your MicroPython IDE** (Thonny), otherwise it will keep the serial port open and Webots will not be able to use it. Keep the ESP32 connected to your computer.
+
+9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**. 
 
 After executing the steps above, you should see the simulation running as in Figure 2. Please, note that Figure 2 shows Thonny open while Webots is running. This is only for illustration purposes, since **Thonny must be closed for Webots to communicate with the ESP32 via serial port**.
 
