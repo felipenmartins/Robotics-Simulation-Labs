@@ -4,11 +4,11 @@
 The goal of this lab is to apply everything that we learned in the course to implement a robot soccer team! 
 
 ## RCJ Soccer Simulator
-For this lab, we are going to use the RoboCupJunior Soccer Simulator - SoccerSim (Figure 1). It is based on Webots and programmed in Python. 
+For this lab, we are going to use the RoboCupJunior Soccer Simulator - SoccerSim [[1]](https://doi.org/10.3389/frobt.2022.915322), illustrated in Figure 1. SoccerSim is based on Webots and programmed in Python. 
 
 ![Soccer Sim screenshot](../SoccerSim/SoccerSim_match.gif)
  
-Figure 1. Webots running the RCJ SoccerSim with three robots on each team.
+###### Figure 1. Webots running the RCJ SoccerSim with three robots on each team.
 
 ## Tasks
 
@@ -25,6 +25,9 @@ To play a match, just program your robots, hit "play", and have fun watching the
 The complete set of rules for the official RoboCup Junior Soccer Simulation competition is available [here](https://github.com/robocup-junior/soccer-rules-simulation).
 
 Have fun!!
+
+## Reference
+[1] Martins, Felipe N., Adrián Matejov, and Marek Šuppa. "Moving robotics competitions virtual: The case study of RoboCupJunior Soccer Simulation (SoccerSim)." Frontiers in Robotics and AI, 9 (2022): 915322. Available at: [https://doi.org/10.3389/frobt.2022.915322](https://doi.org/10.3389/frobt.2022.915322)
 
 ## Main Page
 Back to [main page](../README.md).

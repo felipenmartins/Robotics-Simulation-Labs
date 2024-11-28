@@ -77,9 +77,9 @@ In your demonstration, you have to show:
 After following this lab you should know how to implement moving controllers for mobile robots, especially to go to position and follow a trajectory.
 
 ## References
-[[1] Martins, Felipe Nascimento, and Alexandre Santos Brandão. "Motion control and velocity-based dynamic compensation for mobile robots." Applications of mobile robots (2018).](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)
+[1] Martins, Felipe N., and Alexandre S. Brandão. "Motion control and velocity-based dynamic compensation for mobile robots." Applications of mobile robots (2018). Available at: [https://www.intechopen.com/chapters/62533](https://www.intechopen.com/chapters/62533)
 
-[[2] Martins, F. N., Celeste, W. C., Carelli, R., Sarcinelli-Filho, M., & Bastos-Filho, T. F. (2008). An adaptive dynamic controller for autonomous mobile robot trajectory tracking. Control Engineering Practice, 16(11), 1354-1363.](https://www.sciencedirect.com/science/article/abs/pii/S0967066108000373?via%3Dihub)
+[2] Martins, Felipe N., et al. "An adaptive dynamic controller for autonomous mobile robot trajectory tracking." Control Engineering Practice 16.11 (2008): 1354-1363. Available at: [https://doi.org/10.1016/j.conengprac.2008.03.004](https://doi.org/10.1016/j.conengprac.2008.03.004)
 
 
 ## Next Lab

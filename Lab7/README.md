@@ -173,7 +173,7 @@ No solution is provided for this lab.
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port.
 
 ## Reference
-[[1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022.](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
+[1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## Next Lab
 Go to [BONUS](../SoccerSim/ReadMe.md) - Robot Soccer Challenge
