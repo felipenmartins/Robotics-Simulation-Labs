@@ -37,7 +37,7 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 5. **Open your MicroPython IDE** (for example, Thonny), and connect it to your ESP32.
 
-6. Create a new file and **copy the code** from [`control_webots.py`](../Lab7/control_webots.py) to it. 
+6. **Copy the code** from [`control_webots.py`](../Lab7/control_webots.py) and save it with the name `main.py` on your ESP32. Using the name `main.py` is important, since this is the name of the file that will be executed on the ESP32 after it is reset. 
 
 7. **Run the code on the ESP32**.
 
@@ -68,14 +68,14 @@ To be able to communicate via serial port, we first create a serial object `ser`
 import serial
 try:
     # Change the port parameter according to your system
-    ser =  serial.Serial(port='COM13', baudrate=115200, timeout=5) 
+    ser =  serial.Serial(port='COM5', baudrate=115200, timeout=5) 
 except:
     pass
 ```
 
-The parameters `port` and `baudrate` above must match the ones used by your ESP32. In my case, the ESP32 board is connected to comm port `COM13` and communicates at a baud rate of 115200 bps. The communication speed can be adjusted in code, although only a few [predefined values](https://lucidar.me/en/serialib/most-used-baud-rates-table/) are allowed. But the comm port is defined by your operating system. Refer to [this documentation page](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/establish-serial-connection.html#check-port-on-windows) for instructions on how to find out the comm port your ESP32 is using.   
+The parameters `port` and `baudrate` above must match the ones used by your ESP32. In my case, the ESP32 board is connected to comm port `COM5` and communicates at 115200 bps. The communication speed can be adjusted in code, although only a few [predefined values](https://lucidar.me/en/serialib/most-used-baud-rates-table/) are allowed. But the comm port is defined by your operating system. Refer to [this documentation page](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/establish-serial-connection.html#check-port-on-windows) for instructions on how to find out the comm port your ESP32 is using.   
 
-Naturally, both the ESP32 and Webots need to "speak the same language" to be able to exchange information. This means that the code in both of them needs to transmit messages that the other knows the meaning of. We chose to implement communication by sending and receiving a string of characters. In the case of sensor data to be sent to the ESP32, we decided to send binary values to indicate when each sensor detects the line or not. A `message` is constructed with a sequence of ones and zeros, according to the value measured by each of the line sensors. Finally, a line feed character `\n` is added at the end, the message is encoded in 'UTF-8' format, and transmitted using the `write` method. This process is illustrated below:
+Naturally, both the ESP32 and Webots need to "speak the same language" to be able to exchange information. This means that the code in both of them needs to transmit messages that the other knows the meaning of. We chose to implement communication by sending and receiving a string of characters. In the case of sensor data to be sent to the ESP32, we decided to send binary values to indicate when each sensor detects the line or not. A `message` is constructed with a sequence of ones and zeros, according to the value measured by each of the line sensors (0 = line detected; 1 = line not detected). Finally, a line feed character `\n` is added at the end, the message is encoded in 'UTF-8' format, and transmitted using the `write` method. This process is illustrated below:
 
 ```
 message = ''
@@ -99,7 +99,7 @@ The ESP32 and Webots are running their Python scripts at different speeds, which
 
 ```
 if ser.in_waiting:
-    value = str(ser.readline(), 'UTF-8')[:-2] 	# ignore the last character
+    value = str(ser.readline(), 'UTF-8')[:-1] 	# ignore the last character
     current_state = value
 ```
 
@@ -117,13 +117,16 @@ from machine import Pin, UART
 uart = UART(0, 115200, tx=1, rx=3)
 ```
 
-Then, the code will wait for a button to be pressed before changing the serial port to UART1. This is done to guarantee that the serial port will only be changed after user confirmation. The code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset). The code is implemented as follows:
+Then, the code will wait for a physical button connected to the ESP32 to be pressed before changing the serial port to UART1. This is done to guarantee that the serial port will only be changed after user confirmation. The code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset). The code is implemented as follows:
 
 ```
-print("Click the button to start, or the STOP button to return to REPL.")
-while button.value() == True:
-    sleep(0.1)
-# Finally, set serial to UART1 using the same pins as UART0 to communicate via USB
+print("Click the button on the ESP32 to continue. Then, close Thonny and run the Webots simulation.")
+print("Or click STOP in Thonny to return to the REPL.")
+while button_left() == False:
+    sleep(0.25)
+    led_board.value(not led_board())
+
+# Set serial to UART1 using the same pins as UART0 to communicate via USB
 uart = UART(1, 115200, tx=1, rx=3)
 ```
 
@@ -156,15 +159,17 @@ Finally, after implementing a line-following state machine, the new state needs 
 
 ```
     if state_updated == True:
-        uart.write(current_state + ' \n')
+        uart.write(current_state + '\n')
         state_updated = False
 ```
 
 ## Tasks
 
-First, put the example described above to work using your own ESP32. Please, note that the MicroPython example code considers that there are a few buttons and LEDs connected to specific pins of the ESP32: you need to adjust the code to match your hardware.
+You need to complete two tasks in this lab:
 
-Then, modify the code to improve the line following behavior. Your robot must follow the most outer line of the field, which means it will only turn if cannot continue moving forwards. The robot should always go back to the line if, for any reason, it runs away from it. You are free to change the code as you prefer (communication messages, number of states, speeds of the motors etc.). 
+Your first tast it to **put the example described above to work** using your own ESP32. Please, note that the MicroPython example code considers that there are a few buttons and LEDs connected to specific pins of the ESP32: you need to adjust the code to match your hardware.
+
+Then, **modify the code to improve the line following behavior**. Your robot must follow the most outer line of the field, which means it will only turn if cannot continue moving forwards. The robot should always go back to the line if, for any reason, it runs away from it. You are free to change the code as you prefer (communication messages, number of states, speeds of the motors etc.). 
 
 ## Solution
 No solution is provided for this lab.

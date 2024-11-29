@@ -4,8 +4,9 @@
 # Tested with MicroPython v1.21.0 on ESP32 WROOM 32 dev kit board
 # communicating with Webots R2023a, on Windows 10 running Python 3.10.5 64-bit
 # Author: Felipe N. Martins
-# Date: 11 September 2024
+# Date: 29 November 2024
 
+###### Save this code as "main.py" on your ESP32 board. ######
 
 ###### Close Thonny after start running this code #######
 # This is necessary because the serial port cannot be used by
@@ -29,8 +30,8 @@ button_right = Pin(35, Pin.IN, Pin.PULL_DOWN)
 
 # Wait for the button click before changing the serial port to UART1.
 # During the wait period, the program can be stopped using the STOP button.
-print("Click the button to start. Then close Thonny and run the Webots simulation.")
-print("Or click the STOP button to return to REPL.")
+print("Click the button on the ESP32 to continue. Then, close Thonny and run the Webots simulation.")
+print("Or click STOP in Thonny to return to the REPL.")
 while button_left() == False:
     sleep(0.25)
     led_board.value(not led_board())
@@ -44,7 +45,7 @@ line_center = False
 line_right = False
 
 # Variables to implement the line-following state machine
-current_state = 'stop'
+current_state = 'forward'
 counter = 0
 COUNTER_MAX = 5
 COUNTER_STOP = 50
@@ -130,7 +131,7 @@ while True:
 
     # Send the new state when updated
     if state_updated == True:
-        uart.write(current_state + ' \n')
+        uart.write(current_state + '\n')
         state_updated = False
 
     counter += 1    # increment counter

@@ -8,7 +8,7 @@
 # communicating with MicroPython v1.21.0 on generic ESP32 module with ESP32
 
 # Author: Felipe N. Martins
-# Date: 11 September 2024
+# Date: 29 November 2024
 
 from controller import Robot
 import numpy as np
@@ -19,7 +19,7 @@ import numpy as np
 import serial
 try:
     # Change the port parameter according to your system
-    ser =  serial.Serial(port='COM7', baudrate=115200, timeout=5) 
+    ser =  serial.Serial(port='COM5', baudrate=115200, timeout=5) 
 except:
     print("Communication failed. Check the cable connections and serial settings 'port' and 'baudrate'.")
     raise
@@ -112,7 +112,7 @@ while robot.step(timestep) != -1:
     # Serial communication: if something is received,
     # then update the current state
     if ser.in_waiting:
-        value = str(ser.readline(), 'UTF-8')[:-2]
+        value = str(ser.readline(), 'UTF-8')[:-1]  # ignore the last character
         current_state = value
 
     # Update speed according to the current state
