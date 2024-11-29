@@ -167,7 +167,7 @@ Finally, after implementing a line-following state machine, the new state needs 
 
 You need to complete two tasks in this lab:
 
-Your first tast it to **put the example described above to work** using your own ESP32. Please, note that the MicroPython example code considers that there are a few buttons and LEDs connected to specific pins of the ESP32: you need to adjust the code to match your hardware.
+Your first task is it to **put the example described above to work** using your own ESP32. Please, note that the MicroPython example code considers that there are a few buttons and LEDs connected to specific pins of the ESP32: you need to adjust the code to match your hardware.
 
 Then, **modify the code to improve the line following behavior**. Your robot must follow the most outer line of the field, which means it will only turn if cannot continue moving forwards. The robot should always go back to the line if, for any reason, it runs away from it. You are free to change the code as you prefer (communication messages, number of states, speeds of the motors etc.). 
 
