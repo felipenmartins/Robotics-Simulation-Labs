@@ -31,8 +31,9 @@ If you make use of the content in this page, please cite [[1]](https://link.spri
 Extra explanation on how to implement Python code for some of the labs is available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). You can run the notebooks without the need of installing Webots to practice the corresponding concepts. The notebooks can be useful for understanding the fundamentals, especially because they allow step-by-step execution of the implemented functions. For now, the notebooks available are:
 - [Odometry-based Localization](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot
 - [Implementation of simple robot behaviors](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control
-- [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) to implement position control
-- [Digital Image Processing](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb): fundamentals and basic examples
+- [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller
+- [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning
+- [Digital Image Processing](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions 
 
 ## Content
 The content of each lab is listed below:
