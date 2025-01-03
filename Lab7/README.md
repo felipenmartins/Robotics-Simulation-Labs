@@ -174,6 +174,14 @@ Then, **modify the code to improve the line following behavior**. Your robot mus
 ## Solution
 No solution is provided for this lab.
 
+## Challenge: Find the Shortest Path
+Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) in the microcontroller to make the robot navigate the shortest path between nodes. 
+
+Tips: 
+1. Consider each crossing point as a node.
+2. Make the edge costs proportional to the distance between neighboring nodes.
+3. NumPy does not work in MicroPython. To build an array without NumPy, check out the options explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
+
 ## Conclusion
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port.
 

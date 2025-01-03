@@ -89,13 +89,18 @@ def wheel_speed_commands(u_d, w_d, d, r):
  
 Compare the controller performance with and without the saturation correction. 
 
-## Think about the following question
-* What do you need to change in your code to control the orientation of the robot at the goal?
-
-Try to modify your line following code with localization from Lab 3 to implement the go-to-goal behavior as described above. 
+## Task
+Modify your line following code with localization from Lab 3 to implement the go-to-goal behavior as described above. 
 
 ## Solution
-No solution is provided for this lab. If you need extra explanation, check the Jupyter Notebook for [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb).
+No solution is provided for this lab. If you need extra explanation, check the Jupyter Notebook for [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb).
+
+## Challenge: Pose Control
+Change your code to implement pose control (position and orientation). 
+
+Tips: Two simple ways of implementing pose control are:
+* Adjust the robot orientation after it reaches the goal position. Or,
+* Adjust the robot orientation at a point before it reaches the goal, then move straight to the goal.
 
 ## Conclusion
 After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
