@@ -45,12 +45,10 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**. 
 
-After executing the steps above, you should see the simulation running as in Figure 2. Please, note that Figure 2 shows Thonny open while Webots is running. This is only for illustration purposes, since **Thonny must be closed for Webots to communicate with the ESP32 via serial port**.
+After executing the steps above, you should see the simulation running. The video below illustrates how to run the HIL Simulation using Thonny and Webots once you have the code for both ready:
 
-![Robot pose in Webots](../Lab7/HIL_Webots_Thonny.gif)
-
-###### Figure 2. Webots screen showing the robot being controlled by the microcontroller, with sensor data and current state being printed to the console. To the right, part of the MicroPython code running on the ESP32 can be seen.
-
+[![Running the HIL Simulation](https://img.youtube.com/vi/srcTeYh20jQ/0.jpg)](https://www.youtube.com/watch?v=srcTeYh20jQ)
+###### This video illsutrates how to run the HIL Simulation. It is based on the video made by student Charlotte Benckert (HSB - Bremen University of Applied Sciences) to solve the Hardware-in-the-Loop Simulation assignment of the BIP course "Embedded Systems for Mobile Robots", January 2025.
 
 This example implements a simple line-following behavior in the ESP32 board to control the simulated robot in Webots. The pre-processed sensor data is sent from Webots to the ESP32 via serial port. The ESP32 implements the line-following state transitions according to the received sensor data, and sends the new state back to Webots. The new state is used by Webots to define the speeds of the robot wheels.
 
