@@ -34,7 +34,7 @@ RectangleArena {
 DEF E_PUCK E-puck {
   translation 0 0.44 0
   rotation 0 0 1 6.28319
-  controller "line_follower"
+  controller "e-puck_line_demo"
   window "botstudio"
   camera_width 40
   camera_height 1
