@@ -178,7 +178,7 @@ Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile
 Tips: 
 1. Consider each crossing point as a node.
 2. Make the edge costs proportional to the distance between neighboring nodes.
-3. NumPy does not work in MicroPython. To build an array without NumPy, check out the options explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
+3. NumPy does not work in MicroPython. To build an array without NumPy, check out [ulab](https://micropython-ulab.readthedocs.io/en/latest/ulab-intro.html), which is a NumPy-like module for MicroPython. Other options are explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
 
 ## Conclusion
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port.
