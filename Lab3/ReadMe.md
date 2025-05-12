@@ -95,6 +95,16 @@ A partial solution is provided for this lab. I recommend you first try to modify
 
 If you need extra explanation, check the Jupyter Notebook for [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb).
 
+## About localization error
+The algorithm for odometry-based localization presented in the Jupyter Notebook above applies the [Euler method](https://en.wikipedia.org/wiki/Euler_method), which is a first-order method for numerical integration of differential equations. This is probably the simplest way to implement numerical integration, but the resulting value contains an error proportional to the step size (delta_t). 
+
+In my simulations, with a time step of 32 ms, the pose estimation would quickly diverge from the "true" robot pose indicated by Webots after only a few seconds of simulated time. I had to reduce the time step to 4 ms to get an acceptable level of error for about one minute of simulated time. You can adjust the time step by changing the value of the variable "basicTimeStep" of "WorldInfo", on the left menu. 
+
+Note that the error also depends on the path followed by the robot, but the above comparison serves to illustrate how much the time step influences the pose estimation error.  
+
+_Tip: Reducing the time step increases computation demand, which results in slower simulations. You can increase simulation speed by reducing the number of "FPS" to a minimum._
+
+
 ## Challenge: 1-D Kalman Filter
 Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. 
 
