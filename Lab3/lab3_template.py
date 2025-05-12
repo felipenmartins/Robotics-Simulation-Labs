@@ -28,7 +28,7 @@ robot = Robot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())   # [ms]
-delta_t = robot.getBasicTimeStep()/1000.0    # [s]
+delta_t = timestep/1000.0    # [s]
 
 # states
 states = ['forward', 'turn_right', 'turn_left']
@@ -59,8 +59,8 @@ u = 0.0    # linear speed [m/s]
 w = 0.0    # angular speed [rad/s]
 
 # e-puck Physical parameters for the kinematics model (constants)
-R = 0.0205    # radius of the wheels: 20.5mm [m]
-D = 0.0565    # distance between the wheels: 52mm [m]
+R = 0.020    # radius of the wheels: 20.5mm [m]
+D = 0.057    # distance between the wheels: 52mm [m]
 # distance from the center of the wheels to the point of interest [m]
 A = 0.05
 
@@ -99,7 +99,7 @@ leftMotor.setVelocity(0.0)
 rightMotor.setVelocity(0.0)
 
 #######################################################################
-# Robot Localization functions - option 1
+# Robot Localization functions
 #
 
 
@@ -119,23 +119,6 @@ def get_robot_speeds(wl, wr, r, d):
 
 def get_robot_pose(u, w, x_old, y_old, phi_old, delta_t):
     """Updates robot pose based on heading and linear and angular speeds"""
-  # ********************************************************
-  # *************** WRITE YOUR CODE HERE *******************
-  # ********************************************************
-
-
-#######################################################################
-# Robot Localization functions - option 2
-#
-def get_robot_displacement(encoderValues, oldEncoderValues, r, d):
-    """Computes linear and angular displacement of the robot"""
-  # ********************************************************
-  # *************** WRITE YOUR CODE HERE *******************
-  # ********************************************************
-
-
-def get_robot_pose2(lin_disp, ang_disp, x_old, y_old, phi_old):
-    """Updates robot pose based on heading and displacement"""
   # ********************************************************
   # *************** WRITE YOUR CODE HERE *******************
   # ********************************************************
@@ -203,7 +186,7 @@ while robot.step(timestep) != -1:
     counter += 1
 
     #######################################################################
-    # Robot Localization - option 1
+    # Robot Localization
     # Using the equations for the robot kinematics based on speed
 
     # Compute speed of the wheels
@@ -214,17 +197,6 @@ while robot.step(timestep) != -1:
 
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
-
-    #######################################################################
-    # Robot Localization - option 2
-    # Calculate robot displacement, intead of speed.
-    # To use, uncomment the lines below and comment the previous ones.
-
-    # Compute linear and angular displacement of the robot
-    # [lin_disp, ang_disp] = get_robot_displacement(encoderValues, oldEncoderValues, R, D)
-
-    # Compute robot new position
-    # [x, y, phi] = get_robot_pose2(lin_disp, ang_disp, x, y, phi)
 
     #######################################################################
 

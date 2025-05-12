@@ -28,7 +28,7 @@ robot = Robot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())   # [ms]
-delta_t = robot.getBasicTimeStep()/1000.0    # [s]
+delta_t = timestep/1000.0    # [s]
 
 # states
 states = ['forward', 'turn_right', 'turn_left']
@@ -59,8 +59,8 @@ u = 0.0    # linear speed [m/s]
 w = 0.0    # angular speed [rad/s]
 
 # e-puck Physical parameters for the kinematics model (constants)
-R = 0.0205    # radius of the wheels: 20.5mm [m]
-D = 0.0565    # distance between the wheels: 52mm [m]
+R = 0.020    # radius of the wheels: 20.5mm [m]
+D = 0.057    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
 #-------------------------------------------------------
@@ -122,14 +122,14 @@ def get_robot_pose(u, w, x_old, y_old, phi_old, delta_t):
     """Updates robot pose based on heading and linear and angular speeds"""
     delta_phi = w * delta_t
     phi = phi_old + delta_phi
-    phi_avg = (phi_old + phi)/2   
+    # phi_avg = (phi_old + phi)/2   
     if phi >= np.pi:
         phi = phi - 2*np.pi
     elif phi < -np.pi:
         phi = phi + 2*np.pi
     
-    delta_x = u * np.cos(phi_avg) * delta_t
-    delta_y = u * np.sin(phi_avg) * delta_t
+    delta_x = u * np.cos(phi) * delta_t
+    delta_y = u * np.sin(phi) * delta_t
     x = x_old + delta_x
     y = y_old + delta_y
 
@@ -153,14 +153,14 @@ def get_robot_displacement(encoderValues, oldEncoderValues, r, d):
 def get_robot_pose2(lin_disp, ang_disp, x_old, y_old, phi_old):
     """Updates robot pose based on heading and displacement"""
     phi = phi_old + ang_disp
-    phi_avg = (phi_old + phi)/2.0   
+    # phi_avg = (phi_old + phi)/2.0   
     if phi >= np.pi:
         phi = phi - 2*np.pi
     elif phi < -np.pi:
         phi = phi + 2*np.pi
     
-    delta_x = lin_disp * np.cos(phi_avg)
-    delta_y = lin_disp * np.sin(phi_avg)
+    delta_x = lin_disp * np.cos(phi)
+    delta_y = lin_disp * np.sin(phi)
     x = x_old + delta_x
     y = y_old + delta_y
 
