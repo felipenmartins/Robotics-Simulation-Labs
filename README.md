@@ -16,7 +16,8 @@ I teach an introductory-level course on Robotics for electrical engineering stud
  - Odometry-based robot localization
  - Go-to-Goal behavior using PID controller
  - Non-linear trajectory tracking controller
- - Hardware-in-the-Loop (HIL) simulation 
+ - Hardware-in-the-Loop (HIL) simulation
+ - Path-planning 
 
 Templates and solutions are presented for some labs, always in Python 3 (or MicroPython, for HIL).
 
@@ -28,11 +29,12 @@ Lab descriptions, templates and solutions are compatible with the global coordin
 If you make use of the content in this page, please cite [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44).
 
 ## Accompanying Jupyter Notebooks
-Extra explanation on how to implement Python code for some of the labs is available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). You can run the notebooks without the need of installing Webots to practice the corresponding concepts. The notebooks can be useful for understanding the fundamentals, especially because they allow step-by-step execution of the implemented functions. For now, the notebooks available are:
-- [Odometry-based Localization](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot
-- [Implementation of simple robot behaviors](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control
-- [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller
-- [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning
+Explanation of concepts related to some of the labs (including how to implement them in Python) is available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). You can run the notebooks without the need of installing Webots. The notebooks can be useful for understanding the fundamentals, especially because they allow step-by-step execution of the implemented functions. 
+For now, the notebooks available are:
+- [Implementation of simple robot behaviors](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control (related to Lab 2)
+- [Odometry-based Localization](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 3)
+- [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 4)
+- [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 7)
 - [Digital Image Processing](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions 
 
 ## Content
@@ -47,7 +49,12 @@ The content of each lab is listed below:
 - [Lab 7](/Lab7/README.md) - Hardware-in-the-Loop Simulation
 - [BONUS](/SoccerSim/ReadMe.md) - Robot Soccer Challenge
 
+## Simple Robot Simulator
+If you are looking for a simpler simulator, try [SimRobSim](https://github.com/felipenmartins/SimRobSim), which is a simple robot simulator built using Pygame. It is still under development, but the working version already simulates a differential-drive robot that uses Dijkstra's algorithm to define waypoints, and implements a path-following algorithm using PID.  
+
 ## Reference
+If you make use of the content in this page, please cite [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44):
+
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## License
