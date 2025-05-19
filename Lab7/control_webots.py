@@ -1,12 +1,11 @@
 # Implements communication with Webots via Serial over USB.
 # Works with the "line_following_with_HIL" controller in Webots.
 
-# Tested with MicroPython v1.21.0 on ESP32 WROOM 32 dev kit board
-# communicating with Webots R2023a, on Windows 10 running Python 3.10.5 64-bit
+# Tested with MicroPython v1.25.0 on ESP32 WROOM 32 dev kit board
+# communicating with Webots R2023a, on Windows 11 running Python 3.10.5 64-bit
 # Author: Felipe N. Martins
-# Date: 29 November 2024
+# Date: 19 May 2025
 
-###### Save this code as "main.py" on your ESP32 board. ######
 
 ###### Close Thonny after start running this code #######
 # This is necessary because the serial port cannot be used by
@@ -17,7 +16,7 @@ from machine import Pin, UART
 from time import sleep
 
 # Set serial to UART0 to guarantee USB communication in case of reset
-uart = UART(0, 115200, tx=1, rx=3)
+# uart = UART(0, 115200, tx=1, rx=3)
 
 led_board = Pin(2, Pin.OUT)     # Define ESP32 onboard LED
 led_yellow = Pin(4, Pin.OUT)
@@ -99,7 +98,7 @@ while True:
         elif line_left and line_right and line_center: # lost the line
             current_state = 'turn_left'
             state_updated = True
-        elif button_left.value() == True:
+        elif button_right.value() == True:
             current_state = 'stop'
             state_updated = True
             
@@ -107,7 +106,7 @@ while True:
         if counter >= COUNTER_MAX:
             current_state = 'forward'
             state_updated = True
-        elif button_left.value() == True:
+        elif button_right.value() == True:
             current_state = 'stop'
             state_updated = True
 
@@ -115,7 +114,7 @@ while True:
         if counter >= COUNTER_MAX:
             current_state = 'forward'
             state_updated = True
-        elif button_left.value() == True:
+        elif button_right.value() == True:
             current_state = 'stop'
             state_updated = True
             
