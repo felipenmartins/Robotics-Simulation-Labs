@@ -4,11 +4,12 @@
 # that must decide the next state of the robot. Communication between Webots
 # and the external board is implemented via Serial port.
 
-# Tested on Webots R2023a, on Windows 10 running Python 3.10.5 64-bit
-# communicating with MicroPython v1.21.0 on generic ESP32 module with ESP32
+# Tested on Webots R2023a, on Windows 11 running Python 3.10.5 64-bit
+# communicating with MicroPython v1.25.0 on generic ESP32 module with ESP32
 
 # Author: Felipe N. Martins
 # Date: 29 November 2024
+# Last update: 20 May 2025
 
 from controller import Robot
 import numpy as np
@@ -19,7 +20,7 @@ import numpy as np
 import serial
 try:
     # Change the port parameter according to your system
-    ser =  serial.Serial(port='COM5', baudrate=115200, timeout=5) 
+    ser =  serial.Serial(port='COM11', baudrate=115200, timeout=5) 
 except:
     print("Communication failed. Check the cable connections and serial settings 'port' and 'baudrate'.")
     raise
@@ -27,9 +28,7 @@ except:
 #-------------------------------------------------------
 # Initialize variables
 
-TIME_STEP = 64
 MAX_SPEED = 6.28
-
 speed = 0.4 * MAX_SPEED
 
 # create the Robot instance for the simulation.
@@ -40,13 +39,13 @@ timestep = int(robot.getBasicTimeStep())   # [ms]
 
 # states
 states = ['forward', 'turn_right', 'turn_left', 'stop']
-current_state = states[3]
+current_state = 'forward'
 
 #-------------------------------------------------------
 # Initialize devices
 
 # proximity sensors
-# See: https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python#understand-the-e-puck-model
+# Ref.: https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python#understand-the-e-puck-model
 ps = []
 psNames = ['ps0', 'ps1', 'ps2', 'ps3', 'ps4', 'ps5', 'ps6', 'ps7']
 for i in range(8):
@@ -75,7 +74,9 @@ rightMotor.setVelocity(0.0)
 
 while robot.step(timestep) != -1:
 
-    # ----- See -----
+    ############################################
+    #                  See                     #
+    ############################################
 
     # Update sensor readings
     gsValues = []
@@ -87,8 +88,8 @@ while robot.step(timestep) != -1:
     line_center = gsValues[1] > 600
     line_left = gsValues[2] > 600
     
-    # Build the message with the ground sensor data:
-    # 0 = line detected; 1 = line not detected
+    # Build the message to be sent to the ESP32 with the ground
+    # sensor data: 0 = line detected; 1 = line not detected
     message = ''
     if line_left:
         message += '1'
@@ -104,13 +105,12 @@ while robot.step(timestep) != -1:
         message += '0'
     msg_bytes = bytes(message + '\n', 'UTF-8')
     
-    # Send message to the microcontroller 
-    ser.write(msg_bytes)  
 
-    # ----- Think -----
+    ############################################
+    #                 Think                    #
+    ############################################
 
-    # Serial communication: if something is received,
-    # then update the current state
+    # Serial communication: if something is received, then update the current state
     if ser.in_waiting:
         value = str(ser.readline(), 'UTF-8')[:-1]  # ignore the last character
         current_state = value
@@ -132,7 +132,10 @@ while robot.step(timestep) != -1:
         leftSpeed = 0.0
         rightSpeed = 0.0
  
-    # ----- Act -----
+
+    ############################################
+    #                  Act                     #
+    ############################################
 
     # Update velocity commands for the motors
     leftMotor.setVelocity(leftSpeed)
@@ -140,5 +143,8 @@ while robot.step(timestep) != -1:
    
     # Print sensor message and current state for debugging
     print(f'Sensor message: {msg_bytes} - Current state: {current_state}')
+
+    # Send message to the microcontroller 
+    ser.write(msg_bytes)  
 
 ser.close()

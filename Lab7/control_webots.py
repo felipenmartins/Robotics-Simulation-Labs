@@ -6,11 +6,11 @@
 # Author: Felipe N. Martins
 # Date: 19 May 2025
 
-
-###### Close Thonny after start running this code #######
-# This is necessary because the serial port cannot be used by
-# two different programs (Thonny and Webots) at the same time.
-
+#################################################################
+########## Close Thonny after start running this code ###########
+# This is necessary because the serial port cannot be used by   #
+# two different programs (Thonny and Webots) at the same time.  #
+#################################################################
 
 from machine import Pin, UART
 from time import sleep
@@ -52,7 +52,9 @@ state_updated = True
 
 while True:
     
-    ##################   See   ###################
+    ############################################
+    #                  See                     #
+    ############################################
     
     # Check if anything was received via serial to update sensor status
     if uart.any():
@@ -84,7 +86,9 @@ while True:
             led_red.off()
 
 
-    ##################   Think   ###################
+    ############################################
+    #                 Think                    #
+    ############################################
 
     # Implement the line-following state machine transitions
     if current_state == 'forward':
@@ -126,7 +130,9 @@ while True:
             led_board.value(0)
             
     
-    ##################   Act   ###################
+    ############################################
+    #                  Act                     #
+    ############################################
 
     # Send the new state when updated
     if state_updated == True:
