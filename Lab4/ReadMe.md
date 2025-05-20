@@ -3,7 +3,7 @@
 ## Objective
 The goal of this lab is to implement a go-to-goal behavior based on a PID controller. Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence. 
 
-![Go to goal illustration](../Lab3/go_to_goal.gif)
+![Go to goal illustration](../Lab4/go_to_goal.gif)
 
 ###### Figure 1. Illustration of the Go-to-Goal controller reaching two goals in sequence. After reaching the final goal, the robot stops.
 
@@ -11,7 +11,7 @@ The goal of this lab is to implement a go-to-goal behavior based on a PID contro
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 3](../Lab3/ReadMe.md).  
+* You should have a working solution of [Lab 3](../Lab3/line_following_with_localization.py).  
 
 ## Tasks
 Your main task is to write code to implement the PID controller to control the robot orientation. Note that the PID controller needs information about the actual robot orientation, so the odometry-based localization algorithm implemented in Lab 3 needs to be working. You are going to modify the line-following behavior to add the go-to-goal behavior, which will be activated by a new state in your state machine.
