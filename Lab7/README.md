@@ -107,15 +107,13 @@ Note that the last character of the string is ignored. This is done because the 
 
 The ESP32 has 3 UARTs (Universal Asynchronous Receiver/Transmitter) to implement serial communication. UART0 is usually used for the MicroPython REPL (Read-Eval-Print Loop), which is the console. More information about how serial communication is implemented in the ESP32 and MicroPython is available at [here](https://www.engineersgarage.com/micropython-esp8266-esp32-uart/).
 
-To implement serial communication in MicroPython, we begin by importing `UART` from the built-in library `machine`. To make the ESP32 able to send and receive serial data from our program using the same channel used by the REPL (the USB cable), we will need to configure UART1 to use the same pins as the REPL. However, if there is any problem and the microcontroller is reset, we need to make sure that UART0 is enabled on those pins. Therefore, in our code we first make sure that `uart` is configured to UART0:
+To implement serial communication in MicroPython, we begin by importing `UART` from the built-in library `machine`: 
 
 ```
 from machine import Pin, UART
-# First, set serial to UART0 to guarantee USB communication in case of reset
-uart = UART(0, 115200, tx=1, rx=3)
 ```
 
-Then, the code will wait for a physical button connected to the ESP32 to be pressed before changing the serial port to UART1. This is done to guarantee that the serial port will only be changed after user confirmation. The code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset). The code is implemented as follows:
+To allow communication with Webots, we want to make the ESP32 able to send and receive serial data using the USB cable connected to the computer. This means that our code needs to use the same UART pins used by the REPL, so we need to configure UART1 to use the same pins as the REPL. However, when we change the UART pins, Thonny will no longer be able to communicate with the ESP32 (until it is reset). This means that the command to stop code execution won't work after the UART configuration. So, we need to make sure that UART0 is enabled on the original pins at least for sufficient time for you to stop the code execution, if desired. To implement this, we can use a while loop that waits for a physical button connected to the ESP32 to be pressed before changing the serial port to UART1. The code is implemented as follows:
 
 ```
 print("Click the button on the ESP32 to continue. Then, close Thonny and run the Webots simulation.")
@@ -127,6 +125,8 @@ while button_left() == False:
 # Set serial to UART1 using the same pins as UART0 to communicate via USB
 uart = UART(1, 115200, tx=1, rx=3)
 ```
+
+This guarantees that the serial port will only be changed after user confirmation, and the code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset). 
 
 Note that the baudrate needs to be the same as in the code running in Webots (in this case, 115200 bps). The parameters `tx` and `rx` indicate the ESP32 pins that will be connected to the UART.
 
@@ -173,12 +173,19 @@ Then, **modify the code to improve the line following behavior**. Your robot mus
 No solution is provided for this lab.
 
 ## Challenge: Find the Shortest Path
-Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) in the microcontroller to make the robot navigate the shortest path between nodes. 
+Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) in the microcontroller (ESP32) using MicroPython to make the robot navigate the shortest path between arbritary nodes. 
 
 Tips: 
-1. Consider each crossing point as a node.
-2. Make the edge costs proportional to the distance between neighboring nodes.
-3. NumPy does not work in MicroPython. To build an array without NumPy, check out [ulab](https://micropython-ulab.readthedocs.io/en/latest/ulab-intro.html), which is a NumPy-like module for MicroPython. Other options are explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
+* You can consider each crossing point as a node, and make the edge costs proportional to the distance between neighboring nodes.
+* Another option is to build a grid map that mimics the path that can be followed by the robot, like in [this example](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra_RAFmap.ipynb).
+
+
+**Important!** NumPy does not work in MicroPython. To use `array` in MicroPython, you have two options:
+
+1. Use the `array` module, as explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
+
+2. Use `ulab`, which is a NumPy-like module for MicroPython. If you want to use `ulab`, you need to flash your ESP32 with a MicroPython interpreter that includes the `ulab` module! In my tests, I flashed my ESP32 with the [interpreter available here](https://gitlab.com/rcolistete/micropython-firmwares/-/blob/master/ESP32/v1.12_with_ulab/ulab_v0.54.0_2020-07-29/Generic_flash-4MB/esp32_idf4_ulab_dp_thread_v1.12-663-gea4670d5a_2020-07-29.bin), which  includes an old (but working) version of `ulab`. For this version, you can find [instructions and examples here](https://www.jarutex.com/2021/08/11/4150/).
+
 
 ## Conclusion
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port.

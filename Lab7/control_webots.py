@@ -3,17 +3,24 @@
 
 # Tested with MicroPython v1.25.0 on ESP32 WROOM 32 dev kit board
 # communicating with Webots R2023a, on Windows 11 running Python 3.10.5 64-bit
-# Author: Felipe N. Martins
-# Date: 19 May 2025
 
-#################################################################
-########## Close Thonny after start running this code ###########
-# This is necessary because the serial port cannot be used by   #
-# two different programs (Thonny and Webots) at the same time.  #
-#################################################################
+# To use ulab, you need to install a micropython interpreter that contains this
+# module. In my tests, I used the this one:
+# https://gitlab.com/rcolistete/micropython-firmwares/-/blob/master/ESP32/v1.12_with_ulab/ulab_v0.54.0_2020-07-29/Generic_flash-4MB/esp32_idf4_ulab_dp_thread_v1.12-663-gea4670d5a_2020-07-29.bin
+
+# Author: Felipe N. Martins
+# Date: 27 May 2025
+
+
+###### Close Thonny after start running this code #######
+# This is necessary because the serial port cannot be used by
+# two different programs (Thonny and Webots) at the same time.
+
 
 from machine import Pin, UART
 from time import sleep
+# import ulab
+
 
 # Set serial to UART0 to guarantee USB communication in case of reset
 # uart = UART(0, 115200, tx=1, rx=3)
@@ -52,9 +59,7 @@ state_updated = True
 
 while True:
     
-    ############################################
-    #                  See                     #
-    ############################################
+    ##################   See   ###################
     
     # Check if anything was received via serial to update sensor status
     if uart.any():
@@ -86,9 +91,7 @@ while True:
             led_red.off()
 
 
-    ############################################
-    #                 Think                    #
-    ############################################
+    ##################   Think   ###################
 
     # Implement the line-following state machine transitions
     if current_state == 'forward':
@@ -130,9 +133,7 @@ while True:
             led_board.value(0)
             
     
-    ############################################
-    #                  Act                     #
-    ############################################
+    ##################   Act   ###################
 
     # Send the new state when updated
     if state_updated == True:
@@ -142,3 +143,4 @@ while True:
     counter += 1    # increment counter
     sleep(0.02)     # wait 0.02 seconds
    
+
