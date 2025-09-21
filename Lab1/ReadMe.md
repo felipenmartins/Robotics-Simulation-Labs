@@ -21,19 +21,25 @@ The Robotics Simulation Labs require Python3 and Webots. To complete this lab, y
 
 2. **Reboot your system** after installing Python.  
 
-3. **Test your Python installation**: Depending on your system, the reference to Python can be via the command `python`, `python3`, `python3.8`, or something similar. To test your Python installation (and to make sure that it is added to Windows PATH, in case of Windows), open the _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type `python`, `python3`, or `python3.7` (according to the version that you installed) and hit _ENTER_. If Python is correctly installed (and included on Windows PATH), you should see something similar to:
-```
-Python 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license" for more information.
->>>
-```
+3. **Test your Python installation**: Depending on your system, the command to run Python can be `python`, `python3`, `python3.13`, or something similar. To test your Python installation (and to make sure that it is correctly added to Windows PATH, in case of Windows), open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type `python` or `python3` (in some cases, `python3.xx`, where 3.xx indicates the version that you installed) and hit _ENTER_. You can try all three variations to check which one works. If Python is correctly installed, you should see something similar to the output I get in my computer:
+
+![Terminal - Python command](../Lab1/cmd_python.png)
+
   Type `exit()` and hit _ENTER_ to go back to the terminal/command prompt.
 
-4. **Install libraries** following the instructions [from here](https://cyberbotics.com/doc/guide/using-python#libraries) for your operating system. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). 
+4. **Install Python libraries**. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). In Windows, to install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
+```
+pip install opencv-python
+```
+If you want to install NumPy only, type:
+```
+pip install numpy
+```
+Instructions might be slightly different for Linux and MacOS. Please, [see details here](https://cyberbotics.com/doc/guide/using-python#libraries).
 
 5. **Download and install Webots** from [https://cyberbotics.com/](https://cyberbotics.com/). To follow the Robotics Simulation Labs you need **Webots R2022a or newer**. There are versions available for Windows, macOS and Linux. The download and installation process can take a while.
  
-6. **Configure Webots to work with Python**: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in the step above) to point Webots to your Python installation. If you are on macOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. Refer to [this page](https://datatofish.com/locate-python-windows/) for instructions on how to find where Python is installed on Windows. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
+6. **Configure Webots to work with Python**: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in step 3) to point Webots to your Python installation. If you are on macOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
 
 7. **Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots)**. Webots Tutorial presents examples in several programming languages. Remember to **select `Python`** when reading the code!
 
@@ -48,8 +54,9 @@ This section contains some extra information that can help you solve issues you 
 3- If you are using Linux, Webots might have problems accessing your project folder via symbolic links. A possible solution is to create a folder for the Webots projects on your home partition under your own user name. Another possibility is to install the APT version of Webots. Instructions on how to install the APT version can be found on [this link](https://www.cyberbotics.com/doc/guide/installation-procedure) (Thanks to Nick Buls for the tip).
 
 4- If you are using Windows, you might see a message similar to the one below when you try to run Webots installation program. If this happens, just click on “More info” and then click the button “Run anyway” to proceed with the installation (see figure below).
-
-  ![Windows message](../Lab1/windows_message.png)
+<center>
+<img src="windows_message.png" alt="Windows message" width="350"/>
+</center>
 
 
 5- If you **already installed Python** but cannot load it from the terminal/command prompt or if Webots cannot find it, you can add Python to Windows PATH system variable. To add Python to PATH, follow the instructions available [in this link](https://datatofish.com/add-python-to-windows-path/). **After you add Python to PATH you must reboot your system for the changes to take effect.** Note that you have to add only the path for the location where the executable is, without including "python.exe". A proper configuration is shown in the image below (the path in your computer might be different depending on your Python version and installation):
@@ -68,8 +75,8 @@ adapter is highly recommended to run Webots smoothly.
 ```
 
 This is not a problem for the simulations in the labs described here. The demo simulations that come with Webots can be quite heavy, though. If necessary, there are a couple of things that you can do to reduce the amount of computing power required by Webots:
-- On the left side of the window, click on `WorldInfo`. Then, select `FPS` and reduce it to 20 (for example). This reduces the number of frames per second.
-- Still in `WorldInfo`, click on `basicTimeStep` and increase it (for example, to 32).
+- On the left side of the window, click on `WorldInfo`. Then, select `FPS` and reduce it to 20 (for example). This reduces the number of frames per second, which increases simulation speed.
+- Still in `WorldInfo`, click on `basicTimeStep` and increase it (for example, to 32). This will increase simulation speed, but it will reduce its accuracy.
 - Go to `Tools -> Preferences -> OpenGL` and try to reduce `Ambient Occusion` and `Texture Quality`.
 
 
