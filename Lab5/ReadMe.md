@@ -27,11 +27,21 @@ The controllers and behaviors **must** generate reference values for **linear an
 
 The environment **cannot** be changed: no object can be added, moved or removed from the provided world.
 
-Figure 2 illustrates the e-puck robot navigating through the maze by switching between three different behaviors: wall-following, curve +90 degrees and turn -90 degrees. The selection of the active behavior is done by a state machine that uses the proximity sensor readings for transitions between states. A bare-bones code for this is provided in the ZIP file, and can be used as a template for the implementation of your solution.
+Figure 2 illustrates the e-puck robot navigating through the maze by switching between three different behaviors: `wall-following`, `curve +90 deg` and `turn -90 deg`. 
 
-![e-puck_maze_following.gif](../Lab5/e-puck_maze_following.gif)
+<center>
+<img src="e-puck_maze_following.gif" alt="e-puck_maze_following" width="350"/>
+
 ###### Figure 2. Maze navigation by switching between three simple behaviors: wall-following, curve +90 degrees and turn -90 degrees.
+</center>
 
+The selection of the active behavior is done by the state machine shown in Figure 3, which uses the proximity sensor readings for transitions between states. A bare-bones code for this is provided in the ZIP file, and can be used as a template for the implementation of your solution.
+
+<center>
+<img src="../Lab5/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
+
+###### Figure 3. Maze-solver state machine diagram.
+</center>
 
 ## Solution
 No solution is provided for this lab. Explanation on how to implement simple behaviors (like wall-following) is provided in the Jupyter Notebook about [Behaviors for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb).
