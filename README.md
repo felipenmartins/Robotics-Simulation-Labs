@@ -31,11 +31,11 @@ If you make use of the content in this page, please cite [[1]](https://link.spri
 ## Accompanying Jupyter Notebooks
 Explanation of concepts related to some of the labs (including how to implement them in Python) is available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). You can run the notebooks without the need of installing Webots. The notebooks can be useful for understanding the fundamentals, especially because they allow step-by-step execution of the implemented functions. 
 For now, the notebooks available are:
-- [Implementation of simple robot behaviors](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control (related to Lab 2)
-- [Odometry-based Localization](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 3)
-- [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 4)
-- [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 7)
-- [Digital Image Processing](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions 
+- [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control (related to Lab 2)
+- [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 3)
+- [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 4)
+- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 7)
+- [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions 
 
 ## Content
 The content of each lab is listed below:
