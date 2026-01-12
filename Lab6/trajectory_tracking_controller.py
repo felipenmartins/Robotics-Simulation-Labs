@@ -12,6 +12,7 @@
 # Update: 22-04-2021 - include controller equations in non-matrix format.
 # Update: 17 September 2021 - add comments and adjust variable names
 # Update: 04 March 2022 - change the coordinate system to ENU to match the default of Webots R2022a
+# Update: 11 January 2026 - corrected equations for cartesian speeds of robot
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
