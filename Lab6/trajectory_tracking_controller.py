@@ -114,8 +114,8 @@ def get_robot_speeds(wl, wr, r, d):
 
 def get_cartesian_speeds(u, w, phi, a):
     """Computes cartesian speeds of the robot"""
-    dx = u * np.cos(phi) + a * w * np.sin(phi)
-    dy = u * np.sin(phi) - a * w * np.cos(phi)
+    dx = u * np.cos(phi) - a * w * np.sin(phi)
+    dy = u * np.sin(phi) + a * w * np.cos(phi)
     dphi = w
 
     return dx, dy, dphi
