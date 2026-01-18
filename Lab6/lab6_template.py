@@ -8,6 +8,7 @@
 # Encoder give values in radians.
 
 # Update: 04 March 2022 - change the coordinate system to ENU to match the default of Webots R2022a
+# Update: 11 January 2026 - corrected equations for cartesian speeds of robot
 
 from controller import Robot, DistanceSensor, Motor
 import numpy as np
@@ -109,8 +110,8 @@ def get_robot_speeds(wl, wr, r, d):
 
 def get_cartesian_speeds(u, w, phi, a):
     """Computes cartesian speeds of the robot"""
-    dx = u * np.cos(phi) + a * w * np.sin(phi)
-    dy = u * np.sin(phi) - a * w * np.cos(phi)
+    dx = u * np.cos(phi) - a * w * np.sin(phi)
+    dy = u * np.sin(phi) + a * w * np.cos(phi)
     dphi = w
 
     return dx, dy, dphi
