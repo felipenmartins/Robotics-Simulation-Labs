@@ -193,6 +193,11 @@ def wheel_speed_commands(u_ref, w_ref, d, r):
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
+    
+    ############################################
+    #                  See                     #
+    ############################################
+
     # Update sensor readings
     psValues = []
     for i in range(8):
@@ -211,14 +216,15 @@ while robot.step(timestep) != -1:
         for i in range(2):
             oldEncoderValues.append(encoder[i].getValue())   
 
-    #######################################################################
-    # Robot Localization 
+    # ---------------- Robot Localization ---------------------
     x_old = x
     y_old = y
     phi_old = phi
-    
     # Compute speed of the wheels
     [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)    
+    # Update old encoder values
+    oldEncoderValues[0] = encoderValues[0]
+    oldEncoderValues[1] = encoderValues[1]
     # Compute robot linear and angular speeds
     [u, w] = get_robot_speeds(wl, wr, R, D)
     # Compute cartesian speeds of the robot
@@ -226,27 +232,32 @@ while robot.step(timestep) != -1:
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(x_old, y_old, phi_old, dx, dy, dphi, delta_t)
 
-    #######################################################################
+
+    ############################################
+    #                 Think                    #
+    ############################################
+
+    # ---------------- Robot Controller ----------------------
     # Robot Controller
     # Desired trajectory (you can use equations to define the trajectory):
     xd = 0.0 + 0.3*np.sin(0.005*counter)
     yd = 0.436
     dxd = 0.3*0.005*np.cos(0.005*counter) # This is the time derivative of yd
     dyd = 0.0
-    
     # Trajectory tracking controller
     [u_ref, w_ref] = traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, A)
     # Convert reference speeds to wheel speed commands
     [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, D, R)
 
-    #######################################################################
-    
-    # update old encoder values and counter for the next cycle
-    oldEncoderValues = encoderValues
     counter += 1
 
     # To help on debugging:
     print(f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad. u_ref={u_ref:.3f} m/s, w_ref={w_ref:.3f} rad/s, Saturation = {is_saturated}.')    
+
+
+    ############################################
+    #                  Act                     #
+    ############################################
 
     # Update reference velocities for the motors
     leftMotor.setVelocity(leftSpeed)
