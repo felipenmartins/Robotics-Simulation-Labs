@@ -16,16 +16,16 @@ The main goal of this lab is to combine different behaviors to make your robot p
 **The mission of your robot is to pass under the red tunnel**. The e-puck robot starts at the center of the checker texture square (right) and must navigate through the maze to get to the red tunnel (left). The robot can follow any free path (it does not need to be the shortest nor the fastest).
 
 ### Requirements
-There are many ways to implement a program for the robot to complete this mission. But for this  assignment you **must** implement concepts from other labs:
+There are many ways to implement a program for the robot to complete this mission. But for this  assignment you **must** implement concepts from other labs. The list of requirements is given below:
 
-- **odometry-based localization** algorithm to teck position and orientation of the robot;
-- **go-to-goal controller with PID** _or_ **trajectory tracking controller** to move the robot when not close to walls. The controller **must** generate reference values for **linear and angular velocities**;
-- **wall-following** _or_ **corridor-following** behavior to move the robot when inside the maze. The behavior **must** generate reference values for **linear and angular velocities**;
-- **state machine** to select the activation of behaviors and controllers to complete the mission.
-- use the images from the robot **camera** to localize the red tunel.
-- instead of proximity sensors, use the images from the robot **camera for navigation** (_for maximum points_).
+- The provided **environment cannot be changed**: no object can be added, moved or removed from the provided world.
+- **Odometry-based localization** algorithm must be implemented to keep track of the robot pose. As it navigates, its position and orientation must be printed to the console;
+- **Go-to-goal controller with PID** _or_ **trajectory tracking controller** must be implemented to move the robot when not close to walls. The controller **must** generate reference values for **linear and angular velocities**.
+- **Wall-following** _or_ **corridor-following** behavior must be implemented to move the robot when inside the maze. The behavior **must** generate reference values for **linear and angular velocities**.
+- A **state machine** must be implemented to select the behaviors and controllers to complete the mission. The active state must be printed to the console.
+- Images from the robot **camera** must be used to localize the red tunel.
+- _For maximum points_: instead of proximity sensors, use images from the robot **camera for navigation** inside the maze.
 
-The **environment cannot be changed**: no object can be added, moved or removed from the provided world.
 
 Figure 2 illustrates the e-puck robot navigating through the maze by switching between three different behaviors: `wall-following`, `curve +90 deg` and `turn -90 deg`. 
 
