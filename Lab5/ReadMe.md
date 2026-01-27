@@ -44,7 +44,7 @@ The selection of the active behavior is done by the state machine shown in Figur
 </center>
 
 ## Solution
-No solution is provided for this lab. A [bare-bones template](Lab5\maze_solver.py) for the code is provided in the ZIP file, which can be used as a starting point for the implementation of your solution. Also check the solutions of previous labs and the [Jupyter Notebooks for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
+No solution is provided for this lab. A [bare-bones template](maze_solver.py) for the code is provided in the ZIP file, which can be used as a starting point for the implementation of your solution. Also check the solutions of previous labs and the [Jupyter Notebooks for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
 
 ## Conclusion
 After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. 
