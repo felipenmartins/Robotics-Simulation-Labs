@@ -152,6 +152,11 @@ def wheel_speed_commands(u_ref, w_ref, d, r):
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
+
+    ############################################
+    #                  See                     #
+    ############################################
+
     # Update sensor readings
     psValues = []
     for i in range(8):
@@ -170,8 +175,7 @@ while robot.step(timestep) != -1:
         for i in range(2):
             oldEncoderValues.append(encoder[i].getValue())   
 
-    #######################################################################
-    # Robot Localization 
+    #------------------ Robot Localization ------------------ 
     x_old = x
     y_old = y
     phi_old = phi
@@ -185,8 +189,13 @@ while robot.step(timestep) != -1:
     # Compute new robot pose
     [x, y, phi] = get_robot_pose(x_old, y_old, phi_old, dx, dy, dphi, delta_t)
 
-    #######################################################################
-    # Robot Controller
+
+
+    ############################################
+    #                 Think                    #
+    ############################################
+
+    # ---------------- Robot Controller ----------------------
     # Desired trajectory (you can use equations to define the trajectory):
     xd = 0.0 + 0.3*np.sin(0.005*counter)
     yd = 0.436
@@ -198,8 +207,12 @@ while robot.step(timestep) != -1:
     # Convert reference speeds to wheel speed commands
     [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, D, R)
 
-    #######################################################################
-    
+
+
+    ############################################
+    #                  Act                     #
+    ############################################
+
     # update old encoder values for the next cycle
     oldEncoderValues = encoderValues
 
