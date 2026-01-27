@@ -127,7 +127,13 @@ def get_robot_pose(u, w, x_old, y_old, phi_old, delta_t):
 # -------------------------------------------------------
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
+
 while robot.step(timestep) != -1:
+
+    ############################################
+    #                  See                     #
+    ############################################
+
     # Update sensor readings
     psValues = []
     for i in range(8):
@@ -149,6 +155,22 @@ while robot.step(timestep) != -1:
     # Process sensor data
     line_right = gsValues[0] > 600
     line_left = gsValues[2] > 600
+
+    # --------- Robot Localization ------------
+    # Using the equations for the robot kinematics based on speed
+    # Compute speed of the wheels
+    [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
+    # update old encoder values for the next cycle
+    oldEncoderValues = encoderValues
+    # Compute robot linear and angular speeds
+    [u, w] = get_robot_speeds(wl, wr, R, D)
+    # Compute new robot pose
+    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
+
+
+    ############################################
+    #                 Think                    #
+    ############################################
 
     # Implement the line-following state machine
     if current_state == 'forward':
@@ -185,29 +207,14 @@ while robot.step(timestep) != -1:
     # increment counter
     counter += 1
 
-    #######################################################################
-    # Robot Localization
-    # Using the equations for the robot kinematics based on speed
-
-    # Compute speed of the wheels
-    [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
-
-    # Compute robot linear and angular speeds
-    [u, w] = get_robot_speeds(wl, wr, R, D)
-
-    # Compute new robot pose
-    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
-
-    #######################################################################
-
-    # update old encoder values for the next cycle
-    oldEncoderValues = encoderValues
-
     # To help on debugging:
-    # print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
-    # print('Counter: '+ str(counter) + '. Current state: ' + current_state)
     print(
         f'Sim time: {robot.getTime():.3f}  Pose: x={x:.2f} m, y={y:.2f} m, phi={phi:.4f} rad.')
+
+
+    ############################################
+    #                  Act                     #
+    ############################################
 
     # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)

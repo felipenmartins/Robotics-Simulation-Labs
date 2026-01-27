@@ -169,6 +169,16 @@ while robot.step(timestep) != -1:
     line_right = gsValues[0] > 600
     line_left = gsValues[2] > 600
 
+    # --------- Robot Localization ------------
+    # Compute speed of the wheels
+    [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
+    # update old encoder values for the next cycle
+    oldEncoderValues = encoderValues
+    # Compute robot linear and angular speeds
+    [u, w] = get_robot_speeds(wl, wr, R, D)
+    # Compute new robot pose
+    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
+
 
     ############################################
     #                 Think                    #
@@ -206,16 +216,6 @@ while robot.step(timestep) != -1:
         if counter == COUNTER_MAX:
             current_state = 'forward'        
 
-    # Robot Localization 
-    # Compute speed of the wheels
-    [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
-    
-    # Compute robot linear and angular speeds
-    [u, w] = get_robot_speeds(wl, wr, R, D)
-    
-    # Compute new robot pose
-    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
-
 
     ############################################
     #                  Act                     #
@@ -224,9 +224,6 @@ while robot.step(timestep) != -1:
     # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
-
-    # update old encoder values for the next cycle
-    oldEncoderValues = encoderValues
     
     # To help on debugging:        
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])

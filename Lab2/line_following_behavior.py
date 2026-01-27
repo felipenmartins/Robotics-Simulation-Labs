@@ -58,8 +58,13 @@ rightMotor.setVelocity(0.0)
 
 #-------------------------------------------------------
 # Main loop:
-# - perform simulation steps until Webots is stopping the controller
+# perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
+
+    ############################################
+    #                  See                     #
+    ############################################
+
     # Update sensor readings
     psValues = []
     for i in range(8):
@@ -72,6 +77,11 @@ while robot.step(timestep) != -1:
     # Process sensor data
     line_right = gsValues[0] > 600
     line_left = gsValues[2] > 600
+
+
+    ############################################
+    #                 Think                    #
+    ############################################
 
     # Implement the line-following state machine
     if current_state == 'forward':
@@ -110,6 +120,11 @@ while robot.step(timestep) != -1:
     
     #print('Counter: '+ str(counter), gsValues[0], gsValues[1], gsValues[2])
     print('Counter: '+ str(counter) + '. Current state: ' + current_state)
+
+
+    ############################################
+    #                  Act                     #
+    ############################################
 
     # Set motor speeds with the values defined by the state-machine
     leftMotor.setVelocity(leftSpeed)
