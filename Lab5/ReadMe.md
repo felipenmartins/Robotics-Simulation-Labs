@@ -31,17 +31,17 @@ Figure 2 illustrates the e-puck robot navigating through the maze by switching b
 
 <center>
 <img src="e-puck_maze_following.gif" alt="e-puck_maze_following" width="350"/>
-
-###### Figure 2. Maze navigation by switching between three simple behaviors: wall-following, curve +90 degrees and turn -90 degrees.
 </center>
 
-The selection of the active behavior is done by the state machine shown in Figure 3, which uses the proximity sensor readings for transitions between states. Images from the robot camera can be pre-processed to identify the events that cause the transitions, allowing for the use of the same state-machine.
+###### Figure 2. Maze navigation by switching between three simple behaviors: wall-following, curve +90 degrees and turn -90 degrees.
+
+The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. Images from the robot camera can be processed to identify the events that cause the transitions shown in the diagram, allowing for the use of the same state-machine.
 
 <center>
 <img src="../Lab5/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
+</center>
 
 ###### Figure 3. Maze-solver state machine diagram.
-</center>
 
 ## Solution
 No solution is provided for this lab. A [bare-bones template](maze_solver.py) for the code is provided in the ZIP file, which can be used as a starting point for the implementation of your solution. Also check the solutions of previous labs and the [Jupyter Notebooks for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
