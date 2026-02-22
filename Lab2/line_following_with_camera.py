@@ -5,6 +5,7 @@
 
 # Author: Felipe N. Martins
 # Date: 25 January 2026
+# Last update: 22 February 2026
 
 from controller import Robot, DistanceSensor, Motor, Camera
 import numpy as np
@@ -85,6 +86,69 @@ def detect_line_position(image):
     # Get image dimensions
     height, width, _ = image.shape
 
+    # Define Region of Interest to process only part of the image
+    roi_top = int(height * 0.70)
+    roi_bottom = int(height * 0.90)
+    roi_left = int(width * 0.20)
+    roi_right = int(width * 0.80)
+
+    # Using the Region of Interest (ROI)
+    roi = image[roi_top:roi_bottom, roi_left:roi_right]
+
+    # Convert to grayscale
+    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+
+    # Gaussian blur (Convolution with unity mask for noise reduction)
+    blurred = cv2.GaussianBlur(gray, (3, 3), 0)
+
+    # Compute moments to get the centroid of the line on the blurred image
+    # Invert pixel values (255-pixels) to get the mass of the black line
+    moments = cv2.moments(255-blurred)
+
+    if moments["m00"] == 0:
+        return None  # No line detected
+    # Calculate the center of mass of the line in x
+    cx = int(moments["m10"] / moments["m00"])
+
+    # Normalize offset
+    image_center = (roi_right - roi_left) / 2
+    offset_pixels = cx - image_center
+    normalized_offset = offset_pixels / image_center
+    
+    # Show original and processed images
+    debug = image.copy()
+    # Draw ROI rectangle
+    cv2.rectangle(debug, (roi_left, roi_top), (roi_right, roi_bottom), (0, 255, 0), 2)
+    # Draw centroid
+    cv2.circle(debug, (cx + roi_left, roi_top + int((roi_bottom - roi_top) / 2)), 5, (100, 0, 255), -1)
+    # Draw center line
+    cv2.line(debug, (int(width / 2), 0), (int(width / 2), height), (255, 0, 0), 1)
+    
+    # Display images for debugging
+    cv2.imshow("Camera View", debug)
+    cv2.waitKey(1)
+
+    return normalized_offset
+
+
+def detect_line_position_2(image):
+    """
+    To illustrate the implementation of other functions.
+    Detect black line position on white floor.
+    
+    Returns:
+        float or None:
+            Normalized offset from image center.
+            -1.0 = far left, +1.0 = far right
+            None = line not detected
+    """
+
+    # Subsample the image for faster processing
+    # image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)
+
+    # Get image dimensions
+    height, width, _ = image.shape
+
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -144,6 +208,7 @@ def detect_line_position(image):
     return normalized_offset
 
 
+
 #-------------------------------------------------------
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
@@ -156,7 +221,7 @@ while robot.step(timestep) != -1:
     # Get image and convert it to BGR format
     image = webots_image_to_bgr(camera)
     # Define offset based on line position in the image
-    line_offset = detect_line_position(image)
+    line_offset = detect_line_position_2(image)
 
     ############################################
     #                 Think                    #
@@ -175,6 +240,11 @@ while robot.step(timestep) != -1:
         current_action = 'turn_right' 
         leftSpeed = 1 * speed
         rightSpeed = 0.5 * speed
+        
+        
+    # Or, use a P controller
+    leftSpeed = min((1 + line_offset) * speed, speed)
+    rightSpeed = min((1 - line_offset) * speed, speed)
 
     ############################################
     #                  Act                     #
@@ -186,4 +256,3 @@ while robot.step(timestep) != -1:
     # Update reference velocities for the motors
     leftMotor.setVelocity(leftSpeed)
     rightMotor.setVelocity(rightSpeed)
-
