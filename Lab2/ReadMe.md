@@ -1,7 +1,7 @@
 # Lab 2 – Line-follower with State Machine
 
 ## Objectives
-The goal of this lab is to learn more about controllers in Webots via the implementation of state machine to make the robot follow a line. 
+The goal of this lab is to learn more about controllers in Webots via the implementation of state machine to make the robot follow a line. You will also run code to investigate sensor values and test motors.
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
@@ -25,18 +25,23 @@ An explanation about the e-puck robot and how to use it in Webots is available i
 ![Webots screenshot with e-puck](../Lab2/Webots_screenshot_with_e-puck.png)
 ###### Figure 1. Webots screenshot with the world “e-puck_botstudio_with_floor_sensors.wbt”.
 
-3- You will need to make changes to the file, so you have to **save the sample world with a different name** on a folder of your choice. 
+3- You will need to make changes to the file, but Webots will not allow you to save changes to the sample world. To be able to do it, first **save the sample world with a different name** on a folder of your choice. 
 
-4- Write a simple program to **investigate the values returned by the floor sensors** when the robot is over the white floor and over the black line. You can use the print function to show the sensor values in the Webots console. _More information about how to read the ground sensors is given below._
+4- **Create a new robot controller in Python** and call it "test_sensors". 
 
-5- **Test the motor speeds** to determine how fast the robot should run and turn in order to follow the line.
+5- Copy the code from [this script](../Lab2/test_sensors.py) into your `test_sensors.py` controller. Run it to **investigate the values returned by the ground sensors** when the robot is over the white floor and over the black line. While running the simulation, you can click the robot and move it to different positions of the field using the arrows. _More information about how to read the ground sensors is given below._
 
-6- **Create a new controller in Python and implement a line-following behavior** using what you learned from the steps above. You can use the state machine shown in Figure 2 as reference. 
+6- Adjust the script to **investigate the values returned by the proximity sensors and encoders** under different conditions. To test the proximity sensors, you can move the robot manually. But to test the encoders, you must change the motor speeds. 
 
-7- Finally, **add one extra state to stop the robot when no line is detected**.
- 
+7- Change the motor speeds to **investigate how fast the robot can run and turn** in order to follow the line.
+
+8- Now, use the test_sensors code as a template and **create a new controller to implement the line-following behavior based on the finite-state machine** shown in Figure 2. 
+
 ![Line-follower state machine](../Lab2/line-following_state_machine.png)
-###### Figure 2. A state machine diagram that implements a line-follower behavior.
+###### Figure 2. A state machine diagram that implements a simple line-follower behavior.
+
+9- Finally, **add one extra state to make the robot run backwards when no line is detected**.
+ 
 
 
 ## Ground sensors
@@ -65,10 +70,9 @@ line_center = gsValues[1]
 line_left = gsValues[2]
 ```
 
-If you need inspiration, check the [template code available here!](../Lab2/line_following_template.py)
 
 ## Solution
-Try to implement the state machine yourself before checking the solution! A possible solution (without the stop state) is available [here](../Lab2/line_following_behavior.py).
+Try to implement the state machine yourself before checking the solution! A possible solution (without the extra state) is available [here](../Lab2/line_following_behavior.py).
 
 The video below shows the solution code in action:
 
@@ -87,9 +91,11 @@ Student Wilfred van Reenen made the video below to illustrate the excellent perf
 [![Video 2 screenshot](../Lab2/Line_follower_robot_with_obstacles.png)](https://youtu.be/eELnG58BYzg).
 
 ## Conclusion
-After following this lab you should know more about the e-puck robot model, how to program a controller for it in Python, and how to program a robot behavior based on state machine. 
+After following this lab you should know more about the e-puck robot model and its sensors, how to program a controller for it in Python, and how to program a robot behavior based on state machine. 
 
 ## Next Lab
+In the next lab we will use encoder values to estimate the position and orientation of the robot while it navigates. 
+
 Go to [Lab 3](../Lab3/ReadMe.md) - Odometry-based Localization
 
 Back to [main page](../README.md).
