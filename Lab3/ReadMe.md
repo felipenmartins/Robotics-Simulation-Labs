@@ -114,6 +114,8 @@ No solution is provided for the challenge. In [this post](https://medium.com/ana
 After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
 
 ## Next Lab
+In the next lab you will use the estimated robot pose to implement a go-to-goal behavior based on a PID controller. 
+
 Go to [Lab 4](../Lab4/ReadMe.md) - Go-to-goal behavior with PID
 
 Back to [main page](../README.md).
