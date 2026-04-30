@@ -88,6 +88,6 @@ After following this lab you should know how to implement moving controllers for
 ## Next Lab
 In the next lab you will combine what you learned in all previous labs to program your robot to execute a complex mission.
 
-Go to [Lab 7](../Lab7/README.md) - Combine Behaviors to Complete a Mission
+Go to [Lab 7](../Lab7/ReadMe.md) - Combine Behaviors to Complete a Mission
 
 Back to [main page](../README.md).
