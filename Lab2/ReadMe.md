@@ -94,8 +94,8 @@ Student Wilfred van Reenen made the video below to illustrate the excellent perf
 After following this lab you should know more about the e-puck robot model and its sensors, how to program a controller for it in Python, and how to program a robot behavior based on state machine. 
 
 ## Next Lab
-In the next lab we will use encoder values to estimate the position and orientation of the robot while it navigates. 
+In the next lab we will implement another line-following behavior, but using the robot camera as a sensor. For that, you will learn how to process the images to extract relevant information to control the robot.
 
-Go to [Lab 3](../Lab3/ReadMe.md) - Odometry-based Localization
+Go to [Lab 3](../Lab3/ReadMe.md) - Vision-based Line-following Behavior
 
 Back to [main page](../README.md).
