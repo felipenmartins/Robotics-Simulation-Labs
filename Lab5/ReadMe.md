@@ -1,9 +1,9 @@
-# Lab 4 – Go-to-goal behavior with PID
+# Lab 5 – Go-to-goal behavior with PID
 
 ## Objective
 The goal of this lab is to implement a go-to-goal behavior based on a PID controller. Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence. 
 
-![Go to goal illustration](../Lab4/go_to_goal.gif)
+![Go to goal illustration](../Lab5/go_to_goal.gif)
 
 ###### Figure 1. Illustration of the Go-to-Goal controller reaching two goals in sequence. After reaching the final goal, the robot stops.
 
@@ -11,11 +11,11 @@ The goal of this lab is to implement a go-to-goal behavior based on a PID contro
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 3](../Lab3/line_following_with_localization.py).  
+* You should have a working solution of [Lab 4](../Lab4/line_following_with_localization.py).  
 * You should understand how PID controllers work. If you need a refresh on the theory, check out this great explanation from Michael Hart on [Understanding PID Controllers](https://mikelikesrobots.github.io/blog/understand-pid-controllers/).
 
 ## Tasks
-Your main task is to write code to implement the PID controller to control the robot orientation. Note that the PID controller needs information about the actual robot orientation, so the odometry-based localization algorithm implemented in Lab 3 needs to be working. You are going to modify the line-following behavior to add the go-to-goal behavior, which will be activated by a new state in your state machine.
+Your main task is to write code to implement the PID controller to control the robot orientation. Note that the PID controller needs information about the actual robot orientation, so the odometry-based localization algorithm implemented in Lab 4 needs to be working. You are going to modify the line-following behavior to add the go-to-goal behavior, which will be activated by a new state in your state machine.
 
 The tasks are detailed below:
 
@@ -54,7 +54,7 @@ e_prev = e     # error value in the previous interation (to calculate the deriva
 e_acc = I      # accumulated error value (to calculate the integral term)
 ```
 
-3- **Using the code from Lab 3, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
+3- **Using the code from Lab 4, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
 
 A list of goal positions is given in the program. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot must stop.
 
@@ -70,10 +70,10 @@ Actuator saturation is a potential problem in all control systems, so we need to
 The code below implements the solution discussed above by calculating a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
 
 ```
-def wheel_speed_commands(u_d, w_d, d, r):
+def wheel_speed_commands(u_d, w_d, D, R):
     """Convert desired robot speeds to desired wheel speeds"""
-    wr_d = float((2 * u_d + d * w_d) / (2 * r))
-    wl_d = float((2 * u_d - d * w_d) / (2 * r))
+    wr_d = float((2 * u_d + D * w_d) / (2 * R))
+    wl_d = float((2 * u_d - D * w_d) / (2 * R))
     
     # If saturated, correct speeds to keep the original turning ratio
     if np.abs(wl_d) > MAX_SPEED or np.abs(wr_d) > MAX_SPEED:
@@ -91,7 +91,7 @@ def wheel_speed_commands(u_d, w_d, d, r):
 Compare the controller performance with and without the saturation correction. 
 
 ## Task
-Modify your line following code with localization from Lab 3 to implement the go-to-goal behavior as described above. 
+Modify your line following code with localization from Lab 4 to implement the go-to-goal behavior as described above. 
 
 ## Solution
 No solution is provided for this lab. If you need extra explanation, study the Jupyter Notebook for [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb).
@@ -107,6 +107,8 @@ Tips: Two simple ways of implementing pose control are:
 After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
 
 ## Next Lab
-Go to [Lab 5](../Lab5/ReadMe.md) - Combine Behaviors to Complete a Mission
+In the next lab you will implement a controller that enables the robot to follow a trajectory, which is a path with desired speeds along the way.
+
+Go to [Lab 6](../Lab6/ReadMe.md) - Trajectory Tracking Controller
 
 Back to [main page](../README.md).
