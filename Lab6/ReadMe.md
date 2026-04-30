@@ -10,7 +10,7 @@ The goal of this lab is to implement a controller that enables the robot to foll
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 3](../Lab3/ReadMe.md). 
+* You should have a working solution of [Lab 4](../Lab4/ReadMe.md). 
 
 ## Tasks
 Your main task is to write code to implement the functions below to add the controller to your line-following behavior from Lab 3. In the main loop of your program, those functions should be called in a sequence:
@@ -23,9 +23,9 @@ Your main task is to write code to implement the functions below to add the cont
 [leftSpeed, rightSpeed] = wheel_speed_commands(u_ref, w_ref, D, R)
 ```
 
-The variable _a_ contains the distance [m] between the point whose position is being controlled and the center point between the wheels. The value of _a_ can be arbitrary. The smaller the value of _a_, the closer to the center the controlled point is. But, _a_ **cannot** be equal to zero. Very small values can cause accuracy problems due to rounding errors. Recommended values are 'a = 0.05' or 'a = 0.1'. The other variables used in the functions above were defined in [Lab 3](../Lab3). 
+The variable _a_ contains the distance [m] between the point whose position is being controlled and the center point between the wheels. The value of _a_ can be arbitrary. The smaller the value of _a_, the closer to the center the controlled point is. But, _a_ **cannot** be equal to zero. Very small values can cause accuracy problems due to rounding errors. Recommended values are 'a = 0.05' or 'a = 0.1'. The other variables used in the functions above were defined in [Lab 4](../Lab4). 
 
-Explanation about the trajectory tracking controller can be found in section 4 of [[1](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)]. The controller equation to be implemented here is equation (20). This controller was first presented in [[2]](https://www.sciencedirect.com/science/article/abs/pii/S0967066108000373?via%3Dihub), where more details about its stability are given. See references at the bottom of this page. 
+Explanation about the trajectory tracking controller can be found in section 4 of [[1](https://www.intechopen.com/books/applications-of-mobile-robots/motion-control-and-velocity-based-dynamic-compensation-for-mobile-robots)]. The controller equation to be implemented here is equation (20). This controller was first presented in [[2](https://www.sciencedirect.com/science/article/abs/pii/S0967066108000373?via%3Dihub)], where more details about its stability are given. More details about the dynamic model, including its mathematical properties, is given in [[3](https://link.springer.com/article/10.1007/s10846-016-0381-9)] See references at the bottom of this page. 
 
 The tasks are listed below:
 
@@ -81,8 +81,13 @@ After following this lab you should know how to implement moving controllers for
 
 [2] Martins, Felipe N., et al. "An adaptive dynamic controller for autonomous mobile robot trajectory tracking." Control Engineering Practice 16.11 (2008): 1354-1363. Available at: [https://doi.org/10.1016/j.conengprac.2008.03.004](https://doi.org/10.1016/j.conengprac.2008.03.004)
 
+[3] Martins, Felipe N., Mário Sarcinelli-Filho, and Ricardo Carelli. "A velocity-based dynamic model and its properties for differential drive mobile robots." Journal of intelligent & robotic systems 85.2 (2017): 277-292. Available at: [https://link.springer.com/article/10.1007/s10846-016-0381-9](https://link.springer.com/article/10.1007/s10846-016-0381-9)
+
+
 
 ## Next Lab
-Go to [Lab 7](../Lab7/README.md) - Hardware-in-the-Loop Simulation
+In the next lab you will combine what you learned in all previous labs to program your robot to execute a complex mission.
+
+Go to [Lab 7](../Lab7/README.md) - Combine Behaviors to Complete a Mission
 
 Back to [main page](../README.md).
