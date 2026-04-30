@@ -1,15 +1,15 @@
-# Lab 5 - Combine Behaviors to Complete a Mission
+# Lab 7 - Combine Behaviors to Complete a Mission
 
 ## Objectives
-The main goal of this lab is to combine different behaviors to make your robot perform a complex mission. You will implement a state machine and simple behaviors (like wall-following, go-to-goal with PID etc.) for the robot to navigate through a maze while tracking its pose.
+The main goal of this lab is to combine what you learned in previous labs to program your robot perform a complex mission. You will use robot sensors (including its camera) and a state machine to select behaviors for the robot to navigate a maze while tracking its pose.
 
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab3/ReadMe.md) and a controller for robot navigation (either [PID](../Lab4/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
-* Download the file [webots-maze.zip](../Lab5/webots-maze.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\webots-maze\worlds\e-puck_maze.wbt`. You should see an environment similar to the one shown in Figure 1.
+* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab4/ReadMe.md) and a controller for robot navigation (either [PID](../Lab7/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
+* Download the file [webots-maze.zip](../Lab7/webots-maze.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\webots-maze\worlds\e-puck_maze.wbt`. You should see an environment similar to the one shown in Figure 1.
 
-![webots_maze.png](../Lab5/webots_maze.png)
+![webots_maze.png](../Lab7/webots_maze.png)
 ###### Figure 1. Screenshot showing the maze environment. The e-puck robot starts at the center of the checker texture square (right) and must navigate to the red tunnel (left).
 
 ## Description of the Mission
@@ -38,7 +38,7 @@ Figure 2 illustrates the e-puck robot navigating through the maze by switching b
 The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. Images from the robot camera can be processed to identify the events that cause the transitions shown in the diagram, allowing for the use of the same state-machine.
 
 <center>
-<img src="../Lab5/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
+<img src="../Lab7/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
 </center>
 
 ###### Figure 3. Maze-solver state machine diagram.
@@ -50,6 +50,8 @@ No solution is provided for this lab. A [bare-bones template](maze_solver.py) fo
 After completing this lab you are able to combine many behaviors for a mobile robot to execute a complex mission. 
 
 ## Next Lab
-Go to [Lab 6](../Lab6/ReadMe.md) - Trajectory Tracking Controller
+In the next lab you will learn how to control a simulated robot with code running on a microcontroller board. 
+
+Go to [Lab 8](../Lab8/ReadMe.md) - Hardware-in-the-Loop Simulation
 
 Back to [main page](../README.md).
