@@ -1,7 +1,7 @@
 # Lab 6 – Trajectory Tracking Controller
 
 ## Objective
-The goal of this lab is to implement a controller that enables the robot to follow a trajectory. The same controller can be used as a "go-to-position" controller. 
+The goal of this lab is to implement a controller that enables the robot to follow a trajectory. The same controller can also be used as a "go-to-position" controller. 
 
 ![screenshot_Webots](../Lab6/screenshot_traj_tracking.png)
 
