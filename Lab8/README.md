@@ -1,4 +1,4 @@
-# Lab 7 – Hardware-in-the-Loop Simulation
+# Lab 8 – Hardware-in-the-Loop Simulation
 
 ## Objective
 Real robots are controlled by embedded hardware, so it is interesting to have a way to test it. The goal of this lab is to implement a Hardware-in-the-Loop Simulation, in which an external microcontroller board receives sensor data from the simulator and sends commands to control the simulated robot. 
@@ -11,7 +11,7 @@ HIL simulation can be implemented by connecting a microcontroller via serial por
 
 In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
 
-![screenshot_Webots](../Lab7/HIL_implementation.gif)
+![screenshot_Webots](../Lab8/HIL_implementation.gif)
 
 ###### Figure 1. Hardware-in-the-Loop implementation: the simulation is executed by Webots, which sends sensor data to the ESP32 board. The microcontroller calculates the desired action and sends commands back to the simulator to control the robot.
 
@@ -27,17 +27,17 @@ A popular IDE to program your microcontroller in MicroPython is Thonny. The site
 
 We provide a ZIP file with the Webots world shown in Figure 1, and example code for both Webots and the ESP32 to implement a simple HIL simulation communicating via serial port. Follow the steps below to run the example:
 
-1. **Download** the file [Webots_RaFLite_HiL.zip](../Lab7/Webots_RaFLite_HiL.zip) and unzip it to a folder of your preference.
+1. **Download** the file [Webots_RaFLite_HiL.zip](../Lab8/Webots_RaFLite_HiL.zip) and unzip it to a folder of your preference.
 
 2. **Copy the folder `Worlds`** to your Webots folder. 
 
 3. Open Webots, **load the world `RaFLite.wbt`**, and **stop the running simulation**.
 
-4. In Webots, **create a new Python controller** for the robot, and **copy the code** from [`line_following_with_HIL.py`](../Lab7/line_following_with_HIL.py) to it. **Save the controller** file (use the save button on top of the code).
+4. In Webots, **create a new Python controller** for the robot, and **copy the code** from [`line_following_with_HIL.py`](../Lab8/line_following_with_HIL.py) to it. **Save the controller** file (use the save button on top of the code).
 
 5. **Open your MicroPython IDE** (for example, Thonny), and connect it to your ESP32.
 
-6. **Copy the code** from [`control_webots.py`](../Lab7/control_webots.py) and save it with the name `main.py` on your ESP32. Using the name `main.py` is important, since this is the name of the file that will be executed on the ESP32 after it is reset. 
+6. **Copy the code** from [`control_webots.py`](../Lab8/control_webots.py) and save it with the name `main.py` on your ESP32. Using the name `main.py` is important, since this is the name of the file that will be executed on the ESP32 after it is reset. 
 
 7. **Run the code on the ESP32**.
 
@@ -188,12 +188,14 @@ Tips:
 
 
 ## Conclusion
-After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port.
+After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice the concepts of path-planning for robot navigation.
 
 ## Reference
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## Next Lab
+Program robots to play soccer as a team in the next lab!
+
 Go to [BONUS](../SoccerSim/ReadMe.md) - Robot Soccer Challenge
 
 Back to [main page](../README.md).
