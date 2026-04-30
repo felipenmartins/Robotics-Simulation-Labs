@@ -104,7 +104,7 @@ _Tip: Reducing the time step increases computational demand, which results in sl
 
 
 ## Challenge: 1-D Kalman Filter
-Investigate how to add sensors to the robot and use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. You can also implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. 
+Investigate how to use other sensors of robot (like a compass or gyroscope) to estimate its orientation. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. 
 
 No solution is provided for the challenge. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the 1-D Kalman Filter and how to implement it in Python. 
 
