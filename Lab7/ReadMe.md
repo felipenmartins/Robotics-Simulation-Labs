@@ -6,13 +6,15 @@ The main goal of this lab is to combine what you learned in previous labs to pro
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab4/ReadMe.md) and a controller for robot navigation (either [PID](../Lab7/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
-* Download the file [webots-maze.zip](../Lab7/webots-maze.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\webots-maze\worlds\e-puck_maze.wbt`. You should see an environment similar to the one shown in Figure 1.
+* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab4/ReadMe.md) and a controller for robot navigation (either [PID](../Lab5/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
+
+
+## Tasks and Robot Mission
+Download the file [webots-maze.zip](../Lab7/webots-maze.zip) and unzip it in a folder of your preference. After unzipping the file, open the world `...\webots-maze\worlds\e-puck_maze.wbt`. You should see an environment similar to the one shown in Figure 1.
 
 ![webots_maze.png](../Lab7/webots_maze.png)
 ###### Figure 1. Screenshot showing the maze environment. The e-puck robot starts at the center of the checker texture square (right) and must navigate to the red tunnel (left).
 
-## Description of the Mission
 **The mission of your robot is to pass under the red tunnel**. The e-puck robot starts at the center of the checker texture square (right) and must navigate through the maze to get to the red tunnel (left). The robot can follow any free path (it does not need to be the shortest nor the fastest).
 
 ### Requirements
