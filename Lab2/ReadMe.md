@@ -5,9 +5,10 @@ The goal of this lab is to learn more about controllers in Webots via the implem
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
-* You must know how to create a robot controller in Python and how to run a simulation. 
+* You must know how to create a robot controller in Python and how to run a simulation in Webots. 
+* You must have a basic understanding of robot behaviors and how to implement them in Python, as described in the Jupyter Notebook [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb).
 
-If you are still missing any of those, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
+If necessary, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
 
 ## The e-puck robot
 Webots contains a realistic model of e-puck, a small differential-drive mobile robot. The movement of this type of robot is controlled by independently adjusting the speeds of the left and right wheels. 
