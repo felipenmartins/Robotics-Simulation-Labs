@@ -6,7 +6,10 @@ The goal of this lab is to implement a simple algorithm for odometry-based robot
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must understand how to implement [odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot.
+
+If necessary, please go back to previous labs to complete the corresponding tasks, or go to the Jupyter Notebook linked above.
 
 ## Robot Pose
 To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “translation”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
