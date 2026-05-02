@@ -14,10 +14,10 @@ If necessary, please go back to previous labs and complete the corresponding tas
 ## The e-puck robot camera
 The [e-puck model in Webots](https://www.cyberbotics.com/doc/guide/epuck?version=R2021a) contains a camera that generates images from the environment that can be processed and used in our code. It is a color camera with a maximum resolution of 640x480 pixels.
 
-Figure 1 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot show: 
+Figure 1 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot are: 
 
-1. The _Camera View_ window shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the horizontal center of the image (blue line) and the estimated center of the line on the floor (red dot).
-2. The _Binary_ window shows a processed version of the same image, emphasizing its verical edges.
+1. _Camera View_: shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the horizontal center of the image (blue line) and the estimated center of the line on the floor (red dot).
+2. _Binary_: shows a binarized version of the same image, emphasizing its verical edges.
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision_controller_screenshot.png)
 ###### Figure 1. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
@@ -59,9 +59,11 @@ The rest of the functions display the images on the screen at every cycle.
 
 
 ## Tasks
-Using the same Webots world as in Lab 2, create a new robot controller called `line_following_with_camera`. Copy the [example code](../Lab3/line_following_with_camera.py) to your newly created controller and run the simulation. Pay attention to the behavior of the robot and the images from its camera. 
+Using the same Webots world as in Lab 2, **create a new robot controller** called `line_following_with_camera`. **Copy the [example code](../Lab3/line_following_with_camera.py)** to your newly created controller and **run the simulation**. Pay attention to the behavior of the robot and the images from its camera. 
 
-Now, observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. The explanation about the image processing pipeline given above refers to the function `detect_line_position(image)`. Analyse the code of the other function to understand the differences that exist between them. Change the code to call `detect_line_position_2(image)` and observe the behavior of the robot and the images from its camera. Is there notable difference in terms of performance of the line-following behavior?
+Now, observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. The explanation about the image processing pipeline given above refers to the function `detect_line_position(image)`. **Analyse the code of the function `detect_line_position_2(image)`** to understand the differences that exist between them. **Change the code to call `detect_line_position_2(image)` and run the simulation again**. Observe the behavior of the robot and the images from its camera. 
+
+* Is there notable difference in performance of the line-following behavior when using functions `detect_line_position(image)` or `detect_line_position_2(image)`?
 
 ### Noise Analysis 
 By default, Webots models a perfect camera (no noise and no motion blur). Because the line is black and thick, the floor is white, and the path is smooth, there is sufficient contrast and smooth image change as the robot follows the line. So, in our case, the performance does not suffer much from motion blur. 
@@ -72,22 +74,23 @@ However, camera noise does have a strong influence in the quality of the capture
 ###### Figure 3. Resulting image when camera noise is set to 0.5. 
 
 
-Now you are going to investigate how camera noise affects the performance of the two functions used in line-following controller example code: 
+Now you are going to **investigate how camera noise affects the performance** of the two functions used in line-following controller example code. To do that, complete the following steps:
 
-- Click the e-puck robot, select "camera_noise" and increase its value. 
-- Run the code to check if the robot is still able to follow the line. If not, reduce its value. _Noise values do not have to be integer numbers._  
-- Check how the image generated by the camera and the images processed by the code is affected by the changing values of noise. 
-- Repeate the steps above to check the performance of both `detect_line_position(image)` and `detect_line_position_2(image)` functions. 
-- What are the maximum values of camera noise that each of the functions can support? Can you explain why the values are different (or the same, whichever is the case)?
+1. Click the e-puck robot, select "camera_noise" and increment its value. _Noise values do not need to be integer numbers._
+2. Run the code to check the performance of the robot and how the images  are affected by the changing values of noise. 
+3. Repeate the steps above to find the maximum values of camera noise that both functions `detect_line_position(image)` and `detect_line_position_2(image)` support (meaning, the robot still follows the line successfully). 
+
+* What are the maximum values of camera noise that each of the functions can support? 
+* Can you explain why the values are different (or the same, whichever is the case)?
 
 ## Challenge
-Set camera noise to a value above which the robot no longer follows the line. Make changes in the code to improve the performance of the line detection so that the robot is able to follow the line with higher values of noise. 
+Set camera noise to a value above the limit supported by the functions. Make changes in the code to improve the performance of the line detection so that the robot is again able to follow the line with higher values of noise. 
 
 ## Solution
 No solution is available for the challenge. Tips:
 - Think about what you need to change to improve noise reduction in the image. 
 - Look at the images from the camera to check if the generated offset makes sense. Can you change something in the controller?
-- Not necessarily the same changes will solve the problem in both `detect_line_position(image)` and `detect_line_position_2(image)` functions.
+- Not necessarily the same changes will solve the problem for both `detect_line_position(image)` and `detect_line_position_2(image)` functions.
 
 ## Conclusion
 After completing this lab, you should have a better understanding of how to process images to obtain information for robot navigation. 
