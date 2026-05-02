@@ -5,7 +5,7 @@
 
 # Author: Felipe N. Martins
 # Date: 25 January 2026
-# Last update: 30 April 2026
+# Last update: 2 May 2026
 
 from controller import Robot 
 import numpy as np
@@ -106,7 +106,7 @@ def detect_line_position(image):
     moments = cv2.moments(255-blurred)
 
     if moments["m00"] == 0:
-        return None  # No line detected
+        return 0  # No line detected
     # Calculate the center of mass of the line in x
     cx = int(moments["m10"] / moments["m00"])
 
@@ -115,7 +115,7 @@ def detect_line_position(image):
     offset_pixels = cx - image_center
     normalized_offset = offset_pixels / image_center
     
-    # Show original and processed images
+    # Show images
     debug = image.copy()
     # Draw ROI rectangle
     cv2.rectangle(debug, (roi_left, roi_top), (roi_right, roi_bottom), (0, 255, 0), 2)
@@ -133,8 +133,7 @@ def detect_line_position(image):
 
 def detect_line_position_2(image):
     """
-    To illustrate the implementation of other functions.
-    Detect black line position on white floor.
+    Detect black line position on white floor from the binarized image.
     
     Returns:
         float or None:
@@ -144,7 +143,7 @@ def detect_line_position_2(image):
     """
 
     # Subsample the image for faster processing
-    # image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)
+    image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)
 
     # Get image dimensions
     height, width, _ = image.shape
@@ -174,15 +173,14 @@ def detect_line_position_2(image):
     roi_right = int(width * 0.80)
 
     # Using the Region of Interest (ROI)
-    # roi = binary[roi_top:roi_bottom, roi_left:roi_right]
-    # or the blurred image
-    roi = 255-blurred[roi_top:roi_bottom, roi_left:roi_right]
+    roi = binary[roi_top:roi_bottom, roi_left:roi_right]
+
 
     # Compute moments to get the centroid of the line
     moments = cv2.moments(roi)
 
     if moments["m00"] == 0:
-        return None  # No line detected
+        return 0  # No line detected
 
     cx = int(moments["m10"] / moments["m00"])
 
@@ -221,7 +219,7 @@ while robot.step(timestep) != -1:
     # Get image and convert it to BGR format
     image = webots_image_to_bgr(camera)
     # Define offset based on line position in the image
-    line_offset = detect_line_position_2(image)
+    line_offset = detect_line_position(image)
 
     ############################################
     #                 Think                    #
