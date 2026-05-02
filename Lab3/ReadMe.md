@@ -42,23 +42,28 @@ From now on, we are going to focus on the functions in the **See** part of the c
 
 The block _Get image_ refers to the function `webots_image_to_bgr(camera)`, which gets an image from the Webots simulated camera and convert it to OpenCV BGR format for further processing using OpenCV functions. 
 
-After getting and converting the image, it is further processed in the function `detect_line_position(image)`, which calculates the offset of the robot with respect to the line. Such offset is proportional to the distance of the center of the image to the center of the line. 
+Then, the block _Get line offset_ further processes the image in the function `detect_line_position(image)`, which calculates the offset of the robot with respect to the line. Such offset is proportional to the distance of the center of the image to the center of the line. 
 
 In robotics, it is important that the **see-think-act** cycle is executed in as little time as possible. In our case, the image is the only source of information about the environment, so it is important that a new frame is processed per cycle. The first three steps of the function `detect_line_position(image)` have the objective of reducing computational demand related to image processing. 
 
-The function `detect_line_position(image)` is composed by the following steps:
+The function `detect_line_position(image)` is composed by the following steps, represented by the blue blocks in the flowchart:
 
 1. _Sub-sample image_: The original resolution of the image is 640 x 480 pixels. In this step, the image is resized to 320 x 240 pixels. This is common procedure to speed up processing when fine details of the image can be ignored. 
 2. _ROI_: Define a Region of Interest - only the part of the image inside this region is processed, the rest can be ignored. In our case, we defined the ROI in a low part of the image where the line to be followed is expected to appear.
 3. _Convert to grayscale_: The color image is converted to gray scale, which reduces the number of channels to be processed from three to one, further reducing computational demand.
-4. _Gaussian blur_: This step filters the image by executing a convolution with unity mask of size 3 x 3. This is important for noise reduction. The bigger the mask, the lower the noise. However, increasing the mask also increases image blur, which might affect proper detection of the line. 
-5. _Center of mass along x_: First, the image is inverted (255-blurred), then image moments are computed. Because the image is inverted, the line on the floor now appears white, while the rest of the floor turns black. This means that the moment `m00` corresponds to cont all pixels of the line inside the ROI, resulting in its area. Moment `m10` corresponds to the horizontal distribution of the pixels inside the ROI. Dividing `m10` by `m00` gives the center of mass of the ROI along the `x` axis.
+4. _Gaussian blur_: This step filters the image by executing a convolution with unity mask of size 3 x 3. This is important for noise reduction. The bigger the mask, the more intense is the filter. However, increasing the mask also increases image blur, which might affect proper detection of the line. 
+5. _Center of mass along x_: First, the image is inverted (255-blurred), then image moments are computed. Because the image is inverted, the line on the floor now appears white, while the rest of the floor turns to black. This means that the moment `m00` corresponds to count all pixels of the line inside the ROI, resulting in its area. Moment `m10` corresponds to the horizontal distribution of the pixels inside the ROI. Dividing `m10` by `m00` gives the center of mass of the ROI along the `x` axis.
 6. _Line offset_: Finally, the line offset is calculated with respect to the image center. Considering that the robot must follow the line on the floor, the line offset is proportional to the orientation error of the robot.
 
-The rest of the functions are there to display the images on the screen at every cycle.
+The rest of the functions display the images on the screen at every cycle.
 
 
 ## Tasks
+Using the same Webots world as in Lab 2, create a new robot controller called `line_following_with_camera`. Copy the [example code](../Lab3/line_following_with_camera.py) to your newly created controller and run the simulation. Pay attention to the behavior of the robot and the images from its camera. 
+
+Now, observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. The explanation about the image processing pipeline given above refers to the function `detect_line_position(image)`. Analyse the code of the other function to understand the differences that exist between them. Change the code to call `detect_line_position_2(image)` and observe the behavior of the robot and the images from its camera. Is there notable difference in terms of performance of the line-following behavior?
+
+### Noise Analysis 
 By default, Webots models a perfect camera (no noise and no motion blur). Because the line is black and thick, the floor is white, and the path is smooth, there is sufficient contrast and smooth image change as the robot follows the line. So, in our case, the performance does not suffer much from motion blur. 
 
 However, camera noise does have a strong influence in the quality of the captured image. Figure 3 illustrates how the image from the camera is compromised when the noise level is set to 0.5. The degradation in image quality can impact the performance of the system.
@@ -87,7 +92,7 @@ No solution is available for the challenge. Tips:
 ## Conclusion
 After completing this lab, you should have a better understanding of how to process images to obtain information for robot navigation. 
 
-To know more about practical applications of vision-based line-following controllers, please refer to the articles below. In [[1](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)] we describe a controller for a drone to follow "lines" of the environment, like crops, sidewalks or rivers. In [[2](https://www.mdpi.com/1424-8220/17/10/2359)] we show how to apply a vision system with a simple webcam to drive a car in regular roads with lane-markings (see section 3 for details on how the image is processed).
+The articles [[1](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)] and [[2](https://www.mdpi.com/1424-8220/17/10/2359)] describe practical applications of vision-based line-following controllers in real world environments. In [[1](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)] we describe a controller for a drone to follow "lines" of the environment, like crops, sidewalks and rivers. In [[2](https://www.mdpi.com/1424-8220/17/10/2359)] we show how to apply a vision system with a simple webcam to drive a car in regular roads with lane-markings (see section 3 for details on how the image is processed).
 
 ## References
 [1] Brandão, Alexandre S., Felipe N. Martins, and Higor B. Soneguetti. "A vision-based line following strategy for an autonomous UAV." 2015 12th International Conference on Informatics in Control, Automation and Robotics (ICINCO). Vol. 2. Scitepress, 2015. Available at: [https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)
