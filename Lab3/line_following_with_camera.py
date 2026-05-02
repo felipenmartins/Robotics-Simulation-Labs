@@ -63,7 +63,7 @@ def webots_image_to_bgr(camera):
     # Reshape to (H, W, 4)
     img = img.reshape((height, width, 4))
 
-    # Drop alpha channel → BGR
+    # Drop alpha channel -> BGR
     bgr = img[:, :, :3]
 
     return bgr
@@ -154,14 +154,14 @@ def detect_line_position_2(image):
     # Gaussian blur (Convolution with identity mask for noise reduction)
     blurred = cv2.GaussianBlur(gray, (3, 3), 0)
 
-    # Sobel filter (x direction → vertical edges)
+    # Sobel filter (x direction -> vertical edges)
     sobel_x = cv2.Sobel(blurred, cv2.CV_64F, 1, 0, ksize=3)
     sobel_x = np.abs(sobel_x)
     # Normalize Sobel result
     if np.max(sobel_x) > 0:
         sobel_x = (sobel_x / np.max(sobel_x) * 255).astype(np.uint8)
     else:
-        return None
+        return 0
 
     # Threshold to get binary image
     _, binary = cv2.threshold(sobel_x, 40, 255, cv2.THRESH_BINARY)
@@ -175,13 +175,12 @@ def detect_line_position_2(image):
     # Using the Region of Interest (ROI)
     roi = binary[roi_top:roi_bottom, roi_left:roi_right]
 
-
     # Compute moments to get the centroid of the line
     moments = cv2.moments(roi)
 
     if moments["m00"] == 0:
         return 0  # No line detected
-
+    # Calculate the center of mass of the line in x
     cx = int(moments["m10"] / moments["m00"])
 
     # Normalize offset
