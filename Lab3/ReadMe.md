@@ -1,121 +1,107 @@
-# Lab 3 – Odometry-based Localization
+# Lab 3 – Vision-based Line-following Behavior
 
-## Objective
-The goal of this lab is to implement a simple algorithm for odometry-based robot localization and evaluate its accuracy.
+## Objectives
+In this lab you will implement another line-following behavior, but now using images from the robot's camera as input, instead of its ground sensors. The goal is to understand the basic steps to process images and to acquire relevant information to control the robot. You will also investigate how camera noise can influence the performance of the robot controller.
 
 ## Pre-requisites
-* You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
-* You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You should have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must have Webots R2022a (or newer) properly configured to work with Python. 
+* You must know how to create a robot controller in Python and how to run a simulation. 
+* You must have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must have a basic understanding of digital image representation and how to use some functions for image processing using Python and Open CV. If you need a refresh on this, please refer to the Jupyter Notebook on [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb).
 
-## Robot Pose
-To see the pose of the robot as calculated by Webots, click on “DEF E_PUCK E-puck” on the left menu and select “translation”. You will see the values of position and orientation of the robot (see Figure 1). You should print the position calculated by your functions at the end of each cycle, as shown in Figure 1, to facilitate comparison with the pose as calculated by Webots.
+If necessary, please go back to previous labs and complete the corresponding tasks.
 
-![Robot pose in Webots](../Lab3/Webots_robot_pose.png)
+## The e-puck robot camera
+The [e-puck model in Webots](https://www.cyberbotics.com/doc/guide/epuck?version=R2021a) contains a camera that generates images from the environment that can be processed and used in our code. It is a color camera with a maximum resolution of 640x480 pixels.
 
-###### Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
+Figure 1 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot show: 
+
+1. The _Camera View_ window shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the horizontal center of the image (blue line) and the estimated center of the line on the floor (red dot).
+2. The _Binary_ window shows a processed version of the same image, emphasizing its verical edges.
+
+![Webots screenshot with e-puck and camera images](../Lab3/vision_controller_screenshot.png)
+###### Figure 1. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
+
+In this lab, you will understand how this is done and how to use it to control the robot. The next section explains the image processing pipeline used in the available example code.
+
+## Image Processing Pipeline
+The image processing pipeline is illustrated in Figure 2, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code [available here](../Lab3/line_following_with_camera.py). As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line aligns with the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
+
+![Webots screenshot with e-puck and camera images](../Lab3/vision-based_flowchart.png)
+###### Figure 2. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
+
+The flowchart in Figure 2 implements the classical see-think-act cycle for robot control. After the initialization of variables and definition of functions, the main loop executes in sequence:
+
+* **See**: _Get image_ and _Get line offset_ blocks. 
+* **Think**: _Calculate angular speed_, which calculates the speeds of each wheel based on the offset between the center of the image and the desired orientation of the robot.
+* **Act**: _Set motor speeds_, which updates the motor speeds with the desired values.
+
+The corresponding functions that implement the **think** and **act** parts in the [example code available here](../Lab3/line_following_with_camera.py) are quite simple. Please, check the code to understand them (the script is rich in comments to help with understanding).
+
+From now on, we are going to focus on the functions in the **See** part of the cycle, which are the ones that implement the **image processing pipeline**.
+
+The block _Get image_ refers to the function `webots_image_to_bgr(camera)`, which gets an image from the Webots simulated camera and convert it to OpenCV BGR format for further processing using OpenCV functions. 
+
+Then, the block _Get line offset_ further processes the image in the function `detect_line_position(image)`, which calculates the offset of the robot with respect to the line. Such offset is proportional to the distance of the center of the image to the center of the line. 
+
+In robotics, it is important that the **see-think-act** cycle is executed in as little time as possible. In our case, the image is the only source of information about the environment, so it is important that a new frame is processed per cycle. The first three steps of the function `detect_line_position(image)` have the objective of reducing computational demand related to image processing. 
+
+The function `detect_line_position(image)` is composed by the following steps, represented by the blue blocks in the flowchart:
+
+1. _Sub-sample image_: The original resolution of the image is 640 x 480 pixels. In this step, the image is resized to 320 x 240 pixels. This is common procedure to speed up processing when fine details of the image can be ignored. 
+2. _ROI_: Define a Region of Interest - only the part of the image inside this region is processed, the rest can be ignored. In our case, we defined the ROI in a low part of the image where the line to be followed is expected to appear.
+3. _Convert to grayscale_: The color image is converted to gray scale, which reduces the number of channels to be processed from three to one, further reducing computational demand.
+4. _Gaussian blur_: This step filters the image by executing a convolution with unity mask of size 3 x 3. This is important for noise reduction. The bigger the mask, the more intense is the filter. However, increasing the mask also increases image blur, which might affect proper detection of the line. 
+5. _Center of mass along x_: First, the image is inverted (255-blurred), then image moments are computed. Because the image is inverted, the line on the floor now appears white, while the rest of the floor turns to black. This means that the moment `m00` corresponds to count all pixels of the line inside the ROI, resulting in its area. Moment `m10` corresponds to the horizontal distribution of the pixels inside the ROI. Dividing `m10` by `m00` gives the center of mass of the ROI along the `x` axis.
+6. _Line offset_: Finally, the line offset is calculated with respect to the image center. Considering that the robot must follow the line on the floor, the line offset is proportional to the orientation error of the robot.
+
+The rest of the functions display the images on the screen at every cycle.
+
 
 ## Tasks
-Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. The functions below should be called in sequence in the main loop of your program:
-```
-    # Compute speed of the wheels
-    [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
-    
-    # Compute robot linear and angular speeds
-    [u, w] = get_robot_speeds(wl, wr, R, D)
-    
-    # Compute new robot pose
-    [x, y, phi] = get_robot_pose(u, w, x, y, phi, delta_t)
-```
+Using the same Webots world as in Lab 2, create a new robot controller called `line_following_with_camera`. Copy the [example code](../Lab3/line_following_with_camera.py) to your newly created controller and run the simulation. Pay attention to the behavior of the robot and the images from its camera. 
 
-The tasks are listed below:
+Now, observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. The explanation about the image processing pipeline given above refers to the function `detect_line_position(image)`. Analyse the code of the other function to understand the differences that exist between them. Change the code to call `detect_line_position_2(image)` and observe the behavior of the robot and the images from its camera. Is there notable difference in terms of performance of the line-following behavior?
 
-1. **Write the function `get_wheels_speed(encoderValues, oldEncoderValues, delta_t)`** to calculate the speed of the robot wheels based on encoder readings. Test your code before moving to the next step.
-2. **Write the function `get_robot_speeds(wl, wr, R, D)`** to calculate the linear and angular speeds of the robot based on the speed of its wheels. Test your code before moving to the next step.
-3. **Write the function `get_robot_pose(u, w, x, y, phi, delta_t)`** to calculate the position and orientation of the robot based on its orientation and linear and angular speeds.
-4. **Compare the pose calculated by your functions with the pose calculated by Webots** in different moments of the simulation. 
+### Noise Analysis 
+By default, Webots models a perfect camera (no noise and no motion blur). Because the line is black and thick, the floor is white, and the path is smooth, there is sufficient contrast and smooth image change as the robot follows the line. So, in our case, the performance does not suffer much from motion blur. 
 
-### Some information for implementing the code
-The definition of the variables used in the functions is given below.
+However, camera noise does have a strong influence in the quality of the captured image. Figure 3 illustrates how the image from the camera is compromised when the noise level is set to 0.5. The degradation in image quality can impact the performance of the system.
 
-```
-Robot pose and speed in (x,y) coordinates:
-x = position in x [m]
-y = position in y [m]
-phi = orientation [rad]
-dx = speed in x [m/s]
-dy = speed in y [m/s]
-dphi = orientation speed [rad/s]
+![Resulting image with camera noise](../Lab3/screenshot_camera_noise.png)
+###### Figure 3. Resulting image when camera noise is set to 0.5. 
 
-Robot wheel speeds:
-wl = angular speed of the left wheel [rad/s]
-wr = angular speed of the right wheel [rad/s]
 
-Robot linear and angular speeds:
-u = linear speed [m/s]
-w = angular speed [rad/s]
+Now you are going to investigate how camera noise affects the performance of the two functions used in line-following controller example code: 
 
-Period of the cycle:
-delta_t = time step [s]
-```
+- Click the e-puck robot, select "camera_noise" and increase its value. 
+- Run the code to check if the robot is still able to follow the line. If not, reduce its value. _Noise values do not have to be integer numbers._  
+- Check how the image generated by the camera and the images processed by the code is affected by the changing values of noise. 
+- Repeate the steps above to check the performance of both `detect_line_position(image)` and `detect_line_position_2(image)` functions. 
+- What are the maximum values of camera noise that each of the functions can support? Can you explain why the values are different (or the same, whichever is the case)?
 
-To calculate robot localization you will need to use some physical parameters of the robot:
-
-```
-R = radius of the wheels [m]: 20.5mm 
-D = distance between the wheels [m]: 52mm 
-```
-
-You can use the pieces of code below to initialize the encoder sensors and to read encoder values in the main loop of your program:
-
-To initialize encoders:
-```
-encoder = []
-encoderNames = ['left wheel sensor', 'right wheel sensor']
-for i in range(2):
-    encoder.append(robot.getDevice(encoderNames[i]))
-    encoder[i].enable(timestep)
-```
-
-To read the encoders in the main loop:
-```
-    encoderValues = []
-    for i in range(2):
-        encoderValues.append(encoder[i].getValue())    # [rad]
-```
-The encoder values are incremented when the corresponding wheel moves forwards and decremented when it moves backwards.
-
-### Think about the following questions
-
-* How accurate is the odometry-based localization?
-* In what conditions is odometry-based localication useful? And when is it problematic?
+## Challenge
+Set camera noise to a value above which the robot no longer follows the line. Make changes in the code to improve the performance of the line detection so that the robot is able to follow the line with higher values of noise. 
 
 ## Solution
-A partial solution is provided for this lab. I recommend you first try to modify your line following code from Lab 2 to implement the localization as described above. If you need inspiration, you can use the [provided template](../Lab3/lab3_template.py). 
-
-If you need extra explanation, check the Jupyter Notebook for [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb).
-
-## About localization error
-The algorithm for odometry-based localization presented in the Jupyter Notebook above applies the [Euler method](https://en.wikipedia.org/wiki/Euler_method), which is a first-order method for numerical integration of differential equations. This is probably the simplest way to implement numerical integration, but the resulting value contains an error proportional to the step size (delta_t). 
-
-In my simulations, with a time step of 32 ms, the pose estimation would quickly diverge from the "true" robot pose indicated by Webots after only a few seconds of simulated time. I had to reduce the time step to 4 ms to get an acceptable level of error for about one minute of simulated time. You can adjust the time step by changing the value of the variable "basicTimeStep" of "WorldInfo", on the left menu. 
-
-Note that the error also depends on the path followed by the robot, but the above comparison serves to illustrate how much the time step influences the pose estimation error.  
-
-_Tip: Reducing the time step increases computation demand, which results in slower simulations. You can increase simulation speed by reducing the number of "FPS" to a minimum._
-
-
-## Challenge: 1-D Kalman Filter
-Use another sensor (like a compass or gyroscope) to estimate the orientation of the robot. Implement a 1-D Kalman Filter to combine the values given by this extra sensor with the orientation calculated via odometry to get a better estimate of the robot orientation. 
-
-No solution is provided for the challenge. In [this post](https://medium.com/analytics-vidhya/kalman-filters-a-step-by-step-implementation-guide-in-python-91e7e123b968) you find explanation about the 1-D Kalman Filter and how to implement it in Python. 
+No solution is available for the challenge. Tips:
+- Think about what you need to change to improve noise reduction in the image. 
+- Look at the images from the camera to check if the generated offset makes sense. Can you change something in the controller?
+- Not necessarily the same changes will solve the problem in both `detect_line_position(image)` and `detect_line_position_2(image)` functions.
 
 ## Conclusion
-After following this lab you should know more about the implementation and limitations of odometry-based localization for mobile robots.
+After completing this lab, you should have a better understanding of how to process images to obtain information for robot navigation. 
+
+The articles [[1](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)] and [[2](https://www.mdpi.com/1424-8220/17/10/2359)] describe practical applications of vision-based line-following controllers in real world environments. In [[1](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)] we describe a controller for a drone to follow "lines" of the environment, like crops, sidewalks and rivers. In [[2](https://www.mdpi.com/1424-8220/17/10/2359)] we show how to apply a vision system with a simple webcam to drive a car in regular roads with lane-markings (see section 3 for details on how the image is processed).
+
+## References
+[1] Brandão, Alexandre S., Felipe N. Martins, and Higor B. Soneguetti. "A vision-based line following strategy for an autonomous UAV." 2015 12th International Conference on Informatics in Control, Automation and Robotics (ICINCO). Vol. 2. Scitepress, 2015. Available at: [https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf](https://www.scitepress.org/PublishedPapers/2015/55439/55439.pdf)
+
+[2] Vivacqua, Rafael, Raquel Vassallo, and Felipe Martins. "A low cost sensors approach for accurate vehicle localization and autonomous driving application." Sensors 17.10 (2017): 2359. Available at: [https://www.mdpi.com/1424-8220/17/10/2359](https://www.mdpi.com/1424-8220/17/10/2359)
 
 ## Next Lab
-In the next lab you will use the estimated robot pose to implement a go-to-goal behavior based on a PID controller. 
+In the next lab we will use encoder values to estimate the position and orientation of the robot while it navigates. 
 
-Go to [Lab 4](../Lab4/ReadMe.md) - Go-to-goal behavior with PID
+Go to [Lab 4](../Lab4/ReadMe.md) - Odometry-based Localization
 
 Back to [main page](../README.md).

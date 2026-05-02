@@ -5,9 +5,9 @@
 
 # Author: Felipe N. Martins
 # Date: 25 January 2026
-# Last update: 22 February 2026
+# Last update: 2 May 2026
 
-from controller import Robot, DistanceSensor, Motor, Camera
+from controller import Robot 
 import numpy as np
 import cv2
 
@@ -63,7 +63,7 @@ def webots_image_to_bgr(camera):
     # Reshape to (H, W, 4)
     img = img.reshape((height, width, 4))
 
-    # Drop alpha channel → BGR
+    # Drop alpha channel -> BGR
     bgr = img[:, :, :3]
 
     return bgr
@@ -106,7 +106,7 @@ def detect_line_position(image):
     moments = cv2.moments(255-blurred)
 
     if moments["m00"] == 0:
-        return None  # No line detected
+        return 0  # No line detected
     # Calculate the center of mass of the line in x
     cx = int(moments["m10"] / moments["m00"])
 
@@ -115,7 +115,7 @@ def detect_line_position(image):
     offset_pixels = cx - image_center
     normalized_offset = offset_pixels / image_center
     
-    # Show original and processed images
+    # Show images
     debug = image.copy()
     # Draw ROI rectangle
     cv2.rectangle(debug, (roi_left, roi_top), (roi_right, roi_bottom), (0, 255, 0), 2)
@@ -133,8 +133,7 @@ def detect_line_position(image):
 
 def detect_line_position_2(image):
     """
-    To illustrate the implementation of other functions.
-    Detect black line position on white floor.
+    Detect black line position on white floor from the binarized image.
     
     Returns:
         float or None:
@@ -144,7 +143,7 @@ def detect_line_position_2(image):
     """
 
     # Subsample the image for faster processing
-    # image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)
+    image = cv2.resize(image, (0,0), fx=0.5, fy=0.5)
 
     # Get image dimensions
     height, width, _ = image.shape
@@ -155,14 +154,14 @@ def detect_line_position_2(image):
     # Gaussian blur (Convolution with identity mask for noise reduction)
     blurred = cv2.GaussianBlur(gray, (3, 3), 0)
 
-    # Sobel filter (x direction → vertical edges)
+    # Sobel filter (x direction -> vertical edges)
     sobel_x = cv2.Sobel(blurred, cv2.CV_64F, 1, 0, ksize=3)
     sobel_x = np.abs(sobel_x)
     # Normalize Sobel result
     if np.max(sobel_x) > 0:
         sobel_x = (sobel_x / np.max(sobel_x) * 255).astype(np.uint8)
     else:
-        return None
+        return 0
 
     # Threshold to get binary image
     _, binary = cv2.threshold(sobel_x, 40, 255, cv2.THRESH_BINARY)
@@ -174,16 +173,14 @@ def detect_line_position_2(image):
     roi_right = int(width * 0.80)
 
     # Using the Region of Interest (ROI)
-    # roi = binary[roi_top:roi_bottom, roi_left:roi_right]
-    # or the blurred image
-    roi = 255-blurred[roi_top:roi_bottom, roi_left:roi_right]
+    roi = binary[roi_top:roi_bottom, roi_left:roi_right]
 
     # Compute moments to get the centroid of the line
     moments = cv2.moments(roi)
 
     if moments["m00"] == 0:
-        return None  # No line detected
-
+        return 0  # No line detected
+    # Calculate the center of mass of the line in x
     cx = int(moments["m10"] / moments["m00"])
 
     # Normalize offset
@@ -221,28 +218,21 @@ while robot.step(timestep) != -1:
     # Get image and convert it to BGR format
     image = webots_image_to_bgr(camera)
     # Define offset based on line position in the image
-    line_offset = detect_line_position_2(image)
+    line_offset = detect_line_position(image)
 
     ############################################
     #                 Think                    #
     ############################################
 
-    # Define action based on line offset
+    # To print action taken by the robot:
     if np.abs(line_offset) < 0.1:
         current_action = 'forward'
-        leftSpeed = speed
-        rightSpeed = speed
     elif line_offset < 0:
         current_action = 'turn_left'
-        leftSpeed = 0.5 * speed
-        rightSpeed = 1 * speed
     else:
         current_action = 'turn_right' 
-        leftSpeed = 1 * speed
-        rightSpeed = 0.5 * speed
         
-        
-    # Or, use a P controller
+    # Proportional controller to steer the robot:
     leftSpeed = min((1 + line_offset) * speed, speed)
     rightSpeed = min((1 - line_offset) * speed, speed)
 
