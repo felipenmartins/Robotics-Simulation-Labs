@@ -37,7 +37,7 @@ The available notebooks are:
 - [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions (related to Lab 3)
 - [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 4)
 - [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 5)
-- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 7)
+- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 8)
 
 
 ## Content
