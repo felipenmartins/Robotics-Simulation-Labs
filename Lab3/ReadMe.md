@@ -1,47 +1,58 @@
 # Lab 3 – Vision-based Line-following Behavior
 
 ## Objectives
-In this lab you will implement another line-following behavior, but now using images from the robot's camera as input, instead of its ground sensors. The goal is to understand the basic steps to process images and acquire relevant information to control the robot.
+In this lab you will implement another line-following behavior, but now using images from the robot's camera as input, instead of its ground sensors. The goal is to understand the basic steps to process images and to acquire relevant information to control the robot. You will also investigate how camera noise can influence the performance of the robot controller.
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
 * You must know how to create a robot controller in Python and how to run a simulation. 
-* You should have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must have a working solution of [Lab 2](../Lab2/ReadMe.md).  
+* You must have a basic understanding of digital image representation and how to use some functions for image processing using Python and Open CV. If you need a refresh on this, please refer to the Jupyter Notebook on [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb).
 
-If you are still missing any of those, please go back to previous labs and complete the corresponding tasks.
+If necessary, please go back to previous labs and complete the corresponding tasks.
 
 ## The e-puck robot camera
 The [e-puck model in Webots](https://www.cyberbotics.com/doc/guide/epuck?version=R2021a) contains a camera that generates images from the environment that can be processed and used in our code. It is a color camera with a maximum resolution of 640x480 pixels.
 
 Figure 1 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot show: 
 
-1. The _Camera View_ window shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the center of the image (blue line) and the desired position of the robot (red dot).
+1. The _Camera View_ window shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the center of the image (blue line) and the estimated center of the line on the floor (red dot).
 2. The _Binary_ window shows a processed version of the same image, emphasizing its verical edges.
-
-In this lab, you will understand how this is done and how to use it to control the robot. 
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision_controller_screenshot.png)
 ###### Figure 1. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
 
+In this lab, you will understand how this is done and how to use it to control the robot. The next section explains the image processing pipeline used in the available example code.
 
------------- Estou aqui ----------------
-
-
-## Image Processing
-
-
+## Image Processing Pipeline
+The image processing pipeline is illustrated in Figure 2, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code [available here](../Lab3/line_following_with_camera.py). As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line crosses the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision-based_flowchart.png)
-###### Figure 2. Flowchart of the vision-based line-following controller. 
+###### Figure 2. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
+
+The flowchart in Figure 2 implements the classical see-think-act cycle for robot control. After the initialization of variables and definition of functions, the main loop executes in sequence:
+
+* **See**: _Get image_ and _Get line offset_ blocks. 
+* **Think**: _Calculate angular speed_, which calculates the speeds of each wheel based on the offset between the center of the image and the desired orientation of the robot.
+* **Act**: _Set motor speeds_, which updates the motor speeds with the desired values.
+
+From now on, we are going to focus on the functions in the **See** part of the cycle. Open the code [available here](../Lab3/line_following_with_camera.py) for details. It is rich in comments to help with understanding.
+
+The block _Get image_ refers to the function `webots_image_to_bgr(camera)`, which gets an image from the Webots camera and convert it to OpenCV BGR format for further processing. The function also gets the width and height of the image based on the camera resolution.
+
+After getting and converting the image, it is further processed in the function `detect_line_position(image)`, which calculates the offset of the robot with respect to the line based on the distance of the center of the image to the center of the line. 
 
 
+
+
+------------ Estou aqui ----------------
 
 
 
 
 ## Tasks
 
-An implementation is available [here](../Lab3/line_following_with_camera.py).
+
 
 
 bla bla bla
