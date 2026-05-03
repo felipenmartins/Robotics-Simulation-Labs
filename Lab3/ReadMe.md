@@ -30,13 +30,13 @@ The image processing pipeline is illustrated in Figure 2, which reproduces the i
 ![Webots screenshot with e-puck and camera images](../Lab3/vision-based_flowchart.png)
 ###### Figure 2. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
 
-The flowchart in Figure 2 implements the classical see-think-act cycle for robot control. After the initialization of variables and definition of functions, the main loop executes in sequence:
+The flowchart in Figure 2 implements the **see-think-act** cycle for robot control. After the initialization of variables and definition of functions, the main loop repeats the execution of the following steps, in sequence:
 
 * **See**: _Get image_ and _Get line offset_ blocks. 
 * **Think**: _Calculate angular speed_, which calculates the speeds of each wheel based on the offset between the center of the image and the desired orientation of the robot.
 * **Act**: _Set motor speeds_, which updates the motor speeds with the desired values.
 
-The corresponding functions that implement the **think** and **act** parts in the [example code available here](../Lab3/line_following_with_camera.py) are quite simple. Please, check the code to understand them (the script is rich in comments to help with understanding).
+The functions that implement the **think** and **act** parts in the [example code](../Lab3/line_following_with_camera.py) are straight forward. Please, check the code to understand them.
 
 From now on, we are going to focus on the functions in the **See** part of the cycle, which are the ones that implement the **image processing pipeline**.
 
