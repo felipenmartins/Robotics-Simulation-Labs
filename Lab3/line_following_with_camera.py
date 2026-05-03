@@ -5,7 +5,7 @@
 
 # Author: Felipe N. Martins
 # Date: 25 January 2026
-# Last update: 2 May 2026
+# Last update: 3 May 2026
 
 from controller import Robot 
 import numpy as np
@@ -24,10 +24,6 @@ robot = Robot()
 
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())   # [ms]
-
-# Actions for the line-following behavior
-actions = ['forward', 'turn_right', 'turn_left']
-current_action = actions[0]
 
 #-------------------------------------------------------
 # Initialize devices
@@ -148,6 +144,13 @@ def detect_line_position_2(image):
     # Get image dimensions
     height, width, _ = image.shape
 
+    # -----
+    # The next steps are executed before defining the Region of Interest 
+    # (ROI) to allow for visualization of the whole processed image. 
+    # Also, they could be replaced by a single call to cv2.Canny() for 
+    # edge detection, but we will implement them separately for 
+    # educational purposes.
+    
     # Convert to grayscale
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -165,6 +168,8 @@ def detect_line_position_2(image):
 
     # Threshold to get binary image
     _, binary = cv2.threshold(sobel_x, 40, 255, cv2.THRESH_BINARY)
+    
+    # -----
 
     # Define Region of Interest to process only part of the image
     roi_top = int(height * 0.70)
