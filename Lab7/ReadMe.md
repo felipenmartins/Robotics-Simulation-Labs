@@ -21,12 +21,12 @@ Download the file [webots-maze.zip](../Lab7/webots-maze.zip) and unzip it in a f
 There are many ways to implement a program for the robot to complete this mission. But for this  assignment you **must** implement concepts from other labs. The list of requirements is given below:
 
 - The provided **environment cannot be changed**: no object can be added, moved or removed from the provided world.
-- **Odometry-based localization** algorithm must be implemented to keep track of the robot pose. As it navigates, its position and orientation must be printed to the console;
-- **Go-to-goal controller with PID** _or_ **trajectory tracking controller** must be implemented to move the robot when not close to walls. The controller **must** generate reference values for **linear and angular velocities**.
-- **Wall-following** _or_ **corridor-following** behavior must be implemented to move the robot when inside the maze. The behavior **must** generate reference values for **linear and angular velocities**.
+- **Odometry-based localization** algorithm must be implemented to keep track of the robot pose. As it navigates, its position and orientation must be printed to the console.
+- **Go-to-goal controller with PID** _or_ **trajectory tracking controller** must be implemented to move the robot when not inside the corridors of the maze (or when far from the walls). The controller **must** generate reference values for **linear and angular velocities**.
+- **Wall-following** _or_ **corridor-following** behavior must be implemented to move the robot when inside the corridors of the maze. The behavior **must** generate reference values for **linear and angular velocities**.
 - A **state machine** must be implemented to select the behaviors and controllers to complete the mission. The active state must be printed to the console.
-- Images from the robot **camera** must be used to localize the red tunel.
-- _For maximum points_: instead of proximity sensors, use images from the robot **camera for navigation** inside the maze.
+
+Although not required, you are allowed to use images from the robot's **camera** to localize the red tunel and/or to navigate the maze - you can use the camera intead of, or in combination with, the proximity sensors.
 
 
 Figure 2 illustrates the e-puck robot navigating through the maze by switching between three different behaviors: `wall-following`, `curve +90 deg` and `turn -90 deg`. 
