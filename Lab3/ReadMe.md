@@ -83,14 +83,23 @@ Now you are going to **investigate how camera noise affects the performance** of
 * What are the maximum values of camera noise that each of the functions can support? 
 * Can you explain why the values are different (or the same, whichever is the case)?
 
+
 ## Challenge
-Set camera noise to a value above the limit supported by the functions. Make changes in the code to improve the performance of the line detection so that the robot is again able to follow the line with higher values of noise. 
+The challenge is divided in two parts:
+
+1. Choose one of the functions to detect line position and set the camera **noise to a value 20% above the limit** supported by it. Make changes in the code to improve the performance of the line detection so that the robot is able to follow the line with the new value of noise. 
+2. To steer the robot, instead of calculating the wheel speeds directly as in the example code, create code to **calculate the desired angular speed** of the robot and to **use a PID** to control it (including the integral and derivative components). You can create new functions to organize your code.
+
 
 ## Solution
 No solution is available for the challenge. Tips:
 - Think about what you need to change to improve noise reduction in the image. 
 - Look at the images from the camera to check if the generated offset makes sense. Can you change something in the controller?
 - Not necessarily the same changes will solve the problem for both `detect_line_position(image)` and `detect_line_position_2(image)` functions.
+- In the Jupyter Notebook [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) you find an explanation on how to convert wheel speeds into linear and angular speeds.
+- If you need a refresh, check out this great explanation from Michael Hart on [Understanding PID Controllers](https://mikelikesrobots.github.io/blog/understand-pid-controllers/). 
+- Check this Jupyter Notebook to understand how to implement [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb). The example presented here is for a go-to-goal moving controller.
+
 
 ## Conclusion
 After completing this lab, you should have a better understanding of how to process images to obtain information for robot navigation. 
