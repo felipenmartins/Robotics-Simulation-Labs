@@ -12,7 +12,7 @@ Localization is the process used by a mobile robot to estimate its own pose. The
 If necessary, please go back to previous labs to complete the corresponding tasks, or go to the Jupyter Notebook linked above.
 
 ## Mobile Robot Pose
-The pose of a mobile robot in 3D space is defined by 6 values, in general (we say it's 6 Degrees of Freedom - DoF): 3 values for its position along the axis $(x, y, z)$, and 3 values for its orientation, which could be represented by Euler angles:
+The pose of a mobile robot in 3D space is defined by 6 values, in general (we say it's 6 Degrees of Freedom - DoF): 3 values for its position along the axis $`(x, y, z)`$, and 3 values for its orientation, which could be represented by Euler angles:
 
 - Roll ($φ$): rotation around the x-axis (tilting sideways)
 - Pitch ($θ$): rotation around the y-axis (tilting forward/backward)
