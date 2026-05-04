@@ -12,15 +12,15 @@ Localization is the process used by a mobile robot to estimate its own pose. The
 If necessary, please go back to previous labs to complete the corresponding tasks, or go to the Jupyter Notebook linked above.
 
 ## Mobile Robot Pose
-The pose of a mobile robot in 3D space is defined by 6 values, in general (we say it's 6 Degrees of Freedom - DoF): 3 values for its position along the axis $`(x, y, z)`$, and 3 values for its orientation, which could be represented by Euler angles:
+The pose of a mobile robot in 3D space is defined by 6 values, in general (we say it's 6 Degrees of Freedom - DoF): 3 values for its position along the axis `(x, y, z)`, and 3 values for its orientation, which could be represented by Euler angles:
 
-- Roll ($φ$): rotation around the x-axis (tilting sideways)
-- Pitch ($θ$): rotation around the y-axis (tilting forward/backward)
-- Yaw ($ψ$): rotation around the z-axis (turning left/right)
+- Roll `(φ)`: rotation around the x-axis (tilting sideways)
+- Pitch `(θ)`: rotation around the y-axis (tilting forward/backward)
+- Yaw `(ψ)`: rotation around the z-axis (turning left/right)
 
-So the full pose in 3D is a vector $(x, y, z, φ, θ, ψ)^T$.
+So the full pose in 3D is a vector `(x, y, z, φ, θ, ψ)`.
 
-However, for ground robots (like the e-puck), **pose is often represented as $(x, y, ψ)$**: position on the floor plane with coordinates $(x, y)$ and orientation given by the yaw angle ($ψ$). This considers that roll, pitch, and z are zero (assumming the robot is not flying nor rolling over).
+However, for ground robots (like the e-puck), **pose is often represented as `(x, y, ψ)`**: position on the floor plane with coordinates `(x, y)` and orientation given by the yaw angle `ψ`. This considers that roll, pitch, and `z` are zero (i.e., the robot is not flying nor rolling over).
 
 To see the "real" pose of the robot given by Webots, click on “DEF E_PUCK E-puck” on the left menu and select _translation_. You will see the values of position of the robot (as shown in Figure 1). 
 
@@ -28,9 +28,9 @@ To see the "real" pose of the robot given by Webots, click on “DEF E_PUCK E-pu
 
 ###### Figure 1. Webots screenshot showing robot pose calculated by the simulator (left) and by the Python code (bottom).
 
-In the same menu, f you select _rotation_ you will see values that represent the robot orientation in 3D space. By default, Webots represents orientation using **axis-angle** format, which uses 4 values: $(x_a, y_a, z_a, θ_a)$. In this case, the first 3 values $(x_a, y_a, z_a)$ define the axis of rotation as a unit vector, and the last value $θ_a$ gives the angle of rotation around that axis (in radians). Assuming the robot only moves on the floor plane and does not roll over, Webots will often represent its orientation as $(0, 0, 1, θ_a)$, which means a rotation of $θ_a$ radians around the $z$ axis. In other words, **the value $θ_a$ is equal to the robot's orientation ($ψ$)**.
+In the same menu, f you select _rotation_ you will see values that represent the robot orientation in 3D space. By default, Webots represents orientation using **axis-angle** format, which uses 4 values: `(x_a, y_a, z_a, θ_a)`. In this case, the first 3 values  `(x_a, y_a, z_a)` define the _axis of rotation_ as a unit vector, and the last value `θ_a` gives the _angle of rotation around that axis_, in radians. Assuming the robot only moves on the floor plane and does not roll over, Webots will often represent its orientation as `(0, 0, 1, θ_a)`, which means a rotation of `θ_a` radians around the `z` axis. In other words, **the value `θ_a` is equal to the robot's orientation in the floor plane `ψ`**.
 
-**_Important note_**: The axis of rotation calculated by Webots varies as the robot moves, which means that the orientation is not always represented as $(0, 0, 1, θ)$. Ideally, the rotation vector $(x_a, y_a, z_a)$ would always be $(0, 0, 1)$, which is perfectly aligned with the $z$ axis. However, this is not the case. In reality, as the robot moves on the floor plane, its rotation vector changes slightly, resulting in values of $x_a$ and $y_a$ that close to zero (bot not exactly zero) and values of $z_a$ that are close to 1 (but not exactly 1). To keep it simple, we can assume that the rotation vector is always aligned with the $z$ axis, and read only the 4th value as the robot orientation. Mind the sign of $z_a$: when negative, this means that $θ_a = -ψ$.
+**_Important note_**: In ideal conditions, for robots navigating in the floor plane the axis of rotation `(x_a, y_a, z_a)` would always be `(0, 0, 1)`, which is perfectly aligned with the `z` axis. However, the axis of rotation calculated by Webots varies slightly as the robot moves, resulting in values of `x_a` and `y_a` close (but not exactly equal) to zero, and values of `z_a` that are close (but not exactly equal) to one. To keep it simple, we can assume that the rotation vector is always aligned with the `z` axis, meaning that `θ_a` can be considered equal to the robot's orientation  `ψ`. Mind the sign of `z_a`: when negative, this means that the axis of rotation is pointing in the opposite direction, which means that `θ_a = -ψ`.
 
 ## Tasks
 Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. The functions below should be called in sequence in the main loop of your program:
