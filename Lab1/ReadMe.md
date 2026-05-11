@@ -13,21 +13,46 @@ Figure 1. Webots screenshot.
 ## Tasks
 The Robotics Simulation Labs require Python3 and Webots. To complete this lab, you need to follow the steps described below. 
 
-1. **Install Python 3 (64-bit version)** (in case you already have it, go to step 4). You need the **64-bit** version of Python 3, which you can [download Python from here](https://www.python.org/downloads/). 
+### 1. **Install Python 3** (in case you already have it, go to step 4).
+
+#### **Windows**
+1. You need the **64-bit** version of Python 3, which you can [download Python from here](https://www.python.org/downloads/)
 
  -  _**Note (a):** When installing Python in Windows, it is highly recommended to **select the option “Add to PATH” during the installation** to facilitate further configuration of Webots._
 
- - _**Note (b):** Not all Python versions work with all Webots versions! If you are using an older version of Webots (prior to R2023a), you might need to use an older version of Python 3. For example: Webots R2022b works with Python 3.7, 3.8, 3.9 and 3.10, but Webots R2022a does **not** support Python 3.10._ 
+ - _**Note (b):** Not all Python versions work with all Webots versions! If you are using an older version of Webots (prior to R2023a), you might need to use an older version of Python 3. For example: Webots R2022b works with Python 3.7, 3.8, 3.9 and 3.10, but Webots R2022a does **not** support Python 3.10._
 
 2. **Reboot your system** after installing Python.  
 
-3. **Test your Python installation**: Depending on your system, the command to run Python can be `python`, `python3`, `python3.13`, or something similar. To test your Python installation (and to make sure that it is correctly added to Windows PATH, in case of Windows), open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type `python` or `python3` (in some cases, `python3.xx`, where 3.xx indicates the version that you installed) and hit _ENTER_. You can try all three variations to check which one works. If Python is correctly installed, you should see something similar to the output I get in my computer:
+#### **MacOS**
+[Download and install Python from here](https://www.python.org/downloads/)
+
+#### **Linux**
+Most distributions come with Python pre-installed. **If you are unsure - look up if your distribution comes with Python installed**.
+
+### 3. **Test your Python installation**:
+Depending on your system, the command to run Python can be `python`, `python3`, `python3.13`, or something similar.
+
+#### **Windows**
+To test your Python installation (and to make sure that it is correctly added to Windows PATH), open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type `python` or `python3` (in some cases, `python3.xx`, where 3.xx indicates the version that you installed) and hit _ENTER_. You can try all three variations to check which one works. If Python is correctly installed, you should see something similar to the output I get in my computer:
 
 ![Terminal - Python command](../Lab1/cmd_python.png)
 
-  Type `exit()` and hit _ENTER_ to go back to the terminal/command prompt.
+Type `exit()` and hit _ENTER_ to go back to the terminal/command prompt.
 
-4. **Install Python libraries**. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). In Windows, to install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
+### **MacOS/Linux**
+To test your Python installation, type:
+```
+python3 --version
+```
+or
+```
+python --version
+```
+The result should look similar to this:
+
+
+### 4. **Install Python libraries**. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). In Windows, to install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
 ```
 pip install opencv-python
 ```
@@ -37,11 +62,11 @@ pip install numpy
 ```
 Instructions might be slightly different for Linux and MacOS. Please, [see details here](https://cyberbotics.com/doc/guide/using-python#libraries).
 
-5. **Download and install Webots** from [https://cyberbotics.com/](https://cyberbotics.com/). To follow the Robotics Simulation Labs you need **Webots R2022a or newer**. There are versions available for Windows, macOS and Linux. The download and installation process can take a while.
+### 5. **Download and install Webots** from [https://cyberbotics.com/](https://cyberbotics.com/). To follow the Robotics Simulation Labs you need **Webots R2022a or newer**. There are versions available for Windows, macOS and Linux. The download and installation process can take a while.
  
-6. **Configure Webots to work with Python**: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in step 3) to point Webots to your Python installation. If you are on macOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
+### 6. **Configure Webots to work with Python**: In the Webots menu, go to `Tools > Preferences > Python command` and set it to `python` or `python3` (whatever worked in step 3) to point Webots to your Python installation. If you are on macOS or you haven't added Python to Windows PATH, you will need to indicate the full path in which Python is installed on your computer. If needed, [see installation details here](https://cyberbotics.com/doc/guide/using-python#installation).
 
-7. **Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots)**. Webots Tutorial presents examples in several programming languages. Remember to **select `Python`** when reading the code!
+### 7. **Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots)**. Webots Tutorial presents examples in several programming languages. Remember to **select `Python`** when reading the code!
 
 ## Known issues and solutions
 
