@@ -50,7 +50,7 @@ or
 python --version
 ```
 The result should look similar to this:
-
+![Terminal - Python command](../Lab1/python_version_check_return.png)
 
 ### 4. **Install Python libraries**. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). In Windows, to install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
 ```
