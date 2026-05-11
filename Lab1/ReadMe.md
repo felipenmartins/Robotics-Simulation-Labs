@@ -40,8 +40,8 @@ To test your Python installation (and to make sure that it is correctly added to
 
 Type `exit()` and hit _ENTER_ to go back to the terminal/command prompt.
 
-### **MacOS/Linux**
-To test your Python installation, type:
+#### **MacOS/Linux**
+To test your Python installation, open the terminal (on MacOS: `Cmd+Space`, type `Terminal` and press `"Enter"`) type:
 ```
 python3 --version
 ```
@@ -50,9 +50,15 @@ or
 python --version
 ```
 The result should look similar to this:
-![Terminal - Python command](../Lab1/python_version_check_return.png)
 
-### 4. **Install Python libraries**. You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots). In Windows, to install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
+![Terminal - Python return](../Lab1/python_version_check_return)
+
+### 4. **Install Python libraries**.
+You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots).
+
+#### **Windows**
+
+To install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
 ```
 pip install opencv-python
 ```
@@ -60,6 +66,29 @@ If you want to install NumPy only, type:
 ```
 pip install numpy
 ```
+
+#### **MacOS**
+Open the `Terminal` and type:
+```
+pip install numpy --user
+```
+to install NumPy, and
+```
+pip install opencv-python --user
+```
+to install OpenCV
+
+#### **Linux**
+**IF USING DEBIAN BASED DISTRIBUTION**
+Open the `Terminal` and type:
+```
+sudo pip install -numpy
+```
+to install NumPy, and
+```
+sudo pip install -opencv-python
+```
+to install OpenCV
 Instructions might be slightly different for Linux and MacOS. Please, [see details here](https://cyberbotics.com/doc/guide/using-python#libraries).
 
 ### 5. **Download and install Webots** from [https://cyberbotics.com/](https://cyberbotics.com/). To follow the Robotics Simulation Labs you need **Webots R2022a or newer**. There are versions available for Windows, macOS and Linux. The download and installation process can take a while.
