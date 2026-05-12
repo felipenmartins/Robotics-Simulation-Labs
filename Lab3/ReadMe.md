@@ -6,9 +6,10 @@ In this lab you will implement another line-following behavior, but now using im
 
 <center>
 <img src="vision_line_following_simulation.gif" alt="Vision-based line following simulation" width="480"/>
+</center>
 
 ###### Figure 1. Illustration of the vision-based line following controller explained in this lab.
-</center>
+
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
@@ -79,9 +80,9 @@ However, camera noise does have a strong influence in the quality of the capture
 
 <center>
 <img src="screenshot_camera_noise.png" alt="Resulting image with camera noise" width="480"/>
+</center>
 
 ###### Figure 4. Resulting image when camera noise is set to 0.5. 
-</center>
 
 Now you are going to **investigate how camera noise affects the performance** of the two functions used in line-following controller example code. To do that, complete the following steps:
 
