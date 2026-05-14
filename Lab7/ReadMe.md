@@ -46,7 +46,7 @@ The selection of the active behavior is done by the state machine diagram shown 
 ###### Figure 3. Maze-solver state machine diagram.
 
 
-As mentioned, images from the robot camera can be used (independently or in combination with other sensors) to identify events that cause transitions on your state machine. If you want to work with the robot's camera, I recommend investigating what the it captures while the robot navigates the maze. For that, it is useful to make the camera image visible by disabling the option `Hide All Camera Overlays` in the Webots `Overlays` menu. Also, make sure that the option `Show camera overlay` is active for the e-puck robot. With those selections, the robot's camera image will be displayed on the simulation window while the simulation runs (see Figure 4).
+As mentioned, images from the robot camera can be used (independently or in combination with other sensors) to identify events that cause transitions on your state machine. If you want to work with the robot's camera, I recommend investigating what it captures while the robot navigates the maze. For that, it is useful to make the camera image visible by disabling the option `Hide All Camera Overlays` in the Webots `Overlays` menu. Also, make sure that the option `Show camera overlay` is active for the e-puck robot. With those selections, the robot's camera image will be displayed on the simulation window while the simulation runs (see Figure 4).
 
 <center>
 <img src="../Lab7/camera_overlay_menu.png" alt="Camera overlays menu" width="500"/>
