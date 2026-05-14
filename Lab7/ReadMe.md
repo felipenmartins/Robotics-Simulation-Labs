@@ -37,13 +37,23 @@ Figure 2 illustrates the e-puck robot navigating through the maze by switching b
 
 ###### Figure 2. Maze navigation by switching between three simple behaviors: wall-following, curve +90 degrees and turn -90 degrees.
 
-The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. Images from the robot camera can be processed to identify the events that cause the transitions shown in the diagram, allowing for the use of the same state-machine.
+The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. For completing the mission described above, other states should be added to first make the robot move towards the maze, then mkae the robot move to the red tunnel. 
 
 <center>
 <img src="../Lab7/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
 </center>
 
 ###### Figure 3. Maze-solver state machine diagram.
+
+
+As mentioned, images from the robot camera can be used (independently or in combination with other sensors) to identify events that cause transitions on your state machine. If you want to work with the camera, I recommend investigating what the robot's camera captures while the robot navigates the maze. To help with that, you can make the camera image visible by disabling the option `Hide All Camera Overlays` in the Webots `Overlays` menu. Also, make sure that the option `Show camera overlay` is active for the e-puck robot (see Figure 4).
+
+<center>
+<img src="../Lab7/camera_overlay_menu.png" alt="Camera overlays menu" width="500"/>
+</center>
+
+###### Figure 4. Camera overlays menu in Webots.
+
 
 ## Solution
 No solution is provided for this lab. A [bare-bones template](maze_solver.py) for the code is provided in the ZIP file, which can be used as a starting point for the implementation of your solution. Also check the solutions of previous labs and the [Jupyter Notebooks for Mobile Robot Control](https://github.com/felipenmartins/Mobile-Robot-Control).
