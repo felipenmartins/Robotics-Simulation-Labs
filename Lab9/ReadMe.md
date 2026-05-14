@@ -7,7 +7,7 @@ Robot path planning finds a sequence of valid destinations (intermediate goals) 
 <img src="../Lab9/planned_path_2.png" alt="Map and planned path" width="350"/>
 </center>
 
-###### Figure 1. Plot of a map of the environment: the map is divided into cells (grid map); black lines represent all possible paths for the robot; numbers represent the cost for the robot to cross the corresponding cell; red line shows the planned path that results in lower cost from start (0, 0) to goal (12, 16). 
+###### Figure 1. Plot of a map of the environment: the map is divided into cells (grid map); black lines represent all possible paths for the robot; numbers represent the cost for the robot to cross the corresponding cell; red line shows the planned path that results in the lowest cost from start (0, 0) to goal (12, 16). 
 
 ## Dijkstra's Algorithm
 
@@ -24,17 +24,17 @@ In this lab, we are going to work with a **grid map**, which is a way to represe
 
 ## Tasks
 
-We will start with a line-following algorithm on the same world provided in the ZIP file of Lab 8 (see above). Contrary to Lab 8, the main tasks are not going to use an external microcontroller. 
+We will start with a line-following algorithm on the same world provided in the ZIP file of Lab 8 (see above). Contrary to Lab 8, we are not going to use an external microcontroller. 
 
 Follow the steps below to prepare your environment:
 
-1. If you haven't done so, go back to [Lab 8](../Lab8/ReadMe.md) and follow steps 1-3 to install the world shown in Figure 1. 
+1. If you haven't done so, go back to [Lab 8](../Lab8/ReadMe.md) and follow steps 1-3 to install the world shown in Figure 2. 
 
 2. After that, **create a new Python controller** for the robot, and **copy the code** from [`line_following_behavior.py`](../Lab2/line_following_behavior.py) to it. **Save the controller** file (use the save button on top of the code).
 
 3. **Run the Webots simulation** and verify that the robot follows the line. The code from `line_following_behavior.py` is the solution of Lab 2, which was designed to follow a line with no intersections or sharp curves. It is expected that the robot will drift off the line at corners. 
 
-Now, you are going to modify the given code. The approach proposed here is to create 2 new behaviors (`turn_90_deg_left` and `turn_90_deg_right`) to turn the robot left or right at crossings. Then, when the path is planned by Dijkstra, you will be able to select between `follow-line` and those new behavios and to make the robot follow the path. 
+Now, you are going to modify the given code. The approach proposed here is to create 2 new behaviors (`turn_90_deg_left` and `turn_90_deg_right`) to turn the robot left or right at crossings. Then, when the path is planned by Dijkstra, you will be able to select between `follow-line` and those new behavios and to make the robot follow it. 
 
 4. For the above strategy to work, your robot must be able to detect line crossings. **Create a function to detect line-crossings** while following the line. Test how the ground sensors behave when the robot is at crossings to define this function. 
 
@@ -63,11 +63,10 @@ Now, you are going to modify the given code. The approach proposed here is to cr
 Another array of same size is used to represent the cost of arriving at each cell. The `costs` array has almost all cells equal to one, except for a few cells with a cost of 2. Figure 2 shows the original environment (left) and its resulting map (right), where the cost of each cell is indicated by a number on top of the corresponding cell.
 
 <center>
-<img src="../Lab9/RaF_field.png" alt="Environment to be mapped" height="250"/>   
-<img src="../Lab9/RaF_map.png" alt="Map of the environment" height="250"/>
+<img src="../Lab9/RaF_field.png" alt="Environment to be mapped" height="250"/>
 </center>
 
-###### Figure 2. Original Webots environment (left) and its map (right). The map is made by a 10x10 grid of cells. Black lines represent all possible paths for the robot to follow and the numbers represent the cost for the robot to cross the corresponding cell. 
+###### Figure 2. Original Webots environment (left) and its map (right). The map is made by a 13x17 grid of cells. Black lines represent all possible paths for the robot to follow and the numbers represent the cost for the robot to arrive at the corresponding cell. 
 
 It is important to notice that the map does not need to have the exact proportions of the original environment. In fact, it doesn't even need to be of similar shape. For instance, we could have represented the world as a graph with line-crossings as nodes (instead of each cell), and the costs between nodes proportional to the distance between them. However, we chose for a grip map in which each cell is a node because it facilitates visualization.
 
@@ -80,7 +79,7 @@ Shortest Path: [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), 
 Figure 3 illustrates the map with the above path indicated in red. You should realize that other paths of same cost are possible, but no path with lower cost exists. 
 
 <center>
-<img src="../Lab9/planned_path_1.png" alt="Map and planned path" width="300"/>
+<img src="../Lab9/planned_path_1.png" alt="Map and planned path" width="350"/>
 </center>
 
 ###### Figure 3. Plot of a map of the environment: the red line shows the planned path given above, which is a path of lowest cost from start (0, 0) to goal (12, 16). 
@@ -91,7 +90,7 @@ The path shown in Figure 1 was also generated for the same `start` and `goal` po
 
 
 ## Solution
-No solution is provided for this lab. 
+No solution is provided for this lab. This is a challenging lab! If you need help, please refer to the Jupyter Notebook [Dijkstra's Algorithm for Robotic Path Planning](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for a detailed explanation on how to implement the algorithm in Python.
 
 ## Challenge
 This challenge has two parts:
