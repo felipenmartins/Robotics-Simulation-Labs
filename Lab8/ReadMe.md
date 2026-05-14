@@ -3,24 +3,24 @@
 ## Objective
 Real robots are controlled by embedded hardware, so it is interesting to have a way to test it. The goal of this lab is to implement a Hardware-in-the-Loop Simulation, in which an external microcontroller board receives sensor data from the simulator and sends commands to control the simulated robot. 
 
-## Hardware-in-the-Loop (HIL)
-
-Simulators allow lerning robotics without the need of dealing with hardware. However, simulations hide real hardware limitations of the systems embedded in real robots. To overcome such limitation and better represent real conditions, a microcontroller can be connected to the simulator to receive sensor data and implement the robot controller. After testing, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44). 
-
-HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running the Webots simulation. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the robot control remain the same.
-
-In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
-
 ![screenshot_Webots](../Lab8/HIL_implementation.gif)
 
 ###### Figure 1. Hardware-in-the-Loop implementation: the simulation is executed by Webots, which sends sensor data to the ESP32 board. The microcontroller calculates the desired action and sends commands back to the simulator to control the robot.
+
+## Hardware-in-the-Loop - HIL
+
+Simulators like Webots are great learning tools because they allow lerning robotics without the need of dealing with (expensive) hardware. However, simulations hide hardware limitations of embedded systems used in real robots. To overcome such limitation and better represent real operational conditions, a microcontroller can receive sensor data from the simulated robot and run the algorithm to control it. This is called **Hardware-in-the-Loop** simulation (HIL). 
+
+HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running  Webots. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the actual robot control remain the same. The big advantage is that the control algorithm can be tested and adjusted with the simulated robot, reducing costs and optimizing development time. Then, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44). 
+
+In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
+
 
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
 * You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), and a [state machine](../Lab2/ReadMe.md) to select the robot behavior. 
 * You must have a microcontroller board that can be programmed in MicroPython and can be connected to the computer via USB cable. The example code presented here was tested on a ESP32-based board. 
-* To complete the challenge of this lab, you must know how to implement [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning.
 
 A popular IDE to program your microcontroller in MicroPython is Thonny. The site [Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-thonny-micropython-python-ide-esp32-esp8266/) provides instructions for installing Thonny IDE in Windows, Mac OS X, and Linux, flashing MicroPython software to your ESP32 board using Thonny IDE, writing and uploading code to your ESP32, and troubleshooting. 
 
@@ -46,10 +46,11 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**. 
 
-After executing the steps above, you should see the simulation running. The video below illustrates how to run the HIL Simulation using Thonny and Webots once you have the code for both ready:
+After executing the steps above, you should see the simulation running. The video linked in Figure 2 illustrates how to run the HIL Simulation using Thonny and Webots once you have the code ready for both:
 
 [![Running the HIL Simulation](https://img.youtube.com/vi/srcTeYh20jQ/0.jpg)](https://www.youtube.com/watch?v=srcTeYh20jQ)
-###### This video illsutrates how to run the HIL Simulation. It is based on the video made by student Charlotte Benckert (HSB - Bremen University of Applied Sciences) to solve the Hardware-in-the-Loop Simulation assignment of the BIP course "Embedded Systems for Mobile Robots", January 2025.
+
+###### Figure 2. Video that illsutrates how to run the HIL Simulation. It is based on the video made by student Charlotte Benckert (HSB - Bremen University of Applied Sciences) to solve the Hardware-in-the-Loop Simulation assignment of the BIP course "Embedded Systems for Mobile Robots", January 2025.
 
 This example implements a simple line-following behavior in the ESP32 board to control the simulated robot in Webots. The pre-processed sensor data is sent from Webots to the ESP32 via serial port. The ESP32 implements the line-following state transitions according to the received sensor data, and sends the new state back to Webots. The new state is used by Webots to define the speeds of the robot wheels.
 
@@ -173,30 +174,18 @@ Then, **modify the code to improve the line following behavior**. Your robot mus
 ## Solution
 No solution is provided for this lab.
 
-## Challenge: Find the Shortest Path
-Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) in the microcontroller (ESP32) using MicroPython to make the robot navigate the shortest path between arbritary nodes. 
-
-Tips: 
-* You can consider each crossing point as a node, and make the edge costs proportional to the distance between neighboring nodes.
-* Another option is to build a grid map that mimics the path that can be followed by the robot, like in [this example](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra_RAFmap.ipynb).
-
-
-**Important!** NumPy does not work in MicroPython. To use `array` in MicroPython, you have two options:
-
-1. Use the `array` module, as explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
-
-2. Use `ulab`, which is a NumPy-like module for MicroPython. If you want to use `ulab`, you need to flash your ESP32 with a MicroPython interpreter that includes the `ulab` module! In my tests, I flashed my ESP32 with the [interpreter available here](https://gitlab.com/rcolistete/micropython-firmwares/-/blob/master/ESP32/v1.12_with_ulab/ulab_v0.54.0_2020-07-29/Generic_flash-4MB/esp32_idf4_ulab_dp_thread_v1.12-663-gea4670d5a_2020-07-29.bin), which  includes an old (but working) version of `ulab`. For this version, you can find [instructions and examples here](https://www.jarutex.com/2021/08/11/4150/).
-
+## Challenge
+Modify the provided code to include odometry-based localization to keep track of the robot's pose while it navigates. To limit the error caused by drift, use each line-crossing as a landmark to correct the position estimate given by odometry. For that to work you must map the positions of all line-crossings. 
 
 ## Conclusion
-After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice the concepts of path-planning for robot navigation.
+After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice how to limit the position estimate error giving by odometry-based localization.
 
 ## Reference
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## Next Lab
-Program robots to play soccer as a team in the next lab!
+In the next lab you will learn how to use Dijkstra's algorithm to plan a path for the robot.
 
-Go to [BONUS](../SoccerSim/ReadMe.md) - Robot Soccer Challenge
+Go to [Lab 9](../Lab9/ReadMe.md) - Path planning with Dijkstra
 
 Back to [main page](../README.md).
