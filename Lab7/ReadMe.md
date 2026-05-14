@@ -37,7 +37,7 @@ Figure 2 illustrates the e-puck robot navigating through the maze by switching b
 
 ###### Figure 2. Maze navigation by switching between three simple behaviors: wall-following, curve +90 degrees and turn -90 degrees.
 
-The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. For completing the mission described above, other states should be added to first make the robot move towards the maze, then mkae the robot move to the red tunnel. 
+The selection of the active behavior is done by the state machine diagram shown in Figure 3, which uses the proximity sensor readings for transitions between states. For completing the mission described above, other states must be added to first make the robot move towards the maze, and to make the robot move to the red tunnel once it gets to the other side of the maze. The number of states you are going to add and their associated behaviors is up to you.
 
 <center>
 <img src="../Lab7/maze-solver_state_machine.png" alt="Maze-solver state machine diagram" width="300"/>
@@ -46,13 +46,13 @@ The selection of the active behavior is done by the state machine diagram shown 
 ###### Figure 3. Maze-solver state machine diagram.
 
 
-As mentioned, images from the robot camera can be used (independently or in combination with other sensors) to identify events that cause transitions on your state machine. If you want to work with the camera, I recommend investigating what the robot's camera captures while the robot navigates the maze. To help with that, you can make the camera image visible by disabling the option `Hide All Camera Overlays` in the Webots `Overlays` menu. Also, make sure that the option `Show camera overlay` is active for the e-puck robot (see Figure 4).
+As mentioned, images from the robot camera can be used (independently or in combination with other sensors) to identify events that cause transitions on your state machine. If you want to work with the robot's camera, I recommend investigating what the it captures while the robot navigates the maze. For that, it is useful to make the camera image visible by disabling the option `Hide All Camera Overlays` in the Webots `Overlays` menu. Also, make sure that the option `Show camera overlay` is active for the e-puck robot. With those selections, the robot's camera image will be displayed on the simulation window while the simulation runs (see Figure 4).
 
 <center>
 <img src="../Lab7/camera_overlay_menu.png" alt="Camera overlays menu" width="500"/>
 </center>
 
-###### Figure 4. Camera overlays menu in Webots.
+###### Figure 4. Webots camera overlays menu and robot's camera image.
 
 
 ## Solution
