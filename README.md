@@ -9,8 +9,7 @@ This page is available at: [https://felipenmartins.github.io/Robotics-Simulation
 I teach an introductory-level course on Robotics for electrical engineering students, focusing on wheeled mobile robots. These **Robotics Simulation Labs** were created to replace the practical activities of that course during the restrictions related to the COVID-19 pandemic. Initially, there were only 4 labs, but gradually more labs were added to cover more topics. Now I use the simulation labs to complement the theory and practical activities of the course, covering:
 
  - Webots Robot Simulator and Python
- - Programming mobile robots
- - Finite-State machines
+ - Finite-state machines
  - Obstacle avoidance
  - Image processing for vision-based control
  - Kinematics of differential-drive robots
@@ -18,7 +17,7 @@ I teach an introductory-level course on Robotics for electrical engineering stud
  - Go-to-Goal behavior using PID controller
  - Non-linear trajectory tracking controller
  - Hardware-in-the-Loop (HIL) simulation
- - Path-planning 
+ - Path-planning and path-following
 
 Templates and solutions are presented for some labs, always in Python 3 (or MicroPython, for HIL).
 
@@ -37,7 +36,7 @@ The available notebooks are:
 - [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions (related to Lab 3)
 - [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 4)
 - [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 5)
-- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 8)
+- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 9)
 
 
 ## Content
@@ -51,6 +50,7 @@ The content of each lab is listed below:
 - [Lab 6](/Lab6/ReadMe.md) - Trajectory Tracking Controller
 - [Lab 7](/Lab7/ReadMe.md) - Combine Behaviors to Complete a Mission
 - [Lab 8](/Lab8/ReadMe.md) - Hardware-in-the-Loop Simulation
+- [Lab 9](/Lab9/ReadMe.md) - Path planning with Dijkstra
 - [BONUS](/SoccerSim/ReadMe.md) - Robot Soccer Challenge
 
 ## Simple Robot Simulator
