@@ -21,7 +21,6 @@ In this lab, we are going to use MicroPython to program an ESP32-based microcont
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
 * You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), and a [state machine](../Lab2/ReadMe.md) to select the robot behavior. 
 * You must have a microcontroller board that can be programmed in MicroPython and can be connected to the computer via USB cable. The example code presented here was tested on a ESP32-based board. 
-* To complete the challenge of this lab, you must know how to implement [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning.
 
 A popular IDE to program your microcontroller in MicroPython is Thonny. The site [Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-thonny-micropython-python-ide-esp32-esp8266/) provides instructions for installing Thonny IDE in Windows, Mac OS X, and Linux, flashing MicroPython software to your ESP32 board using Thonny IDE, writing and uploading code to your ESP32, and troubleshooting. 
 
@@ -47,10 +46,11 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**. 
 
-After executing the steps above, you should see the simulation running. The video below illustrates how to run the HIL Simulation using Thonny and Webots once you have the code for both ready:
+After executing the steps above, you should see the simulation running. The video linked in Figure 2 illustrates how to run the HIL Simulation using Thonny and Webots once you have the code ready for both:
 
 [![Running the HIL Simulation](https://img.youtube.com/vi/srcTeYh20jQ/0.jpg)](https://www.youtube.com/watch?v=srcTeYh20jQ)
-###### This video illsutrates how to run the HIL Simulation. It is based on the video made by student Charlotte Benckert (HSB - Bremen University of Applied Sciences) to solve the Hardware-in-the-Loop Simulation assignment of the BIP course "Embedded Systems for Mobile Robots", January 2025.
+
+###### Figure 2. Video that illsutrates how to run the HIL Simulation. It is based on the video made by student Charlotte Benckert (HSB - Bremen University of Applied Sciences) to solve the Hardware-in-the-Loop Simulation assignment of the BIP course "Embedded Systems for Mobile Robots", January 2025.
 
 This example implements a simple line-following behavior in the ESP32 board to control the simulated robot in Webots. The pre-processed sensor data is sent from Webots to the ESP32 via serial port. The ESP32 implements the line-following state transitions according to the received sensor data, and sends the new state back to Webots. The new state is used by Webots to define the speeds of the robot wheels.
 
