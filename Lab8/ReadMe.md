@@ -177,7 +177,7 @@ No solution is provided for this lab.
 Modify the provided code to include odometry-based localization to keep track of the robot's pose while it navigates. To limit the error caused by drift, use each line-crossing as a landmark to correct the position estimate given by odometry. For that to work you must map the positions of all line-crossings. 
 
 ## Conclusion
-After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice the concepts of path-planning for robot navigation.
+After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice how to limit the position estimate error giving by odometry-based localization.
 
 ## Reference
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
