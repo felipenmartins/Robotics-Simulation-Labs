@@ -3,17 +3,18 @@
 ## Objective
 Real robots are controlled by embedded hardware, so it is interesting to have a way to test it. The goal of this lab is to implement a Hardware-in-the-Loop Simulation, in which an external microcontroller board receives sensor data from the simulator and sends commands to control the simulated robot. 
 
-## Hardware-in-the-Loop (HIL)
-
-Simulators allow lerning robotics without the need of dealing with hardware. However, simulations hide real hardware limitations of the systems embedded in real robots. To overcome such limitation and better represent real conditions, a microcontroller can be connected to the simulator to receive sensor data and implement the robot controller. After testing, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44). 
-
-HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running the Webots simulation. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the robot control remain the same.
-
-In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
-
 ![screenshot_Webots](../Lab8/HIL_implementation.gif)
 
 ###### Figure 1. Hardware-in-the-Loop implementation: the simulation is executed by Webots, which sends sensor data to the ESP32 board. The microcontroller calculates the desired action and sends commands back to the simulator to control the robot.
+
+## Hardware-in-the-Loop - HIL
+
+Simulators like Webots are great learning tools because they allow lerning robotics without the need of dealing with (expensive) hardware. However, simulations hide hardware limitations of embedded systems used in real robots. To overcome such limitation and better represent real operational conditions, a microcontroller can receive sensor data from the simulated robot and run the algorithm to control it. This is called **Hardware-in-the-Loop** simulation (HIL). 
+
+HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running  Webots. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the actual robot control remain the same. The big advantage is that the control algorithm can be tested and adjusted with the simulated robot, reducing costs and optimizing development time. Then, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44). 
+
+In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
+
 
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
