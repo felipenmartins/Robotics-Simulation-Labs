@@ -173,20 +173,8 @@ Then, **modify the code to improve the line following behavior**. Your robot mus
 ## Solution
 No solution is provided for this lab.
 
-## Challenge: Find the Shortest Path
-Program [Dijkstra's Algorithm](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) in the microcontroller (ESP32) using MicroPython to make the robot navigate the shortest path between arbritary nodes. 
-
-Tips: 
-* You can consider each crossing point as a node, and make the edge costs proportional to the distance between neighboring nodes.
-* Another option is to build a grid map that mimics the path that can be followed by the robot, like in [this example](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra_RAFmap.ipynb).
-
-
-**Important!** NumPy does not work in MicroPython. To use `array` in MicroPython, you have two options:
-
-1. Use the `array` module, as explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
-
-2. Use `ulab`, which is a NumPy-like module for MicroPython. If you want to use `ulab`, you need to flash your ESP32 with a MicroPython interpreter that includes the `ulab` module! In my tests, I flashed my ESP32 with the [interpreter available here](https://gitlab.com/rcolistete/micropython-firmwares/-/blob/master/ESP32/v1.12_with_ulab/ulab_v0.54.0_2020-07-29/Generic_flash-4MB/esp32_idf4_ulab_dp_thread_v1.12-663-gea4670d5a_2020-07-29.bin), which  includes an old (but working) version of `ulab`. For this version, you can find [instructions and examples here](https://www.jarutex.com/2021/08/11/4150/).
-
+## Challenge
+Modify the provided code to include odometry-based localization to keep track of the robot's pose while it navigates. To limit the error caused by drift, use each line-crossing as a landmark to correct the position estimate given by odometry. For that to work you must map the positions of all line-crossings. 
 
 ## Conclusion
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice the concepts of path-planning for robot navigation.
@@ -195,8 +183,8 @@ After following this lab you should know how to implement hardware-in-the-loop s
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## Next Lab
-Program robots to play soccer as a team in the next lab!
+In the next lab you will learn how to use Dijkstra's algorithm to plan a path for the robot.
 
-Go to [BONUS](../SoccerSim/ReadMe.md) - Robot Soccer Challenge
+Go to [Lab 9](../Lab9/ReadMe.md) - Path planning with Dijkstra
 
 Back to [main page](../README.md).
