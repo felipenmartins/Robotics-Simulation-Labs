@@ -56,11 +56,13 @@ No solution is provided for this lab.
 ## Challenge
 Using the example provided in [Lab 8](../Lab8/ReadMe.md), program Dijkstra's Algorithm **in the microcontroller** using MicroPython and make the robot navigate the planned path between arbritary nodes in the field. 
 
-**Important!** NumPy does not work in MicroPython. To use `array` in MicroPython, you have two options:
+**Important!** NumPy does not work in MicroPython. To use a 2D array in MicroPython, you can create a list of lists, where each inner list represents a row. For example, you can define a 2D array like this: 
 
-1. Use the `array` module, as explained in the [MicroPython forum](https://forum.micropython.org/viewtopic.php?t=9626).
+```array = [[0 for _ in range(columns)] for _ in range(rows)]```
 
-2. Use `ulab`, which is a NumPy-like module for MicroPython. If you want to use `ulab`, you need to flash your ESP32 with a MicroPython interpreter that includes the `ulab` module! In my tests, I flashed my ESP32 with the [interpreter available here](https://gitlab.com/rcolistete/micropython-firmwares/-/blob/master/ESP32/v1.12_with_ulab/ulab_v0.54.0_2020-07-29/Generic_flash-4MB/esp32_idf4_ulab_dp_thread_v1.12-663-gea4670d5a_2020-07-29.bin), which  includes an old (but working) version of `ulab`. For this version, you can find [instructions and examples here](https://www.jarutex.com/2021/08/11/4150/).
+_Rows_ and _columns_ are the desired dimensions of the array. To access elements, use two indices: 
+
+```value = array[1][2]  # Gets the element in the 2nd row and 3rd column```
 
 
 ## Conclusion
