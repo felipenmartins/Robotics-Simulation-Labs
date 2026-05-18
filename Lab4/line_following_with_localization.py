@@ -62,8 +62,8 @@ u = 0.0    # linear speed [m/s]
 w = 0.0    # angular speed [rad/s]
 
 # e-puck Physical parameters for the kinematics model (constants)
-R = 0.020    # radius of the wheels: 20.5mm [m]
-D = 0.057    # distance between the wheels: 52mm [m]
+R = 0.0201    # radius of the wheels: 20.1mm [m]
+D = 0.052    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
 #-------------------------------------------------------

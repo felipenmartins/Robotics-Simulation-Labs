@@ -82,7 +82,7 @@ The definition of the variables used in the functions is given below.
 
 To calculate robot localization you will need to use some physical parameters of the robot:
 
-  - `R` = radius of the wheels [m]: 20.5mm 
+  - `R` = radius of the wheels [m]: 20.1mm 
   - `D` = distance between the wheels [m]: 52mm 
 
 

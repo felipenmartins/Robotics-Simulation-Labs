@@ -1,7 +1,15 @@
 # Lab 3 – Vision-based Line-following Behavior
 
 ## Objectives
-In this lab you will implement another line-following behavior, but now using images from the robot's camera as input, instead of its ground sensors. The goal is to understand the basic steps to process images and to acquire relevant information to control the robot. You will also investigate how camera noise can influence the performance of the robot controller.
+In this lab you will implement another line-following behavior, but now using images from the robot's camera (like in Figure 1). The goal is to understand the basic steps to process images and to acquire relevant information to control the robot. You will also investigate how camera noise can influence the performance of the robot controller.
+
+
+<center>
+<img src="vision_line_following_simulation.gif" alt="Vision-based line following simulation" width="480"/>
+</center>
+
+###### Figure 1. Illustration of the vision-based line following controller explained in this lab.
+
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
@@ -14,23 +22,23 @@ If necessary, please go back to previous labs and complete the corresponding tas
 ## The e-puck robot camera
 The [e-puck model in Webots](https://www.cyberbotics.com/doc/guide/epuck?version=R2021a) contains a camera that generates images from the environment that can be processed and used in our code. It is a color camera with a maximum resolution of 640x480 pixels.
 
-Figure 1 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot are: 
+Figure 2 shows a screenshot of the e-puck robot following a line using a vision-based controller. The pink lines in front of the robot indicate the view frustum (the camera's field of view - what objects are visible). The two windows next to the robot are: 
 
 1. _Camera View_: shows the environment as seen by the robot's camera. On top of the original image, we are drawing the Region-of-Interest - **ROI** (green box), the horizontal center of the image (blue line) and the estimated center of the line on the floor (red dot).
 2. _Binary_: shows a binarized version of the same image, emphasizing its verical edges.
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision_controller_screenshot.png)
-###### Figure 1. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
+###### Figure 2. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
 
 In this lab, you will understand how this is done and how to use it to control the robot. The next section explains the image processing pipeline used in the available example code.
 
 ## Image Processing Pipeline
-The image processing pipeline is illustrated in Figure 2, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code [available here](../Lab3/line_following_with_camera.py). As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line aligns with the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
+The image processing pipeline is illustrated in Figure 3, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code [available here](../Lab3/line_following_with_camera.py). As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line aligns with the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision-based_flowchart.png)
-###### Figure 2. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
+###### Figure 3. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
 
-The flowchart in Figure 2 implements the **see-think-act** cycle for robot control. After the initialization of variables and definition of functions, the main loop repeats the execution of the following steps, in sequence:
+The flowchart in Figure 3 implements the **see-think-act** cycle for robot control. After the initialization of variables and definition of functions, the main loop repeats the execution of the following steps, in sequence:
 
 * **See**: _Get image_ and _Get line offset_ blocks. 
 * **Think**: _Calculate angular speed_, which calculates the speeds of each wheel based on the offset between the center of the image and the desired orientation of the robot.
@@ -68,11 +76,13 @@ Now, observe that the example code has two different functions to process the im
 ### Noise Analysis 
 By default, Webots models a perfect camera (no noise and no motion blur). Because the line is black and thick, the floor is white, and the path is smooth, there is sufficient contrast and smooth image change as the robot follows the line. So, in our case, the performance does not suffer much from motion blur. 
 
-However, camera noise does have a strong influence in the quality of the captured image. Figure 3 illustrates how the image from the camera is compromised when the noise level is set to 0.5. The degradation in image quality can impact the performance of the system.
+However, camera noise does have a strong influence in the quality of the captured image. Figure 4 illustrates how the image from the camera is compromised when the noise level is set to 0.5. The degradation in image quality can impact the performance of the system.
 
-![Resulting image with camera noise](../Lab3/screenshot_camera_noise.png)
-###### Figure 3. Resulting image when camera noise is set to 0.5. 
+<center>
+<img src="screenshot_camera_noise.png" alt="Resulting image with camera noise" width="480"/>
+</center>
 
+###### Figure 4. Resulting image when camera noise is set to 0.5. 
 
 Now you are going to **investigate how camera noise affects the performance** of the two functions used in line-following controller example code. To do that, complete the following steps:
 

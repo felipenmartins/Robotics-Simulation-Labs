@@ -15,11 +15,11 @@ Webots contains a realistic model of e-puck, a small differential-drive mobile r
 
 The e-puck robot has multiple sensors. To detect obstacles, the e-puck contains 8 infrared distance sensors around its body. Optionally, 3 infrared sensors can be mounted under its base, pointing to the floor, allowing the implementation of a line-following behavior. 
 
-An explanation about the e-puck robot and how to use it in Webots is available in Webots Tutorial 4.
+An explanation about the e-puck robot and how to use it in Webots is [available here](https://www.cyberbotics.com/doc/guide/epuck?version=R2023a).
 
 ## Tasks
 
-1- **Follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python)** to better understand the e-puck model and learn how to control it in Python.
+1- **Follow [Webots Tutorial 4](https://cyberbotics.com/doc/guide/tutorial-4-more-about-controllers?tab-language=python)** to better understand the e-puck model and learn how to control it in Python. _Note: Webots Tutorials 2 and 3 are optional: you can complete these Robotics Simulation Labs without them. However, you are encouraged to follow all Webots tutorials if you want to better understand how the simulation is implemented._
 
 2- After finishing tutorial 4, **open the line-following sample world**: Click on `File > Open Sample Worlds` and go to `robots > gctronic > e-puck` and select `e-puck_botstudio_with_floor_sensors.wbt`. You should see a world similar to the one shown in Figure 1. _In the next steps you **must** use the e-puck robot that is loaded with this sample world because it has the floor sensors to detect the line._ 
 

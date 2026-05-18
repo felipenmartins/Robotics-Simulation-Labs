@@ -55,8 +55,8 @@ u = 0.0    # linear speed [m/s]
 w = 0.0    # angular speed [rad/s]
 
 # Physical parameters of the robot for the kinematics model
-R = 0.0205    # radius of the wheels: 20.5mm [m]
-D = 0.0565    # distance between the wheels: 52mm [m]
+R = 0.0201    # radius of the wheels: 20.1mm [m]
+D = 0.052    # distance between the wheels: 52mm [m]
 A = 0.05    # distance from the center of the wheels to the point of interest [m]
 
 #-------------------------------------------------------
