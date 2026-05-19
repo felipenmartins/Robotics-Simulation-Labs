@@ -6,7 +6,7 @@ The main goal of this lab is to combine what you learned in previous labs to pro
 ## Pre-requisites
 * You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
 * You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](../Lab2/ReadMe.md), a [localization algorithm](../Lab4/ReadMe.md) and a controller for robot navigation (either [PID](../Lab5/ReadMe.md) or [trajectory tracking](../Lab6/ReadMe.md)). 
+* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), a [state machine](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/finite-state_machines.ipynb), a [localization algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) and a controller for robot navigation (either [PID]((https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb)) or [trajectory tracking](../Lab6/ReadMe.md)). 
 
 
 ## Tasks and Robot Mission

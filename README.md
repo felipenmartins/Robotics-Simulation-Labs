@@ -36,11 +36,14 @@ The content of each lab is listed below:
 Brief explanations of some concepts, including how to implement them in Python, are available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). These notebooks are useful for understanding the fundamentals because they allow step-by-step execution of the implemented functions without the need of running Webots. 
 
 The available notebooks are:
-- [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control (related to Lab 2)
-- [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) fundamentals and basic functions (related to Lab 3)
-- [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to Lab 4)
-- [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to Lab 5)
-- [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to Lab 9)
+1. [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb) for mobile robot control (related to [Lab 2](/Lab2/ReadMe.md))
+2. [Selecting Behaviors with Finite-State Machines](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/finite-state_machines.ipynb) (also related to [Lab 2](/Lab2/ReadMe.md))
+3. [Digital Image Processing](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/image_processing_example.ipynb) - fundamentals and basic functions (related to [Lab 3](/Lab3/ReadMe.md))
+4. [Odometry-based Localization](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/odometry-based_localization.ipynb) for the differential-drive robot (related to [Lab 4](/Lab4/ReadMe.md))
+5. [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller (related to [Lab 5](/Lab5/ReadMe.md))
+6. [Dijkstra's Algorithm](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/path_planning_dijkstra.ipynb) for Robotic Path Planning (related to [Lab 9](/Lab9/ReadMe.md))
+
+
 
 
 ## Simple Robot Simulator

@@ -7,6 +7,7 @@ The goal of this lab is to learn more about controllers in Webots via the implem
 * You must have Webots R2022a (or newer) properly configured to work with Python. 
 * You must know how to create a robot controller in Python and how to run a simulation in Webots. 
 * You must have a basic understanding of robot behaviors and how to implement them in Python, as described in the Jupyter Notebook [Implementation of simple robot behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb).
+* You must know about Finite-State Machines and how to implement them in Python, as described in the Jupyter Notebook [Selecting Behaviors with Finite-State Machines]((https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/finite-state_machines.ipynb)).
 
 If necessary, please go back to [Lab 1](../Lab1/ReadMe.md) and complete the corresponding tasks.
 
