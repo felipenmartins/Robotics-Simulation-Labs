@@ -30,10 +30,23 @@ Figure 2 shows a screenshot of the e-puck robot following a line using a vision-
 ![Webots screenshot with e-puck and camera images](../Lab3/vision_controller_screenshot.png)
 ###### Figure 2. Webots screenshot with the e-puck robot following the line using a vision-based controller. 
 
-In this lab, you will understand how this is done and how to use it to control the robot. The next section explains the image processing pipeline used in the available example code.
 
-## Image Processing Pipeline
-The image processing pipeline is illustrated in Figure 3, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code [available here](../Lab3/line_following_with_camera.py). As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line aligns with the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
+## Tasks
+In this lab, you will understand how the vision-based line following behavior works and how the image is processed. Follow the steps below to load the world and evaluate the example code.
+
+Use the same Webots world as in Lab 2, **create a new robot controller** called `line_following_with_camera`. **Copy the [example code](../Lab3/line_following_with_camera.py)** to your newly created controller and **run the simulation**. To make sure that the simulated camera works, first check if its width and height parameters are both bigger than 1: in the scene tree, click on `E-puck` then check the values of `camera_width` and `camera_height`. For the this lab, set the values to `camera_width = 640` and `camera_height = 480`.
+
+Observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. See the explanation below about the image processing pipeline for details about the function `detect_line_position(image)`. Then, analyse the code of the other function `detect_line_position_2(image)` to understand the differences that exist between them. 
+
+**Run the simulation** and check how the robot behaves when using `detect_line_position(image)` or `detect_line_position_2(image)`.
+
+* Is there notable difference in performance of the line-following behavior when using functions `detect_line_position(image)` or `detect_line_position_2(image)`?
+
+
+ The next section explains the image processing pipeline used in the available example code.
+
+### Image Processing Pipeline
+The image processing pipeline is illustrated in Figure 3, which reproduces the image shown by _Camera View_ window next to a flowchart of the example code. As explained above, the Region-of-Interest (ROI) is represented by the green box, the center of the image is indicated via the blue line and the center of the line on the floor is given by the red dot. Because the center of the camera view is aligned with the center of the robot, the objective of the controller is to change the robot's orientation so that the blue line aligns with the red dot. The idea is that the robot will follow the line when moving forwards as long as its orientation is continuously adjusted to align the center of the image with the center of the line. 
 
 ![Webots screenshot with e-puck and camera images](../Lab3/vision-based_flowchart.png)
 ###### Figure 3. Camera image and flowchart of the vision-based line-following controller. The image processing pipeline is illustrated by the blue blocks.
@@ -44,7 +57,7 @@ The flowchart in Figure 3 implements the **see-think-act** cycle for robot contr
 * **Think**: _Calculate angular speed_, which calculates the speeds of each wheel based on the offset between the center of the image and the desired orientation of the robot.
 * **Act**: _Set motor speeds_, which updates the motor speeds with the desired values.
 
-The functions that implement the **think** and **act** parts in the [example code](../Lab3/line_following_with_camera.py) are straight forward. Please, check the code to understand them.
+The functions that implement the **think** and **act** parts in the example code are straight forward. Please, check the code to understand them.
 
 From now on, we are going to focus on the functions in the **See** part of the cycle, which are the ones that implement the **image processing pipeline**.
 
@@ -65,13 +78,6 @@ The function `detect_line_position(image)` is composed by the following steps, r
 
 The rest of the functions display the images on the screen at every cycle.
 
-
-## Tasks
-Using the same Webots world as in Lab 2, **create a new robot controller** called `line_following_with_camera`. **Copy the [example code](../Lab3/line_following_with_camera.py)** to your newly created controller and **run the simulation**. Pay attention to the behavior of the robot and the images from its camera. 
-
-Now, observe that the example code has two different functions to process the image to obtain the line offset: `detect_line_position(image)` and `detect_line_position_2(image)`. Both serve the same purpose and have similarities. However, they are different. The explanation about the image processing pipeline given above refers to the function `detect_line_position(image)`. **Analyse the code of the function `detect_line_position_2(image)`** to understand the differences that exist between them. **Change the code to call `detect_line_position_2(image)` and run the simulation again**. Observe the behavior of the robot and the images from its camera. 
-
-* Is there notable difference in performance of the line-following behavior when using functions `detect_line_position(image)` or `detect_line_position_2(image)`?
 
 ### Noise Analysis 
 By default, Webots models a perfect camera (no noise and no motion blur). Because the line is black and thick, the floor is white, and the path is smooth, there is sufficient contrast and smooth image change as the robot follows the line. So, in our case, the performance does not suffer much from motion blur. 
