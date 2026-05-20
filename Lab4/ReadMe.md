@@ -37,7 +37,7 @@ In ideal conditions, for robots navigating on the floor plane the axis of rotati
 
 ## Tasks
 Your main task is to write code to implement the functions below to add localization capability to your line-following behavior. The functions below should be called in sequence in the main loop of your program:
-```
+```python
 # Compute speed of the wheels
 [wl, wr] = get_wheels_speed(encoderValues, oldEncoderValues, delta_t)
     
@@ -89,7 +89,7 @@ To calculate robot localization you will need to use some physical parameters of
 As discussed in Lab 2, encoders need to be initialized before they can be used in the simulation.
 
 To initialize encoders:
-```
+```python
 encoder = []
 encoderNames = ['left wheel sensor', 'right wheel sensor']
 for i in range(2):
@@ -98,7 +98,7 @@ for i in range(2):
 ```
 
 To read the encoders in the main loop:
-```
+```python
 encoderValues = []
 for i in range(2):
     encoderValues.append(encoder[i].getValue())    # [rad]

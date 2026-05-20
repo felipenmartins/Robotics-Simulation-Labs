@@ -42,7 +42,7 @@ Now, you are going to modify the given code. The approach proposed here is to cr
 
 6. Now it's time to **implement Dijkstra's algorithm**. The first thing you need is a map of the environment. We chose to represent the map as a 2D array of size 13 x 17 where `0` represents free space for the robot to navigate and `1` represents obstacles that block the robot's movement:
 
-```
+```python
     grid = np.array([
         [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -72,7 +72,7 @@ It is important to notice that the map does not need to have the exact proportio
 
 7. Now, **test your implementation of Dijkstra**: select the start node as `(0, 0)` and the goal node as `(12, 16)`. After running Dijkstra with the map and costs defined above, the resulting path should be: 
 
-```
+```python
 Shortest Path: [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (3, 16), (4, 16), (5, 16), (6, 16), (7, 16), (8, 16), (9, 16), (10, 16), (11, 16), (12, 16)]
 ```
 
@@ -101,11 +101,15 @@ The second is to program Dijkstra's Algorithm **in the microcontroller** using M
 
 **Important!** NumPy does not work in MicroPython. To use a 2D array in MicroPython, you can create a list of lists, where each inner list represents a row. For example, you can define a 2D array like this: 
 
-```array = [[0 for _ in range(columns)] for _ in range(rows)]```
+```python
+array = [[0 for _ in range(columns)] for _ in range(rows)]
+```
 
 _Rows_ and _columns_ are the desired dimensions of the array. To access elements, use two indices: 
 
-```value = array[1][2]  # Gets the element in the 2nd row and 3rd column```
+```python
+value = array[1][2]  # Gets the element in the 2nd row and 3rd column
+```
 
 
 ## Conclusion

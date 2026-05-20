@@ -50,7 +50,7 @@ An explanation about the e-puck robot and how to use it in Webots is [available 
 In Tutorial 4 you made use of the distance sensors around the robot. To detect the line on the floor you need to use the ground sensors, instead. The simulator also treats the ground sensors as distance sensors because they are of the same type (infrared sensors). In Python you can access the ground sensors as shown below.
 
 To initialize the ground sensors:
-```
+```python
 gs = []
 gsNames = ['gs0', 'gs1', 'gs2']
 for i in range(3):
@@ -59,14 +59,14 @@ for i in range(3):
 ```
 
 To read the ground sensors inside the main loop:
-```
+```python
 gsValues = []
 for i in range(3):
     gsValues.append(gs[i].getValue())
 ``` 
 
 To read sensor values inside the main loop:
-```
+```python
 line_right = gsValues[0]
 line_center = gsValues[1]
 line_left = gsValues[2]

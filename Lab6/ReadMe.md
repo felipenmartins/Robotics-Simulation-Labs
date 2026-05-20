@@ -15,7 +15,7 @@ The goal of this lab is to implement a controller that enables the robot to foll
 ## Tasks
 Your main task is to write code to implement the functions below to add the controller to your line-following behavior from Lab 3. In the main loop of your program, those functions should be called in a sequence:
 
-```
+```python
 # Trajectory tracking controller
 [u_ref, w_ref] = traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a)
 
@@ -32,7 +32,7 @@ The tasks are listed below:
 1. **Write the function `traj_tracking_controller(dxd, dyd, xd, yd, x, y, phi, a)`** to calculate reference values of linear and angular velocities. Those values should later be used to calculate the reference speeds of each wheel. Test your code before moving to the next step.
 2. **Write the function `wheel_speed_commands(u_ref, w_ref, D, R)`** to calculate the reference speeds for the left and right wheels. Those are the values that need to be sent to the wheel controllers for the robot to follow the desired trajectory.
 3. **Test the trajectory tracking controller** using the desired values below. You might need to adjust the controller gains.
-```
+```python
 xd = 0.0	# desired position x [m]
 yd = 0.0	# desired position y [m]
 dxd = 0.0	# desired speed in x [m/s]

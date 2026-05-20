@@ -64,7 +64,7 @@ The robot controller code running on Webots has a similar structure to the ones 
 
 To be able to communicate via serial port, we first create a serial object `ser`, as shown in the code snippet below:
 
-```
+```python
 import serial
 try:
     # Change the port parameter according to your system
@@ -77,7 +77,7 @@ The parameters `port` and `baudrate` above must match the ones used by your ESP3
 
 Naturally, both the ESP32 and Webots need to "speak the same language" to be able to exchange information. This means that the code in both of them needs to transmit messages that the other knows the meaning of. We chose to implement communication by sending and receiving a string of characters. In the case of sensor data to be sent to the ESP32, we decided to send binary values to indicate when each sensor detects the line or not. A `message` is constructed with a sequence of ones and zeros, according to the value measured by each of the line sensors (0 = line detected; 1 = line not detected). Finally, a line feed character `\n` is added at the end, the message is encoded in 'UTF-8' format, and transmitted using the `write` method. This process is illustrated below:
 
-```
+```python
 message = ''
 if line_left:
     message += '1'
@@ -97,7 +97,7 @@ ser.write(msg_bytes)
 
 The ESP32 and Webots are running their Python scripts at different speeds, which means that both Webots and the ESP32 will send data at any moment. So, we first need to check if a new string was received before we read the message. In Webots, this test is implemented by the method `in_waiting`, that returns `True` when there are received bytes waiting in the serial buffer. In this case, we read the string and store it in the variable `value`, that will be used to update the current state of the robot. In our example code, the string transmitted by the ESP32 is the current state (but this could be different). The code snippet below shows how this is implemented:
 
-```
+```python
 if ser.in_waiting:
     value = str(ser.readline(), 'UTF-8')[:-1] 	# ignore the last character
     current_state = value
@@ -111,13 +111,13 @@ The ESP32 has 3 UARTs (Universal Asynchronous Receiver/Transmitter) to implement
 
 To implement serial communication in MicroPython, we begin by importing `UART` from the built-in library `machine`: 
 
-```
+```python
 from machine import Pin, UART
 ```
 
 To allow communication with Webots, we want to make the ESP32 able to send and receive serial data using the USB cable connected to the computer. This means that our code needs to use the same UART pins used by the REPL, so we need to configure UART1 to use the same pins as the REPL. However, when we change the UART pins, Thonny will no longer be able to communicate with the ESP32 (until it is reset). This means that the command to stop code execution won't work after the UART configuration. So, we need to make sure that UART0 is enabled on the original pins at least for sufficient time for you to stop the code execution, if desired. To implement this, we can use a while loop that waits for a physical button connected to the ESP32 to be pressed before changing the serial port to UART1. The code is implemented as follows:
 
-```
+```python
 print("Click the button on the ESP32 to continue. Then, close Thonny and run the Webots simulation.")
 print("Or click STOP in Thonny to return to the REPL.")
 while button_left() == False:
@@ -134,7 +134,7 @@ Note that the baudrate needs to be the same as in the code running in Webots (in
 
 The ESP32 needs to read the sensor message sent by Webots, and send back the new state for the robot. Before reading the message, it uses the method `any` to check if a string is available in the serial buffer. If it is, then it uses the method `read` to read the message, then convert it to a string. As explained above, the message is a sequence of ones and zeros that correspond to the line being detected (or not) by each of the line sensors. So, each of the characters of the string is used to update the corresponding variables. The code snippet below shows how this is implemented:
 
-```
+```python
 # Check if anything was received via serial to update sensor status
 if uart.any():
     msg_bytes = uart.read()    # Read all received messages
@@ -157,7 +157,7 @@ if uart.any():
 
 Finally, after implementing a line-following state machine, the new state needs to be transmitted to Webots. To minimize communication, a new state will only be transmitted if it is different than the previous one. This is controlled by the flag variable `state_updated`: if it is True, then the value of `current_state` is transmitted using the method `write`, as shown below:
 
-```
+```python
     if state_updated == True:
         uart.write(current_state + '\n')
         state_updated = False

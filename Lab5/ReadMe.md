@@ -25,7 +25,7 @@ The tasks are detailed below:
 
 1- **Create a function to calculate position and orientation errors** based on the estimated and desired positions of the robot. An example is shown below:
 
-```
+```python
 import numpy as np
 
 # Position error:
@@ -43,7 +43,7 @@ phi_err_correct = np.arctan2(np.sin(phi_err),np.cos(phi_err))
 
 2- **Create a new function that implements a "go-to-goal" behavior using a PID controller**. Your PID controller must control the robot orientation by adjusting its angular speed. A simple implementation of a PID controller is illustrated below:
 
-```
+```python
 # PID algortithm: must be executed every delta_t seconds
 # The error is calculated as: e = desired_value - actual_value
 
@@ -73,7 +73,7 @@ Actuator saturation is a potential problem in all control systems, so we need to
 
 The code below implements the solution discussed above by calculating a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
 
-```
+```python
 def wheel_speed_commands(u_d, w_d, D, R):
     """Convert desired robot speeds to desired wheel speeds"""
     wr_d = float((2 * u_d + D * w_d) / (2 * R))
