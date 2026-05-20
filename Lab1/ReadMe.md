@@ -13,7 +13,7 @@ Figure 1. Webots screenshot.
 ## Tasks
 The Robotics Simulation Labs require Python3 and Webots. To complete this lab, you need to follow the steps described below. 
 
-### 1. **Install Python 3** (in case you already have it, go to step 3).
+### 1. **Install Python 3** (in case you already have it, go to step 2)
 
 #### **Windows**
 1. You need the **64-bit** version of Python 3, which you can [download Python from here](https://www.python.org/downloads/)
@@ -30,72 +30,75 @@ The Robotics Simulation Labs require Python3 and Webots. To complete this lab, y
 #### **Linux**
 Most distributions come with Python pre-installed. **If you are unsure - look up if your distribution comes with Python installed**.
 
-### 2. **Test your Python installation**:
+### 2. **Test your Python installation**
 Depending on your system, the command to run Python can be `python`, `python3`, `python3.13`, or something similar.
 
 #### **Windows**
-To test your Python installation (and to make sure that it is correctly added to Windows PATH), open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type `python` or `python3` (in some cases, `python3.xx`, where 3.xx indicates the version that you installed) and hit _ENTER_. You can try all three variations to check which one works. If Python is correctly installed, you should see something similar to the output I get in my computer:
+To test your Python installation (and to make sure that it is correctly added to Windows PATH), open  _Command Prompt (cmd)_ or _PowerShell_ and type `python` (or, in some cases, `python3` or even `python3.xx`, where 3.xx indicates the version that you installed) and hit _ENTER_. You can try all variations to check which one works. If Python is correctly installed, you should see something similar to the output below after entering the correct command to call Python:
 
 ![Terminal - Python command](../Lab1/cmd_python.png)
 
-Type `exit()` and hit _ENTER_ to go back to the terminal/command prompt.
+Type `exit()` or `exit` and hit _ENTER_ to go back to the terminal/command prompt.
 
 #### **MacOS/Linux**
 To test your Python installation, open the terminal (on MacOS: `Cmd+Space`, type `Terminal` and press `"Enter"`) type:
-```
+```bash
 python3 --version
 ```
 or
-```
+```bash
 python --version
 ```
 The result should look similar to this:
 
 ![Terminal - Python return](../Lab1/python_version_check_return)
 
-### 3. **Install Python libraries**.
-You need to install at least _NumPy_. Optionally, you can install _OpenCV_, which also installs _NumPy_ (OpenCV is not required for our simulation labs but it is necessary to run some examples that come with Webots).
-#### **Windows**
+### 3. **Install Python libraries**
+You need to install at least _NumPy_ and _OpenCV_. OpenCV is required for the simulation lab 3 and  some examples that come with Webots.
 
-To install both libraries, open  _Command Prompt (cmd)_, _PowerShell_ or _Terminal_ and type:
-```
-pip install opencv-python
-```
-If you want to install NumPy only, type:
-```
+#### **Windows**
+Open  _Command Prompt (cmd)_ or _PowerShell_. If you want to install NumPy only, type:
+```bash
 pip install numpy
+```
+To install both libraries, type:
+```bash
+pip install opencv-python
 ```
 
 #### **MacOS**
 To install Numpy only, open the `Terminal` and type:
-```
+```bash
 pip install numpy --user
 ```
 To install OpenCV, type:
-```
+```bash
 pip install opencv-python --user
 ```
 
 #### **Linux**
 == **IF USING DEBIAN BASED DISTRIBUTION** ==
 To install Numpy only, open the `Terminal` and type:
-```
-sudo pip install -numpy
+```bash
+sudo pip install numpy
 ```
 To install OpenCV, type:
+```bash
+sudo pip install opencv-python
 ```
-sudo pip install -opencv-python
-```
-== **OTHER DISTROS - CONTINUE AS IS, SETUP ON STEP 5** ==
+== **OTHER DISTROS - CONTINUE AS IS, SETUP ON STEP 4** ==
 
-### 4. **Download and install Webots** from [https://cyberbotics.com/](https://cyberbotics.com/).
+### 4. **Download and install Webots**
 To follow the Robotics Simulation Labs you need **Webots R2022a or newer**.
+
 #### **Windows**
-1. Download the installer from the website.
+1. Download the installer from [https://cyberbotics.com/](https://cyberbotics.com/).
 2. Open it and proceed with the setup.
-#### **MacOs**
-1. Download the app from the website.
+
+#### **MacOS**
+1. Download the app from the [https://cyberbotics.com/](https://cyberbotics.com/).
 2. Drag it to the `Applications` folder.
+
 #### **Linux**
 ##### **For Debian-based distributions**
 1. install the [Cyberbotics.asc](https://cyberbotics.com/Cyberbotics.asc) signature file using this command:
@@ -118,6 +121,7 @@ echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyber
 ```bash
 sudo apt update
 ```
+
 ##### **For Other Linux Distros**
 1. Look up if you have Flatpak package manager installed in your distribution. If not - go to https://flatpak.org/setup/ and install it.
 2. Reboot your system.
@@ -125,37 +129,42 @@ sudo apt update
 ```bash
 flatpak install flathub com.cyberbotics.webots
 ```
-3. Webots should now be available in your app launcher/menu. Alternatively you can launch it by typing
-```
+4. Webots should now be available in your app launcher/menu. Alternatively you can launch it by typing
+```bash
 flatpak run com.cyberbotics.webots
 ```
 in the terminal
 
-### 5. **Configure Webots to work with Python**:
+### 5. **Configure Webots to work with Python**
 #### **Windows** 
-Once Webots is open, go to `Tools` in top left corner, click `Preferences` , find `Python command` line in the opened window, and set it to `python3` to point Webots to your Python installation. 
+Once Webots is open, go to `Tools` in top menu, click `Preferences`, find `Python command` line in the opened window, and enter the command that worked in step 2 to point Webots to your Python installation (the command is usually `python`, but could also be `python3` or even `python3.xx` in some cases). 
+
 #### **MacOS**
 Once Webots is open, go to `Tools` in top left corner, click `Preferences` , find `Python command` line in the opened window, and set it to `usr/bin/python3` to point Webots to your Python installation. 
+
 #### **Linux**
 ##### == **DEBIAN** ==
 Once Webots is open, go to `Tools` in top left corner, click `Preferences` , find `Python command` line in the opened window, and set it to `python3` to point Webots to your Python installation. 
 ##### == **FLATPAK** ==
 Open the terminal, run:
-```
-flatpak run --command=python3 com.cyberbotics.Webots -m ensurepip
+```bash
+flatpak run --command=python3 com.cyberbotics.webots -m ensurepip
 ```
 then:
-```
-flatpak run --command=python3 com.cyberbotics.Webots -m pip install numpy
+```bash
+flatpak run --command=python3 com.cyberbotics.webots -m pip install numpy
 ```
 and:
-```
-flatpak run --command=python3 com.cyberbotics.Webots -m pip install opencv-python
+```bash
+flatpak run --command=python3 com.cyberbotics.webots -m pip install opencv-python
 ```
 This way you have installed OpenCV and NumPy libraries into the webots flatpak. Reboot Webots if you launch it, then launch it, go to `Tools` in top left corner, click `Preferences` , find `Python command` line in the opened window, and set it to `python3` to point Webots to your Python installation. 
-### 6. **Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots)**. 
+
+ _**Note:** Instructions might be slightly different on the official website. Please [see details here](https://cyberbotics.com/doc/guide/using-python#libraries)._
+
+### 6. **Follow all steps of [Webots Tutorial 1](https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation-in-webots)**
 Webots Tutorial presents examples in several programming languages. Remember to **select `Python`** when reading the code!
-## Instructions might be slightly different on the official website. Please, [see details here](https://cyberbotics.com/doc/guide/using-python#libraries).
+
 
 ## Known issues and solutions
 
