@@ -30,12 +30,12 @@ import numpy as np
 
 # Position error:
 x_err = xd - x
-y_err = yd – y
+y_err = yd - y
 dist_err = np.sqrt(x_err**2 + y_err**2)
 
 # Orientation error
 phi_d = np.arctan2(y_err,x_err)
-phi_err = phi_d – phi
+phi_err = phi_d - phi
 
 # Limit the error to (-pi, pi):
 phi_err_correct = np.arctan2(np.sin(phi_err),np.cos(phi_err))
