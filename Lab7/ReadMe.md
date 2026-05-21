@@ -20,11 +20,13 @@ Download the file [webots-maze.zip](../Lab7/webots-maze.zip) and unzip it in a f
 ### Requirements
 There are many ways to implement a program for the robot to complete this mission. But for this  assignment you **must** implement concepts from other labs. The list of requirements is given below:
 
-- The provided **environment cannot be changed**: no object can be added, moved or removed from the provided world.
 - **Odometry-based localization** algorithm must be implemented to keep track of the robot pose. As it navigates, its position and orientation must be printed to the console.
-- **Go-to-goal controller with PID** _or_ **trajectory tracking controller** must be implemented to move the robot when not inside the corridors of the maze (or when far from the walls). The controller **must** generate reference values for **linear and angular velocities**.
-- **Wall-following** _or_ **corridor-following** behavior must be implemented to move the robot when inside the corridors of the maze. The behavior **must** generate reference values for **linear and angular velocities**.
+- **Go-to-goal controller with PID** _or_ **trajectory tracking controller** must be implemented to move the robot when not inside the corridors of the maze (or when far from the walls). The controller must generate reference values for **linear and angular velocities**.
+- **Wall-following** _or_ **corridor-following** must be implemented to move the robot when inside the corridors of the maze. The behavior must generate reference values for **linear and angular velocities**.
 - A **state machine** must be implemented to select the behaviors and controllers to complete the mission. The active state must be printed to the console.
+- The robot must be able to **complete its mission even if the maze is changed**. 
+
+For the demonstration, you must first show that the robot completes its mission with the original environment (as provided in the ZIP file). Then, the maze will be changed and your robot must also complete the mission successfully. 
 
 Although not required, you are allowed to use images from the robot's **camera** to localize the red tunel and/or to navigate the maze - you can use the camera intead of, or in combination with, the proximity sensors.
 
