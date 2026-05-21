@@ -28,19 +28,19 @@ We will start with a line-following algorithm on the same world provided in the 
 
 Follow the steps below to prepare your environment:
 
-1. If you haven't done so, go back to [Lab 8](../Lab8/ReadMe.md) and follow steps 1-3 to install the world shown in Figure 2. 
+1- If you haven't done so, go back to [Lab 8](../Lab8/ReadMe.md) and follow steps 1-3 to install the world shown in Figure 2. 
 
-2. After that, **create a new Python controller** for the robot, and **copy the code** from [`line_following_behavior.py`](../Lab2/line_following_behavior.py) to it. **Save the controller** file (use the save button on top of the code).
+2- After that, **create a new Python controller** for the robot, and **copy the code** from [`line_following_behavior.py`](../Lab2/line_following_behavior.py) to it. **Save the controller** file (use the save button on top of the code).
 
-3. **Run the Webots simulation** and verify that the robot follows the line. The code from `line_following_behavior.py` is the solution of Lab 2, which was designed to follow a line with no intersections or sharp curves. It is expected that the robot will drift off the line at corners. 
+3- **Run the Webots simulation** and verify that the robot follows the line. The code from `line_following_behavior.py` is the solution of Lab 2, which was designed to follow a line with no intersections or sharp curves. It is expected that the robot will drift off the line at corners. 
 
 Now, you are going to modify the given code. The approach proposed here is to create 2 new behaviors (`turn_90_deg_left` and `turn_90_deg_right`) to turn the robot left or right at crossings. Then, when the path is planned by Dijkstra, you will be able to select between `follow-line` and those new behavios and to make the robot follow it. 
 
-4. For the above strategy to work, your robot must be able to detect line crossings. **Create a function to detect line-crossings** while following the line. Test how the ground sensors behave when the robot is at crossings to define this function. 
+4- For the above strategy to work, your robot must be able to detect line crossings. **Create a function to detect line-crossings** while following the line. Test how the ground sensors behave when the robot is at crossings to define this function. 
 
-5. **Create the new behaviors** `turn_90_deg_left` (to turn the robot 90 degrees to the left) and `turn_90_deg_right` (to turn it to the right). Both must turn the robot while _not_ moving forwards. 
+5- **Create the new behaviors** `turn_90_deg_left` (to turn the robot 90 degrees to the left) and `turn_90_deg_right` (to turn it to the right). Both must turn the robot while _not_ moving forwards. 
 
-6. Now it's time to **implement Dijkstra's algorithm**. The first thing you need is a map of the environment. We chose to represent the map as a 2D array of size 13 x 17 where `0` represents free space for the robot to navigate and `1` represents obstacles that block the robot's movement:
+6- Now it's time to **implement Dijkstra's algorithm**. The first thing you need is a map of the environment. We chose to represent the map as a 2D array of size 13 x 17 where `0` represents free space for the robot to navigate and `1` represents obstacles that block the robot's movement:
 
 ```python
     grid = np.array([
@@ -70,7 +70,7 @@ Another array of same size is used to represent the cost of arriving at each cel
 
 It is important to notice that the map does not need to have the exact proportions of the original environment. In fact, it doesn't even need to be of similar shape. For instance, we could have represented the world as a graph with line-crossings as nodes (instead of each cell), and the costs between nodes proportional to the distance between them. However, we chose for a grip map in which each cell is a node because it facilitates visualization.
 
-7. Now, **test your implementation of Dijkstra**: select the start node as `(0, 0)` and the goal node as `(12, 16)`. After running Dijkstra with the map and costs defined above, the resulting path should be: 
+7- Now, **test your implementation of Dijkstra**: select the start node as `(0, 0)` and the goal node as `(12, 16)`. After running Dijkstra with the map and costs defined above, the resulting path should be: 
 
 ```python
 Shortest Path: [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (2, 10), (2, 11), (2, 12), (2, 13), (2, 14), (2, 15), (2, 16), (3, 16), (4, 16), (5, 16), (6, 16), (7, 16), (8, 16), (9, 16), (10, 16), (11, 16), (12, 16)]
@@ -86,7 +86,7 @@ Figure 3 illustrates the map with the above path indicated in red. You should re
 
 The path shown in Figure 1 was also generated for the same `start` and `goal` positions. Can you tell why that path is different from the one in Figure 3?
 
-8. Finally, create a function to convert the planned path into a sequence of calls to the behaviors `follow-line`, `turn_90_deg_left`, and `turn_90_deg_right`. This can be implemented as a state machine in which transitions are triggered by line-crossings or ending turns, for example. The final implementation is up to you.
+8- Finally, create a function to convert the planned path into a sequence of calls to the behaviors `follow-line`, `turn_90_deg_left`, and `turn_90_deg_right`. This can be implemented as a state machine in which transitions are triggered by line-crossings or ending turns, for example. The final implementation is up to you.
 
 
 ## Solution
