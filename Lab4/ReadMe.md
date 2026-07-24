@@ -1,7 +1,9 @@
 # Lab 4 – Odometry-based Localization
 
 ## Objective
-Localization is the process used by a mobile robot to estimate its own pose. In ground mobile robots, odometry from wheel encoders is commonly used to implement _dead reckoning_, a navigation technique used to estimate the current position of a moving object by using a previously determined position. We refer to such implementation as **odometry-based localization**. The goal of this lab is to implement a simple algorithm for odometry-based robot localization and evaluate its accuracy.
+Localization is the process used by a mobile robot to estimate its own pose. In ground mobile robots, _odometry from wheel encoders_ is commonly used to implement _dead reckoning_, a navigation technique used to estimate the current position of a moving object by using a previously determined position. We refer to such implementation as **odometry-based localization**. The goal of this lab is to implement a simple algorithm for odometry-based robot localization and evaluate its accuracy. 
+
+###### _Note: Although odometry can be implemented using other sensors (such as cameras or IMUs), this lab focuses exclusively on wheel-based odometry. The integration of an inertial sensor using a Kalman Filter is left as a challange._
 
 ## Pre-requisites
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
