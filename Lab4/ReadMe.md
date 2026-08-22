@@ -22,12 +22,11 @@ The pose of a mobile robot in 3D space is defined by a minimum of 6 values (we s
 
 So, the full pose in 3D is a vector `(x, y, z, φ, θ, ψ)`.
 
-_Note_: Besides Euler angles, there are many other representations for orientation, like rotation matrix, quaternion, or axis-angle. For more information, refer to [Rotation representation](https://dgbshien.com/docs/blogs/rotation-representation.pdf), by 
-Bang-Shien Chen.
+> _Note_: Besides Euler angles, there are many other representations for orientation, like rotation matrix, quaternion, or axis-angle. For more information, refer to [Rotation representation](https://dgbshien.com/assets/blogs/rotation-representation.pdf), by Bang-Shien Chen.
 
 For ground robots (like the e-puck), **pose is often represented as `(x, y, ψ)`**: position on the floor plane with coordinates `(x, y)`, and orientation given by the yaw angle `ψ`. This considers that roll, pitch, and `z` are zero (i.e., the robot is not flying nor rolling over).
 
-To see the "real" pose of the robot given by Webots, click on “DEF E_PUCK E-puck” on the left menu and select _translation_. You will see the values of position `(x, y, z)` of the robot as shown in Figure 1. 
+To see the "real" pose of the robot given by Webots, click on “DEF E_PUCK E-puck” on the left menu and select _translation_. You will see the values of position `(x, y, z)` of the robot as shown in Figure 1.
 
 ![Robot pose in Webots](../Lab4/Webots_robot_pose.png)
 
