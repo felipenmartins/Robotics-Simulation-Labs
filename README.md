@@ -1,6 +1,6 @@
 # Robotics Simulation Labs
 
-Here you will find a set of tutorials to practice robotics concepts with [Webots Open-Source Robot Simulator](https://cyberbotics.com/) and [Python](https://www.python.org/). 
+Here you will find a set of tutorials to practice robotics concepts with [Webots Open-Source Robot Simulator](https://cyberbotics.com/) and [Python](https://www.python.org/).
 
 This page is available at: [https://felipenmartins.github.io/Robotics-Simulation-Labs/](https://felipenmartins.github.io/Robotics-Simulation-Labs/)
 
@@ -18,7 +18,7 @@ Considering mobile robotics, Webots has similar features [[2]](https://ieeexplor
 
 The **Robotics Simulation Labs** are presented as a series of tutorials, including references to the official Webots tutorials, when relevant. The Labs are intended to be followed in sequence, starting from the first one.
 
-Templates and solutions are presented for some labs, always in Python. They are compatible with the global coordinate system adopted as default by Webots since version R2022a. If you use an older version of Webots, please [see this note](/coordinate_system/ReadMe.md). 
+Templates and solutions are presented for some labs, always in Python. They are compatible with the global coordinate system adopted as default by Webots since version R2022a. If you use an older version of Webots, please [see this note](/coordinate_system/ReadMe.md).
 
 If you make use of the content in this page, please cite [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44).
 
@@ -39,7 +39,7 @@ The content of each lab is listed below:
 
 ## Accompanying Jupyter Notebooks
 
-Brief explanations of some concepts, including how to implement them in Python, are available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). These notebooks are useful for understanding the fundamentals because they allow step-by-step execution of the implemented functions without the need of running Webots. 
+Brief explanations of some concepts, including how to implement them in Python, are available as [Jupyter Notebooks](https://github.com/felipenmartins/jupyter-notebooks). These notebooks are useful for understanding the fundamentals because they allow step-by-step execution of the implemented functions without the need of running Webots.
 
 The available notebooks are:
 

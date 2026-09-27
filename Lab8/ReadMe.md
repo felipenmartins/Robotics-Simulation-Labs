@@ -1,7 +1,8 @@
 # Lab 8 – Hardware-in-the-Loop Simulation
 
 ## Objective
-Real robots are controlled by embedded hardware, so it is interesting to have a way to test it. The goal of this lab is to implement a Hardware-in-the-Loop Simulation, in which an external microcontroller board receives sensor data from the simulator and sends commands to control the simulated robot. 
+
+Real robots are controlled by embedded hardware, so it is interesting to have a way to test it. The goal of this lab is to implement a Hardware-in-the-Loop Simulation, in which an external microcontroller board receives sensor data from the simulator and sends commands to control the simulated robot.
 
 ![screenshot_Webots](../Lab8/HIL_implementation.gif)
 
@@ -9,20 +10,20 @@ Real robots are controlled by embedded hardware, so it is interesting to have a 
 
 ## Hardware-in-the-Loop - HIL
 
-Simulators like Webots are great learning tools because they allow lerning robotics without the need of dealing with (expensive) hardware. However, simulations hide hardware limitations of embedded systems used in real robots. To overcome such limitation and better represent real operational conditions, a microcontroller can receive sensor data from the simulated robot and run the algorithm to control it. This is called **Hardware-in-the-Loop** simulation (HIL). 
+Simulators like Webots are great learning tools because they allow lerning robotics without the need of dealing with (expensive) hardware. However, simulations hide hardware limitations of embedded systems used in real robots. To overcome such limitation and better represent real operational conditions, a microcontroller can receive sensor data from the simulated robot and run the algorithm to control it. This is called **Hardware-in-the-Loop** simulation (HIL).
 
-HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running  Webots. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the actual robot control remain the same. The big advantage is that the control algorithm can be tested and adjusted with the simulated robot, reducing costs and optimizing development time. Then, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44). 
+HIL simulation can be implemented by connecting a microcontroller via serial port to the computer running  Webots. A protocol to implement the communication between the microcontroller and the simulator needs to be defined, and the code needs to be adapted accordingly. However, all functions related to the actual robot control remain the same. The big advantage is that the control algorithm can be tested and adjusted with the simulated robot, reducing costs and optimizing development time. Then, the same microcontroller can be used to control a real robot with little change in code [[1]](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44).
 
 In this lab, we are going to use MicroPython to program an ESP32-based microcontroller board to communicate with the simulator via serial port (over USB). The board will receive sensor data from the simulator, process it, run the controller algorithm, and then send commands back to the simulator to control the simulated robot (see Figure 1).
 
-
 ## Pre-requisites
-* You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
-* You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
-* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), and a [state machine](../Lab2/ReadMe.md) to select the robot behavior. 
-* You must have a microcontroller board that can be programmed in MicroPython and can be connected to the computer via USB cable. The example code presented here was tested on a ESP32-based board. 
 
-A popular IDE to program your microcontroller in MicroPython is Thonny. The site [Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-thonny-micropython-python-ide-esp32-esp8266/) provides instructions for installing Thonny IDE in Windows, Mac OS X, and Linux, flashing MicroPython software to your ESP32 board using Thonny IDE, writing and uploading code to your ESP32, and troubleshooting. 
+* You must have Webots R2023a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
+* You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)).
+* You must know how to [implement simple behaviors](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_behaviors.ipynb), and a [state machine](../Lab2/ReadMe.md) to select the robot behavior.
+* You must have a microcontroller board that can be programmed in MicroPython and can be connected to the computer via USB cable. The example code presented here was tested on a ESP32-based board.
+
+A popular IDE to program your microcontroller in MicroPython is Thonny. The site [Random Nerd Tutorials](https://randomnerdtutorials.com/getting-started-thonny-micropython-python-ide-esp32-esp8266/) provides instructions for installing Thonny IDE in Windows, Mac OS X, and Linux, flashing MicroPython software to your ESP32 board using Thonny IDE, writing and uploading code to your ESP32, and troubleshooting.
 
 ## HIL Example
 
@@ -30,7 +31,7 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 1. **Download** the file [Webots_RaFLite_HiL.zip](../Lab8/Webots_RaFLite_HiL.zip) and unzip it to a folder of your preference.
 
-2. **Copy the folder `Worlds`** to your Webots folder. 
+2. **Copy the folder `Worlds`** to your Webots folder.
 
 3. Open Webots, **load the world `RaFLite.wbt`**, and **stop the running simulation**.
 
@@ -38,13 +39,13 @@ We provide a ZIP file with the Webots world shown in Figure 1, and example code 
 
 5. **Open your MicroPython IDE** (for example, Thonny), and connect it to your ESP32.
 
-6. **Copy the code** from [`control_webots.py`](../Lab8/control_webots.py) and save it with the name `main.py` on your ESP32. Using the name `main.py` is important, since this is the name of the file that will be executed on the ESP32 after it is reset. 
+6. **Copy the code** from [`control_webots.py`](../Lab8/control_webots.py) and save it with the name `main.py` on your ESP32. Using the name `main.py` is important, since this is the name of the file that will be executed on the ESP32 after it is reset.
 
 7. **Run the code on the ESP32**.
 
 8. **Close your MicroPython IDE** (Thonny), otherwise it will keep the serial port open and Webots will not be able to use it. Keep the ESP32 connected to your computer.
 
-9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**. 
+9. With the MicroPython IDE closed and the ESP32 running, **run the Webots simulation**.
 
 After executing the steps above, you should see the simulation running. The video linked in Figure 2 illustrates how to run the HIL Simulation using Thonny and Webots once you have the code ready for both:
 
@@ -73,7 +74,7 @@ except:
     pass
 ```
 
-The parameters `port` and `baudrate` above must match the ones used by your ESP32. In my case, the ESP32 board is connected to comm port `COM5` and communicates at 115200 bps. The communication speed can be adjusted in code, although only a few [predefined values](https://lucidar.me/en/serialib/most-used-baud-rates-table/) are allowed. But the comm port is defined by your operating system. Refer to [this documentation page](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/establish-serial-connection.html#check-port-on-windows) for instructions on how to find out the comm port your ESP32 is using.   
+The parameters `port` and `baudrate` above must match the ones used by your ESP32. In my case, the ESP32 board is connected to comm port `COM5` and communicates at 115200 bps. The communication speed can be adjusted in code, although only a few [predefined values](https://lucidar.me/en/serialib/most-used-baud-rates-table/) are allowed. But the comm port is defined by your operating system. Refer to [this documentation page](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/establish-serial-connection.html#check-port-on-windows) for instructions on how to find out the comm port your ESP32 is using.
 
 Naturally, both the ESP32 and Webots need to "speak the same language" to be able to exchange information. This means that the code in both of them needs to transmit messages that the other knows the meaning of. We chose to implement communication by sending and receiving a string of characters. In the case of sensor data to be sent to the ESP32, we decided to send binary values to indicate when each sensor detects the line or not. A `message` is constructed with a sequence of ones and zeros, according to the value measured by each of the line sensors (0 = line detected; 1 = line not detected). Finally, a line feed character `\n` is added at the end, the message is encoded in 'UTF-8' format, and transmitted using the `write` method. This process is illustrated below:
 
@@ -103,13 +104,13 @@ if ser.in_waiting:
     current_state = value
 ```
 
-Note that the last character of the string is ignored. This is done because the string sent by the ESP32 always ends with the character `\n` (line feed), but we are only interested in the other characters that contain useful information. 
+Note that the last character of the string is ignored. This is done because the string sent by the ESP32 always ends with the character `\n` (line feed), but we are only interested in the other characters that contain useful information.
 
 ### Code running on the ESP32
 
 The ESP32 has 3 UARTs (Universal Asynchronous Receiver/Transmitter) to implement serial communication. UART0 is usually used for the MicroPython REPL (Read-Eval-Print Loop), which is the console. More information about how serial communication is implemented in the ESP32 and MicroPython is available at [here](https://www.engineersgarage.com/micropython-esp8266-esp32-uart/).
 
-To implement serial communication in MicroPython, we begin by importing `UART` from the built-in library `machine`: 
+To implement serial communication in MicroPython, we begin by importing `UART` from the built-in library `machine`:
 
 ```python
 from machine import Pin, UART
@@ -128,7 +129,7 @@ while button_left() == False:
 uart = UART(1, 115200, tx=1, rx=3)
 ```
 
-This guarantees that the serial port will only be changed after user confirmation, and the code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset). 
+This guarantees that the serial port will only be changed after user confirmation, and the code can still be stopped using Thonny before the button is pressed. After the button is pressed, the serial port is changed to UART1 and Thonny will no longer be able to communicate with the ESP32 (until it is reset).
 
 Note that the baudrate needs to be the same as in the code running in Webots (in this case, 115200 bps). The parameters `tx` and `rx` indicate the ESP32 pins that will be connected to the UART.
 
@@ -169,21 +170,26 @@ You need to complete two tasks in this lab:
 
 Your first task is it to **put the example described above to work** using your own ESP32. Please, note that the MicroPython example code considers that there are a few buttons and LEDs connected to specific pins of the ESP32: you need to adjust the code to match your hardware.
 
-Then, **modify the code to improve the line following behavior**. Your robot must follow the most outer line of the field, which means it will only turn if cannot continue moving forwards. The robot should always go back to the line if, for any reason, it runs away from it. You are free to change the code as you prefer (communication messages, number of states, speeds of the motors etc.). 
+Then, **modify the code to improve the line following behavior**. Your robot must follow the most outer line of the field, which means it will only turn if cannot continue moving forwards. The robot should always go back to the line if, for any reason, it runs away from it. You are free to change the code as you prefer (communication messages, number of states, speeds of the motors etc.).
 
 ## Solution
+
 No solution is provided for this lab.
 
 ## Challenge
-Modify the provided code to include odometry-based localization to keep track of the robot's pose while it navigates. To limit the error caused by drift, use each line-crossing as a landmark to correct the position estimate given by odometry. For that to work you must map the positions of all line-crossings. 
+
+Modify the provided code to include odometry-based localization to keep track of the robot's pose while it navigates. To limit the error caused by drift, use each line-crossing as a landmark to correct the position estimate given by odometry. For that to work you must map the positions of all line-crossings.
 
 ## Conclusion
+
 After following this lab you should know how to implement hardware-in-the-loop simulation to control a simulated robot from a microcontroller connected via serial port. By completing the challenge of this lab you also practice how to limit the position estimate error giving by odometry-based localization.
 
 ## Reference
+
 [1] Lima, José, Felipe N. Martins, and Paulo Costa. "Teaching Practical Robotics During the COVID-19 Pandemic: A Case Study on Regular and Hardware-in-the-Loop Simulations." Iberian Robotics Conference. Cham: Springer International Publishing, 2022. Available at: [https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44](https://link.springer.com/chapter/10.1007/978-3-031-21065-5_44)
 
 ## Next Lab
+
 In the next lab you will learn how to use Dijkstra's algorithm to plan a path for the robot.
 
 Go to [Lab 9](../Lab9/ReadMe.md) - Path planning with Dijkstra

@@ -1,16 +1,17 @@
 # Lab 5 – Go-to-goal behavior with PID
 
 ## Objective
-The goal of this lab is to implement a go-to-goal behavior based on a PID controller. Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence. 
+
+The goal of this lab is to implement a go-to-goal behavior based on a PID controller. Figure 1 illustrates the go-to-goal implementation for 2 positions in a sequence.
 
 ![Go to goal illustration](../Lab5/go_to_goal.gif)
 
 ###### Figure 1. Illustration of the Go-to-Goal controller reaching two goals in sequence. After reaching the final goal, the robot stops.
 
-
 ## Pre-requisites
+
 * You must have Webots R2022a (or newer) properly configured to work with Python (see [Lab 1](../Lab1/ReadMe.md)).
-* You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)). 
+* You must know how to create a robot controller in Python and how to run a simulation (see [Lab 1](../Lab1/ReadMe.md)).
 * You must have a working solution of [Lab 4](../Lab4/line_following_with_localization.py).  
 * You must understand how to implement [Mobile Robot Control with PID](https://github.com/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb) for a go-to-goal moving controller.
 
@@ -19,6 +20,7 @@ If necessary, please go back to previous labs to complete the corresponding task
 You should also understand how PID controllers work. If you need a refresh on the theory, check out this great explanation from Michael Hart on [Understanding PID Controllers](https://mikelikesrobots.github.io/blog/understand-pid-controllers/).
 
 ## Tasks
+
 Your main task is to write code to implement the PID controller to control the robot orientation. Note that the PID controller needs information about the actual robot orientation, so the odometry-based localization algorithm implemented in Lab 4 needs to be working. You are going to modify the line-following behavior to add the go-to-goal behavior, which will be activated by a new state in your state machine.
 
 The tasks are detailed below:
@@ -58,20 +60,21 @@ e_prev = e     # error value in the previous interation (to calculate the deriva
 e_acc = I      # accumulated error value (to calculate the integral term)
 ```
 
-3- **Using the code from Lab 4, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated. 
+3- **Using the code from Lab 4, create a new "go-to-goal" state** that is activated when the robot reaches approximately half of the track. In other words, the robot starts by following the line using the state-machine with localization implemented in lab 3. When it gets half-way through the path, the new "go-to-goal" state is activated.
 
 A list of goal positions is given in the program. One should be able to add as many goal positions as desired. After reaching the final goal position, the robot must stop.
 
 Implement your code so that the robot goes from its current position to the next goal position, stops, and stays there for some short time (1 second, for example). Then, the robot should move to the subsequent goal position and repeat the cycle until it reaches the final goal position. Everytime the robot stops at a goal, it has to print its own position and distance error to the goal.
 
-4- **Test your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field**. 
+4- **Test your code by making the robot go to the 4 corners of the field (without touching the walls), and then to the center of the field**.
 
 ## Actuator Saturation
+
 The desired speeds for the left and right wheels will be calculated from the desired values of linear and/or angular speeds. If the desired speed for one of the wheels is higher than the maximum speed that its motor can achieve, the wheel will not be able to follow the speed desired by the controller. We say that there is **actuator saturation**. In this case, the difference between the speeds of the left and right wheels will be smaller than expected, which will cause the robot to turn at a different angular speed than desired by the PID controller. As a result, the robot will not turn to the direction of the goal. And if both motors are saturated, the robot will not turn at all!
 
 Actuator saturation is a potential problem in all control systems, so we need to keep it in mind. In the case of the "go-to-goal" controller for the differential-drive robot, it is very important that the robot drives towards the correct direction, and no so important that it moves with the desired linear speed. Therefore, we can avoid the saturation problem by reducing the overall robot speed while maintaining its angular speed.
 
-The code below implements the solution discussed above by calculating a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained. 
+The code below implements the solution discussed above by calculating a `speed_ratio`. When saturation occurs, one of the motors will have its speed reduced so that the desired speed ratio is maintained.
 
 ```python
 def wheel_speed_commands(u_d, w_d, D, R):
@@ -91,26 +94,32 @@ def wheel_speed_commands(u_d, w_d, D, R):
     
     return wl_d, wr_d
 ```
- 
-Compare the controller performance with and without the saturation correction. 
+
+Compare the controller performance with and without the saturation correction.
 
 ## Task
-Modify your line following code with localization from Lab 4 to implement the go-to-goal behavior as described above. 
+
+Modify your line following code with localization from Lab 4 to implement the go-to-goal behavior as described above.
 
 ## Solution
+
 No solution is provided for this lab. If you need extra explanation, study the Jupyter Notebook for [Mobile Robot Control with PID](https://nbviewer.org/github/felipenmartins/Mobile-Robot-Control/blob/main/robot_control_with_PID.ipynb).
 
 ## Challenge: Pose Control
-Change your code to implement pose control (position and orientation). 
+
+Change your code to implement pose control (position and orientation).
 
 Tips: Two simple ways of implementing pose control are:
+
 * Adjust the robot orientation after it reaches the goal position. Or,
 * Adjust the robot orientation at a point before it reaches the goal, then move straight to the goal.
 
 ## Conclusion
+
 After following this lab you should know how to implement a moving controller using a PID to take a mobile robot to specific positions defined by their coordinates.
 
 ## Next Lab
+
 In the next lab you will implement a controller that enables the robot to follow a trajectory, which is a path with desired speeds along the way.
 
 Go to [Lab 6](../Lab6/ReadMe.md) - Trajectory Tracking Controller
